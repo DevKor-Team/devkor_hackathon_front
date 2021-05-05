@@ -1,7 +1,7 @@
-import '/styles/globals.css'; // 글로벌css
+import 'src/styles/globals.css'; // 글로벌css
 import React from 'react';
 import withRedux from 'next-redux-wrapper';
-import configureStore from 'reducers/store';
+import configureStore from 'src/reducers/store';
 
 
 function MyApp({ Component, pageProps, store }) {
