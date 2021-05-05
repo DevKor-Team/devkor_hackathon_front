@@ -23,8 +23,8 @@
 ```bash
 git clone https://github.com/DevKor-Team/devkor_hackathon_front
 cd devkor_hackathon_front
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 ## Related projects
 https://github.com/DevKor-Team/devkor_hackathon_back

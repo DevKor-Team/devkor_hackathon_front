@@ -29,18 +29,18 @@ TF가 pull request를 모니터링중입니다. TF는 pull request들을 리뷰�
 ### Development WorkFlow
 *pull request를 날리기 전에, 다음의 것들이 완료돼야 합니다*
 1. repository fork 후 develop로부터 feature branch를 만들기
-2. repository root에서 `npm install` 실행
+2. repository root에서 `yarn` 실행
 3. 만약 code들을 수정 했다면, 각 기능별 요구사항에 맞는지 체크리스트와 함께 테스트를 진행합니다.
-4. `npm run prettier`로 코드를 format합니다.
-5. `npm run lint`로 체크합니다.
+4. `yarn prettier`로 코드를 format합니다.
+5. `yarn lint`로 체크합니다.
 ### Development environment
 * Node와 package가 설치되어있어야 합니다.
-* Repository의 dependency를 `npm install`로 설치해주세요
-* `npm run dev`로 developement server를 시작해주세요
+* Repository의 dependency를 `yarn`로 설치해주세요
+* `yarn`로 developement server를 시작해주세요
 
 ## Style Guide
-이 프로젝트에서는 Prettier라고 하는 automatic code formatter를 사용합니다. 코드를 짠 후에는 `npm run prettier`를 실행해주세요.
+이 프로젝트에서는 Prettier라고 하는 automatic code formatter를 사용합니다. 코드를 짠 후에는 `yarn prettier`를 실행해주세요.
 
-그리고 나서, 저희 linter로 코드에 있는 issue들을 발견해야 합니다. `npm run lint`를 통해 code의 상태를 검사해주세요.
+그리고 나서, 저희 linter로 코드에 있는 issue들을 발견해야 합니다. `yarn lint`를 통해 code의 상태를 검사해주세요.
 
 하지만, 몇몇 스타일들은 저희 linter가 발견할 수 없을 것입니다. 만약 불확실한 것이 있다면, [Airbnb's Style Guide](https://github.com/airbnb/javascript)를 참조해주세요.
