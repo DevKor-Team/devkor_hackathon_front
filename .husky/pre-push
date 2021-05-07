@@ -26,4 +26,6 @@ then
     exit 1 # 금지된 ref 로 push 를 실행하면 에러
 fi
 
+yarn lint
+
 exit 0
