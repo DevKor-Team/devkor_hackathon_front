@@ -26,17 +26,22 @@ slack 채널에서 매주 다음주 기획에 대한 제안, 해당 주차 개�
 
 ## Sending a Pull Request
 TF가 pull request를 모니터링중입니다. TF는 pull request들을 리뷰한후, merge하거나, 수정사항을 요청하거나, 설명과 함께 닫을 수 있습니다.
+
+### Commit message
+* 별도의 commit message convention이 존재합니다. [문서](https://github.com/DevKor-Team/devkor_hackathon_front/blob/develop/docs/COMMIT_MESSAGE_CONVENTION.md)를 참조해주세요.
+
 ### Development WorkFlow
 *pull request를 날리기 전에, 다음의 것들이 완료돼야 합니다*
 1. repository fork 후 develop로부터 feature branch를 만들기
-2. repository root에서 `yarn` 실행
+2. repository root에서 `yarn` 및 `yarn husky install` 실행
 3. 만약 code들을 수정 했다면, 각 기능별 요구사항에 맞는지 체크리스트와 함께 테스트를 진행합니다.
-4. `yarn prettier`로 코드를 format합니다.
-5. `yarn lint`로 체크합니다.
+4. `yarn prettier`로 코드스타일을 체크합니다.
+5. `yarn lint`로 코드스타일을 체크합니다.
+
 ### Development environment
 * Node와 package가 설치되어있어야 합니다.
-* Repository의 dependency를 `yarn`로 설치해주세요
-* `yarn`로 developement server를 시작해주세요
+* Repository의 dependency를 `yarn`로 설치해주세요.
+* `yarn dev`로 developement server를 시작해주세요.
 
 ## Style Guide
 이 프로젝트에서는 Prettier라고 하는 automatic code formatter를 사용합니다. 코드를 짠 후에는 `yarn prettier`를 실행해주세요.
