@@ -24,6 +24,7 @@
 git clone https://github.com/DevKor-Team/devkor_hackathon_front
 cd devkor_hackathon_front
 yarn
+yarn husky install
 yarn dev
 ```
 ## Related projects

@@ -14,12 +14,12 @@ app.prepare().then(() => {
     proxy.createProxyMiddleware({
       target: 'http://localhost:8000',
       changeOrigin: true,
-    }),
+    })
   );
 
   server.all('*', (req, res) => handle(req, res));
 
-  server.listen(port, err => {
+  server.listen(port, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
