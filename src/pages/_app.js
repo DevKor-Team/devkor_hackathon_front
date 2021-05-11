@@ -1,18 +1,23 @@
-import 'src/styles/globals.css'; // 글로벌css
+import 'styles/globals.scss'; // 글로벌css
 import React from 'react';
 import withRedux from 'next-redux-wrapper';
-import configureStore from 'src/reducers/store';
+import configureStore from 'reducers/store';
 import PropTypes from 'prop-types';
+import Navbar from 'containers/Navbar';
+import Footer from 'containers/Footer';
 
-function MyApp({ Component, pageProps /* , store */ }) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title> devkor-front </title>
       </head>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Component {...pageProps} />
-      <footer>footer</footer>
+      <Navbar />
+      <div class="wrapper">
+        <Component {...pageProps} />
+        <Footer />
+      </div>
     </>
   );
 }

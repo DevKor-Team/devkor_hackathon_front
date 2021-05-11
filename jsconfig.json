@@ -4,9 +4,9 @@
     },
     "include": [
         "**/*.js",
-        "**/*.jsx"
+        "**/*.jsx",
     ],
     "exclude": [
-    "node_modules"
+        "node_modules"
     ]
 }
