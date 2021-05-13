@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import 'styles/globals.scss'; // 글로벌css
 import React from 'react';
 import withRedux from 'next-redux-wrapper';
 import configureStore from 'reducers/store';
 import PropTypes from 'prop-types';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import { Navbar } from 'components/Navbar';
+import { Footer } from 'components/Footer';
 
 function MyApp({ Component, pageProps /* , store */ }) {
   return (
@@ -13,7 +14,7 @@ function MyApp({ Component, pageProps /* , store */ }) {
         <title> devkor-front </title>
       </head>
       <Navbar />
-      <div class="wrapper">
+      <div className="wrapper">
         <Component {...pageProps} />
         <Footer />
       </div>
