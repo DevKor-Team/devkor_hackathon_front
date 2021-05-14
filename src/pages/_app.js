@@ -5,7 +5,6 @@ import withRedux from 'next-redux-wrapper';
 import configureStore from 'reducers/store';
 import PropTypes from 'prop-types';
 import { Navbar } from 'components/Navbar';
-import { Footer } from 'components/Footer';
 
 function MyApp({ Component, pageProps /* , store */ }) {
   return (
@@ -14,10 +13,8 @@ function MyApp({ Component, pageProps /* , store */ }) {
         <title> devkor-front </title>
       </head>
       <Navbar />
-      <div className="wrapper">
-        <Component {...pageProps} />
-        <Footer />
-      </div>
+      <Component {...pageProps} />
+      {/* <Footer /> */}
     </>
   );
 }
