@@ -1,12 +1,16 @@
-// import { useSelector } from 'react-redux';
-// import { getUserData } from 'src/axios/User';
+import React from 'react';
+import { Banner1 } from 'containers/Home/Banner1';
+import { Banner2 } from 'containers/Home/Banner2';
+import { Banner3 } from 'containers/Home/Banner3';
 
 export default function Home() {
-  // let state = useSelector(state => state);
-  // getUserData().then(res => console.log(res));
   return (
-    <div>
-      <main>main</main>
+    <div className="wrapper">
+      <div className="home__container">
+        <Banner1 />
+        <Banner2 />
+        <Banner3 />
+      </div>
     </div>
   );
 }
