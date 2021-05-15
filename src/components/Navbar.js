@@ -17,7 +17,12 @@ export const DesktopNavbar = () => {
   };
   return (
     <>
-      <LoginModal isOn={isLoginModalOn} />
+      <LoginModal
+        isOn={isLoginModalOn}
+        turnOff={() => {
+          toggleModal('login');
+        }}
+      />
       <div className="navbar__container">
         <div className="logo">
           <img src={logo} alt="devkor" />
