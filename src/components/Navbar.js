@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import LoginModal from './Login';
+import SignUpModal from './SignUp';
 
 const logo = 'images/containers/Navbar/devkor_logo.svg';
 
@@ -22,6 +23,14 @@ export const DesktopNavbar = () => {
         turnOff={() => {
           toggleModal('login');
         }}
+        title="LOGIN"
+      />
+      <SignUpModal
+        isOn={isAuthModalOn}
+        turnOff={() => {
+          toggleModal('signup');
+        }}
+        title="SIGNUP"
       />
       <div className="navbar__container">
         <div className="logo">

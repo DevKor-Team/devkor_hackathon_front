@@ -244,8 +244,8 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  width: 576px;
-  height: 600px;
+  width: 536px;
+  height: 100vh;
   z-index: 5;
   .auth__title {
     position: relative;
@@ -260,7 +260,13 @@ a {
     text-align: center;
     font-size: 24px;
   }
-  .button {
+  .auth__buttonContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .button, .input, .select {
     margin: 16px auto 0px;
   }
 }
@@ -282,10 +288,67 @@ a {
       height: 100%;
     }
   }
-  .button_description{
+  .button__description{
     position: absolute;
     top: 15px;
     font-size: 24px;
     left: 121px;
+  }
+  .button__description--align-middle {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.button--position-bottom {
+  position: absolute;
+  bottom: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.input {
+  position: relative;
+  border-radius: 8px;
+  border: solid 1px #848484;
+  background-color: #ffffff;
+  width: 368px;
+  height: 48px;
+  input {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    width: calc(100% - 32px);
+    height: 33px;
+    appearance: none;
+    border: none;
+    font-size: 24px;
+    margin: auto;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+    color: #3c4558;
+  }
+}
+
+.select {
+  position: relative;
+  border-radius: 8px;
+  border: solid 1px #848484;
+  background-color: #ffffff;
+  width: 368px;
+  height: 48px;
+  select {
+    appearance: none;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    width: calc(100% - 32px);
+    height: 33px;
+    appearance: none;
+    border: none;
+    font-size: 24px;
+    margin: auto;
+    padding: 0px;
+    color: #3c4558;
   }
 }
