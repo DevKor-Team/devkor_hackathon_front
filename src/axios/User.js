@@ -8,4 +8,17 @@ export function getUserData() {
   });
 }
 
+export function getUserProfile() {
+  return axios(
+    {
+      method: 'GET',
+      url: '/api/account/me',
+    },
+    {
+      withCredentials: true,
+      // validateStatus: () => true,
+    }
+  );
+}
+
 export default getUserData;

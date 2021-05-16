@@ -1,36 +1,41 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from 'reducers/users';
+import { getUserProfile } from 'axios/User';
 import LoginModal from './Login';
-import SignUpModal from './SignUp';
 
 const logo = 'images/containers/Navbar/devkor_logo.svg';
 
 export const DesktopNavbar = () => {
-  const [isLoginModalOn, setIsLoginModalOn] = React.useState(false);
-  const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
+  const dispatch = useDispatch();
 
-  const toggleModal = (type) => {
-    if (type === 'login') {
-      setIsLoginModalOn(!isLoginModalOn);
-    } else if (type === 'signup') {
-      setIsAuthModalOn(!isAuthModalOn);
-    }
+  const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
+  // const user = useSelector((state) => state.user);
+  const users = useSelector((state) => state.users.user);
+  console.log(users);
+
+  React.useEffect(() => {
+    getUserProfile()
+      .then((res) => {
+        dispatch(setUser(res.data));
+      })
+      .catch((err) => {
+        console.dir(err);
+      });
+  }, []);
+
+  const toggleModal = () => {
+    setIsAuthModalOn(!isAuthModalOn);
   };
   return (
     <>
       <LoginModal
-        isOn={isLoginModalOn}
-        turnOff={() => {
-          toggleModal('login');
-        }}
-        title="LOGIN"
-      />
-      <SignUpModal
         isOn={isAuthModalOn}
         turnOff={() => {
-          toggleModal('signup');
+          toggleModal();
         }}
-        title="SIGNUP"
+        title="LOGIN/SIGNUP"
       />
       <div className="navbar__container">
         <div className="logo">
@@ -43,26 +48,12 @@ export const DesktopNavbar = () => {
                 toggleModal('login');
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') toggleModal('login');
+                if (e.key === 'Enter') toggleModal();
               }}
               role="button"
               tabIndex={0}
             >
-              LOGIN
-            </div>
-          </li>
-          <li>
-            <div
-              onClick={() => {
-                toggleModal('signup');
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') toggleModal('signup');
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              SIGNUP
+              LOGIN/SIGNUP
             </div>
           </li>
           <li> PROJECTS </li>

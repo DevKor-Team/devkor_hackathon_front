@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GoogleLogin from 'react-google-login';
 import Modal from './Modal';
 
 const LoginModal = ({ isOn, turnOff, title }) => {
@@ -10,27 +9,19 @@ const LoginModal = ({ isOn, turnOff, title }) => {
         <div className="auth__title">{title}</div>
         <div className="auth__subtitle">Welcome to DevKor</div>
         <div className="auth__buttonContainer">
-          <GoogleLogin
-            clientId="52596861077-al66do6s1ft73969jii5d2v7t80ga4u4.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <div
-                role="button"
-                tabIndex={0}
-                className="button"
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                <div className="button_img">
-                  <img src="images/google_logo.svg" alt="google login" />
-                </div>
-                <div className="button__description">Google 로그인</div>
-              </div>
-            )}
-            buttonText="Login"
-            onSuccess={(result) => console.log(result)}
-            onFailure={(result) => console.log(result)}
-            cookiePolicy="single_host_origin"
-          />
+          <div
+            role="button"
+            tabIndex={0}
+            className="button"
+            onClick={() => {
+              window.location.href = 'http://localhost:8000/oauth/google/login';
+            }}
+          >
+            <div className="button_img">
+              <img src="images/google_logo.svg" alt="google login" />
+            </div>
+            <div className="button__description">Google 로그인</div>
+          </div>
           <div className="button">
             <div className="button_img">
               <img src="images/github_logo.svg" alt="google login" />
