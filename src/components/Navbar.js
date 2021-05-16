@@ -11,9 +11,9 @@ export const DesktopNavbar = () => {
   const dispatch = useDispatch();
 
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
-  // const user = useSelector((state) => state.user);
-  const users = useSelector((state) => state.users.user);
-  console.log(users);
+
+  const userProfile = useSelector((state) => state.users.user);
+  console.log(userProfile);
 
   React.useEffect(() => {
     getUserProfile()
@@ -38,26 +38,95 @@ export const DesktopNavbar = () => {
         title="LOGIN/SIGNUP"
       />
       <div className="navbar__container">
-        <div className="logo">
+        <div
+          className="logo"
+          onClick={() => {
+            window.location.href = '/';
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') window.location.href = '/';
+          }}
+          role="button"
+          tabIndex={0}
+        >
           <img src={logo} alt="devkor" />
         </div>
         <ul>
+          {userProfile === null ? (
+            <li>
+              <div
+                onClick={() => {
+                  toggleModal('login');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') toggleModal();
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                LOGIN/SIGNUP
+              </div>
+            </li>
+          ) : (
+            <>
+              <li>
+                <div
+                  onClick={() => {
+                    window.location.href = '/my';
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') window.location.href = '/my';
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
+                  MY
+                </div>
+              </li>
+              <li>
+                <div
+                  onClick={() => {
+                    window.location.href = '/team';
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') window.location.href = '/team';
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
+                  TEAM
+                </div>
+              </li>
+            </>
+          )}
           <li>
             <div
               onClick={() => {
-                toggleModal('login');
+                window.location.href = '/projects';
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') toggleModal();
+                if (e.key === 'Enter') window.location.href = '/projects';
               }}
               role="button"
               tabIndex={0}
             >
-              LOGIN/SIGNUP
+              PROJECTS
             </div>
           </li>
-          <li> PROJECTS </li>
-          <li> ABOUT </li>
+          <li>
+            <div
+              onClick={() => {
+                window.location.href = 'http://bit.ly/3pQdRsI';
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') window.location.href = 'http://bit.ly/3pQdRsI';
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              ABOUT
+            </div>
+          </li>
         </ul>
       </div>
       <div className="emptyblock" />
