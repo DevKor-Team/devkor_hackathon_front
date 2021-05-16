@@ -1,11 +1,36 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { setUser } from 'reducers/users';
 import { getUserProfile } from 'axios/User';
 import LoginModal from './Login';
 
 const logo = 'images/containers/Navbar/devkor_logo.svg';
+
+const NavbarItem = ({ title, onClick }) => {
+  return (
+    <li>
+      <div
+        onClick={() => {
+          onClick();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') onClick();
+        }}
+        role="button"
+        tabIndex={0}
+      >
+        {title}
+      </div>
+    </li>
+  );
+};
+
+NavbarItem.propTypes = {
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+};
 
 export const DesktopNavbar = () => {
   const dispatch = useDispatch();
@@ -53,80 +78,35 @@ export const DesktopNavbar = () => {
         </div>
         <ul>
           {userProfile === null ? (
-            <li>
-              <div
-                onClick={() => {
-                  toggleModal('login');
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') toggleModal();
-                }}
-                role="button"
-                tabIndex={0}
-              >
-                LOGIN/SIGNUP
-              </div>
-            </li>
+            <NavbarItem title="LOGIN/SIGNUP" onClick={toggleModal} />
           ) : (
             <>
-              <li>
-                <div
-                  onClick={() => {
-                    window.location.href = '/my';
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') window.location.href = '/my';
-                  }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  MY
-                </div>
-              </li>
-              <li>
-                <div
-                  onClick={() => {
-                    window.location.href = '/team';
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') window.location.href = '/team';
-                  }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  TEAM
-                </div>
-              </li>
+              <NavbarItem
+                title="TEAM"
+                onClick={() => {
+                  window.location.href = '/team';
+                }}
+              />
+              <NavbarItem
+                title="MY"
+                onClick={() => {
+                  window.location.href = '/my';
+                }}
+              />
             </>
           )}
-          <li>
-            <div
-              onClick={() => {
-                window.location.href = '/projects';
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') window.location.href = '/projects';
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              PROJECTS
-            </div>
-          </li>
-          <li>
-            <div
-              onClick={() => {
-                window.location.href = 'http://bit.ly/3pQdRsI';
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') window.location.href = 'http://bit.ly/3pQdRsI';
-              }}
-              role="button"
-              tabIndex={0}
-            >
-              ABOUT
-            </div>
-          </li>
+          <NavbarItem
+            title="PROJECTS"
+            onClick={() => {
+              window.location.href = '/projects';
+            }}
+          />
+          <NavbarItem
+            title="ABOUT"
+            onClick={() => {
+              window.location.href = 'http://bit.ly/3pQdRsI';
+            }}
+          />
         </ul>
       </div>
       <div className="emptyblock" />
