@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import Modal from './Modal';
 
 const LoginModal = ({ isOn, turnOff, title }) => {
+  const router = useRouter();
+  const moveTo = (href) => {
+    router.push(href);
+  };
   return (
     <Modal isOn={isOn} turnOff={turnOff}>
       <div className="auth">
@@ -14,7 +19,7 @@ const LoginModal = ({ isOn, turnOff, title }) => {
             tabIndex={0}
             className="button"
             onClick={() => {
-              window.location.href = 'http://localhost:8000/oauth/google/login';
+              moveTo('http://localhost:8000/oauth/google/login');
             }}
           >
             <div className="button_img">

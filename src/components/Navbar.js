@@ -2,6 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { setUser } from 'reducers/users';
 import { getUserProfile } from 'axios/User';
 import LoginModal from './Login';
@@ -40,6 +41,7 @@ export const DesktopNavbar = () => {
   const userProfile = useSelector((state) => state.users.user);
   console.log(userProfile);
 
+  const router = useRouter();
   React.useEffect(() => {
     getUserProfile()
       .then((res) => {
@@ -49,7 +51,9 @@ export const DesktopNavbar = () => {
         console.dir(err);
       });
   }, []);
-
+  const moveTo = (href) => {
+    router.push(href);
+  };
   const toggleModal = () => {
     setIsAuthModalOn(!isAuthModalOn);
   };
@@ -66,10 +70,10 @@ export const DesktopNavbar = () => {
         <div
           className="logo"
           onClick={() => {
-            window.location.href = '/';
+            moveTo('/');
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') window.location.href = '/';
+            if (e.key === 'Enter') moveTo('/');
           }}
           role="button"
           tabIndex={0}
@@ -84,13 +88,13 @@ export const DesktopNavbar = () => {
               <NavbarItem
                 title="TEAM"
                 onClick={() => {
-                  window.location.href = '/team';
+                  moveTo('/team');
                 }}
               />
               <NavbarItem
                 title="MY"
                 onClick={() => {
-                  window.location.href = '/my';
+                  moveTo('/my');
                 }}
               />
             </>
@@ -98,13 +102,13 @@ export const DesktopNavbar = () => {
           <NavbarItem
             title="PROJECTS"
             onClick={() => {
-              window.location.href = '/projects';
+              moveTo('/projects');
             }}
           />
           <NavbarItem
             title="ABOUT"
             onClick={() => {
-              window.location.href = 'http://bit.ly/3pQdRsI';
+              moveTo('http://bit.ly/3pQdRsI');
             }}
           />
         </ul>
