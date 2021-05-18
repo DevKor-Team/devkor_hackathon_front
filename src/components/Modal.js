@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from 'styles/auth.module.scss';
+import styles from 'styles/components/modal.module.scss';
 
 const LoginModal = ({ children, isOn, turnOff }) => {
   return (

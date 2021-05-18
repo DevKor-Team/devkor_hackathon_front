@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import styles from 'styles/auth.module.scss';
+import styles from 'styles/components/auth.module.scss';
 import Modal from './Modal';
 
 const LoginModal = ({ isOn, turnOff, title }) => {
