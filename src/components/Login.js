@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import styles from 'styles/components/auth.module.scss';
 import Modal from './Modal';
 
 const LoginModal = ({ isOn, turnOff, title }) => {
@@ -10,28 +11,28 @@ const LoginModal = ({ isOn, turnOff, title }) => {
   };
   return (
     <Modal isOn={isOn} turnOff={turnOff}>
-      <div className="auth">
-        <div className="auth__title">{title}</div>
-        <div className="auth__subtitle">Welcome to DevKor</div>
-        <div className="auth__buttonContainer">
+      <div className={styles.auth}>
+        <div className={styles.auth__title}>{title}</div>
+        <div className={styles.auth__subtitle}>Welcome to DevKor</div>
+        <div className={styles.auth__buttonContainer}>
           <div
             role="button"
             tabIndex={0}
-            className="button"
+            className={styles.button}
             onClick={() => {
               moveTo('http://localhost:8000/oauth/google/login');
             }}
           >
-            <div className="button_img">
+            <div className={styles.button_img}>
               <img src="images/google_logo.svg" alt="google login" />
             </div>
-            <div className="button__description">Google 로그인</div>
+            <div className={styles.button__description}>Google 로그인</div>
           </div>
-          <div className="button">
-            <div className="button_img">
-              <img src="images/github_logo.svg" alt="google login" />
+          <div className={styles.button}>
+            <div className={styles.button_img}>
+              <img src="images/github_logo.svg" alt="github login" />
             </div>
-            <div className="button__description">Github 로그인</div>
+            <div className={styles.button__description}>Github 로그인</div>
           </div>
         </div>
       </div>
