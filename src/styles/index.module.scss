@@ -7,3 +7,11 @@
 .home__container {
   width: 100%;
 }
+
+.team__container {
+  position: relative;
+  width: 50%;
+  min-width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+}
