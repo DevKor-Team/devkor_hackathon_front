@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MemberItem } from 'components/MemberItem';
+import { Popup } from 'components/Popup';
 import styles from 'styles/containers/teamContainer.module.scss';
 
 const defaultOnClick = () => {
@@ -25,27 +26,6 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const DeletePopup = ({ onClickY, onClickN }) => {
-  return (
-    <div className={styles.team__container__deletepopup}>
-      <div className={styles.team__container__deletepopup__container}>
-        <div className={styles.team__container__deletepopup__container__title}>
-          정말 탈퇴하시겠습니까?
-        </div>
-        <div className={styles.team__container__deletepopup__container__buttonwrapper}>
-          <ButtonItem text="예" onClick={onClickY} />
-          <ButtonItem text="아니요" onClick={onClickN} />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-DeletePopup.propTypes = {
-  onClickY: PropTypes.func,
-  onClickN: PropTypes.func,
-};
-
 export const TeamContainer = () => {
   const [popup, setPopup] = React.useState(false);
   return (
@@ -65,7 +45,11 @@ export const TeamContainer = () => {
         </div>
       </div>
       {popup ? (
-        <DeletePopup onClickY={defaultOnClick} onClickN={() => setPopup((curVal) => !curVal)} />
+        <Popup
+          title="정말 탈퇴하시겠습니까?"
+          onClickY={defaultOnClick}
+          onClickN={() => setPopup((curVal) => !curVal)}
+        />
       ) : null}
     </>
   );
