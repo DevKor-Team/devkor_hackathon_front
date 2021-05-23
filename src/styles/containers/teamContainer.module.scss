@@ -7,8 +7,12 @@
   font-style: normal;
   line-height: 1.38;
   letter-spacing: normal;
-  width: 100%;
   height: max-content;
+  width: 50%;
+  min-width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+
   margin-top: 3vh;
   &__title {
     position: relative;
@@ -61,5 +65,25 @@
         color: #000000;
       }
     }
+  }
+  &__deletepopup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    // top: 0px;
+    // left: 0px;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(102, 102, 102, 0.5);
+    &__container {
+      position: absolute;
+      height: 42.7vh;
+      width: 28vw;
+    }
+    &__title {
+    }
+    @extend .team__container__buttonwrapper;
   }
 }

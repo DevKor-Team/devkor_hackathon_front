@@ -5,9 +5,7 @@ import styles from 'styles/index.module.scss';
 export default function Team() {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.team__container}>
-        <TeamContainer />
-      </div>
+      <TeamContainer />
     </div>
   );
 }
