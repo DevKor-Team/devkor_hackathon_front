@@ -1,0 +1,31 @@
+.memberItem__container {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  margin: 15px;
+  outline: none;
+  .memberItem__imagewrapper {
+    height: 100%;
+    overflow: hidden;
+    > img {
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+  .memberItem__textwrapper {
+    margin-left: 1rem;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #000000;
+    &__title {
+      margin-bottom: 0.25rem;
+    }
+    &__sub {
+      font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}

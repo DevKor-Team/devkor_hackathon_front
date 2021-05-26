@@ -1,20 +1,21 @@
 import React from 'react';
 import { ProjectItem } from 'components/ProjectItem';
+import styles from 'styles/containers/banner3.module.scss';
 
 export const Banner3 = () => {
   return (
-    <div className="home__banner3">
-      <div className="home__banner3__projectwrapper">
+    <div className={styles.banner3}>
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />
       </div>
-      <div className="home__banner3__projectwrapper">
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />
       </div>
-      <div className="home__banner3__projectwrapper">
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />

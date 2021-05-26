@@ -1,0 +1,52 @@
+.container {
+  width: 32.7%;
+  height: 24.6%;
+  .imagewrapper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    > img {
+      width: 100%;
+      transition: 0.4s all;
+      border-radius: 10px;
+      &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
+  }
+  .tail {
+    width: 90.8%;
+    height: 20%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-left: 6.2%;
+    padding-right: 3%;
+    > ul {
+      list-style: none;
+      display: inline-flex;
+      padding: 0 !important;
+      margin: 0;
+      margin-top: 11px;
+      li {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+        background-color: #ffffff;
+        border-radius: 100%;
+        box-shadow: 1px 2px 1px gray;
+      }
+    }
+    > img {
+      width: 100px;
+      height: 60px;
+      object-fit: cover;
+    }
+  }
+}

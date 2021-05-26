@@ -1,13 +1,15 @@
+import styles from 'styles/components/projectitem.module.scss';
+
 const projectitemimg = '/images/components/ProjectItem/testImage.jpg';
 const logo = 'images/containers/Navbar/devkor_logo.svg';
 
 export const ProjectItem = () => {
   return (
-    <div className="projectitem__container">
-      <div className="projectitem__imagewrapper">
+    <div className={styles.container}>
+      <div className={styles.imagewrapper}>
         <img src={projectitemimg} alt="devkor" />
       </div>
-      <div className="projectitem__tail">
+      <div className={styles.tail}>
         <ul>
           <li> a</li>
           <li> b</li>

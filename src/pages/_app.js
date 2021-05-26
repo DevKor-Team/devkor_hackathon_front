@@ -6,11 +6,16 @@ import configureStore from 'reducers/store';
 import PropTypes from 'prop-types';
 import { Navbar } from 'components/Navbar';
 
-function MyApp({ Component, pageProps /* , store */ }) {
+function MyApp({ Component, pageProps }) {
   return (
     <>
       <head>
         <title> devkor-front </title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <Navbar />
       <Component {...pageProps} />
@@ -22,7 +27,6 @@ function MyApp({ Component, pageProps /* , store */ }) {
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object,
-  cache: PropTypes.object,
 };
 
 export default withRedux(configureStore)(MyApp);
