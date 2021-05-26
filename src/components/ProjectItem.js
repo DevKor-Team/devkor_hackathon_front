@@ -5,11 +5,11 @@ const logo = 'images/containers/Navbar/devkor_logo.svg';
 
 export const ProjectItem = () => {
   return (
-    <div className={styles.projectitem__container}>
-      <div className={styles.projectitem__imagewrapper}>
+    <div className={styles.container}>
+      <div className={styles.imagewrapper}>
         <img src={projectitemimg} alt="devkor" />
       </div>
-      <div className={styles.projectitem__tail}>
+      <div className={styles.tail}>
         <ul>
           <li> a</li>
           <li> b</li>

@@ -40,7 +40,6 @@ export const DesktopNavbar = () => {
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
 
   const userProfile = useSelector((state) => state.users.user);
-  console.log(userProfile);
 
   const router = useRouter();
   React.useEffect(() => {
@@ -67,7 +66,7 @@ export const DesktopNavbar = () => {
         }}
         title="LOGIN/SIGNUP"
       />
-      <div className={styles.navbar__container}>
+      <div className={styles.container}>
         <div
           className={styles.logo}
           onClick={() => {
@@ -124,11 +123,11 @@ export const Navbar = () => {
   if (isMobile) {
     return (
       <>
-        <div className={styles.navbar__container}>
+        <div className={styles.container}>
           <div className={styles.logo}>
             <img src={logo} alt="devkor" />
           </div>
-          <div className={styles.navbar__hamburgermenu}>
+          <div className={styles.hamburgermenu}>
             <div />
             <div />
             <div />

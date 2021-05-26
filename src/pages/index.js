@@ -7,7 +7,7 @@ import styles from 'styles/index.module.scss';
 export default function Home() {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.home__container}>
+      <div className={styles.container}>
         <Banner1 />
         <Banner2 />
         <Banner3 />

@@ -4,18 +4,18 @@ import styles from 'styles/containers/banner3.module.scss';
 
 export const Banner3 = () => {
   return (
-    <div className={styles.home__banner3}>
-      <div className={styles.home__banner3__projectwrapper}>
+    <div className={styles.banner3}>
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />
       </div>
-      <div className={styles.home__banner3__projectwrapper}>
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />
       </div>
-      <div className={styles.home__banner3__projectwrapper}>
+      <div className={styles.projectwrapper}>
         <ProjectItem />
         <ProjectItem />
         <ProjectItem />
