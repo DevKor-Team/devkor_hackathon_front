@@ -1,4 +1,4 @@
-.my__container {
+.container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   transform: translateX(-50%);
   margin-top: 5rem;
   align-items: center;
-  &__imagewrapper {
+  .imagewrapper {
     width: 20%;
     overflow: hidden;
     margin-bottom: 0.7rem;
@@ -17,7 +17,7 @@
       border-radius: 50%;
     }
   }
-  &__title {
+  .title {
     position: relative;
     font-size: 1.6rem;
     text-align: center;
@@ -30,7 +30,7 @@
     line-height: 1.38;
     letter-spacing: normal;
   }
-  &__infowrapper {
+  .infowrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@
     padding: 5%;
     margin-bottom: 10%;
   }
-  &__info {
+  .info {
     position: relative;
     width: calc(100% - 2rem);
     height: max-content;
@@ -60,7 +60,7 @@
       color: #3c4558;
     }
   }
-  &__buttonwrapper {
+  .buttonwrapper {
     position: relative;
     height: max-content;
     width: 90%;
@@ -70,7 +70,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  &__button {
+  .button {
     position: relative;
     outline: none;
     border-radius: 8px;
@@ -80,7 +80,7 @@
     height: max-content;
     padding: 1rem;
     margin-bottom: 12px;
-    &__text {
+  &__text {
       position: relative;
       font-size: 1.1rem;
       font-weight: normal;

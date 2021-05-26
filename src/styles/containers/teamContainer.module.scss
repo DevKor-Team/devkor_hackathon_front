@@ -1,4 +1,4 @@
-.team__container {
+.container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   left: 50%;
   transform: translateX(-50%);
   margin-top: 3vh;
-  &__title {
+  .title {
     position: relative;
     font-size: 1.6rem;
     text-align: center;
@@ -21,12 +21,12 @@
     height: max-content;
     margin-bottom: 1.8rem;
   }
-  &__membertitle {
+  .membertitle {
     position: relative;
     font-size: 1.1rem;
     width: 100%;
   }
-  &__memberwrapper {
+  .memberwrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@
     padding: 5%;
     margin-bottom: 10%;
   }
-  &__buttonwrapper {
+  .buttonwrapper {
     position: relative;
     height: max-content;
     width: 100%;
@@ -43,7 +43,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    &__button {
+    .button {
       outline: none;
       border-radius: 8px;
       border: solid 1px #b0bbcd;
