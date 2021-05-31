@@ -1,18 +1,18 @@
 import axios from 'axios';
-import { ROOT_URL } from './index';
 
-export function getUserData() {
-  return axios({
-    method: 'GET',
-    url: `${ROOT_URL}/posts`,
-  });
-}
+// export function getUserData() {
+//   return axios({
+//     method: 'GET',
+//     url: `${ROOT_URL}/posts`,
+//   });
+// }
 
+// eslint-disable-next-line import/prefer-default-export
 export function getUserProfile() {
   return axios(
     {
       method: 'GET',
-      url: '/api/account/me',
+      url: '/api/account/me/',
     },
     {
       withCredentials: true,
@@ -20,5 +20,3 @@ export function getUserProfile() {
     }
   );
 }
-
-export default getUserData;
