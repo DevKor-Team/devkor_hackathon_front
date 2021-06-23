@@ -3,8 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { setUser } from 'reducers/users';
-import { getUserProfile } from 'axios/User';
+import { getUser } from 'reducers/users';
 import styles from 'styles/components/navbar.module.scss';
 import LoginModal from './Login';
 
@@ -36,21 +35,23 @@ NavbarItem.propTypes = {
 
 export const DesktopNavbar = () => {
   const dispatch = useDispatch();
-
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
-
   const userProfile = useSelector((state) => state.users.user);
 
   const router = useRouter();
+  // React.useEffect(() => {
+  //   getUserProfile()
+  //     .then((res) => {
+  //       dispatch(setUser(res.data));
+  //     })
+  //     .catch((err) => {
+  //       console.dir(err);
+  //     });
+  // }, []);
   React.useEffect(() => {
-    getUserProfile()
-      .then((res) => {
-        dispatch(setUser(res.data));
-      })
-      .catch((err) => {
-        console.dir(err);
-      });
+    dispatch(getUser);
   }, []);
+
   const moveTo = (href) => {
     router.push(href);
   };
