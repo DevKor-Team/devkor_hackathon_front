@@ -39,13 +39,14 @@ export const DesktopNavbar = () => {
 
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
 
-  const userProfile = useSelector((state) => state.users.user);
+  const userProfile = useSelector((state) => state.users.my);
 
   const router = useRouter();
   React.useEffect(() => {
     getUserProfile()
       .then((res) => {
         dispatch(setUser(res.data));
+        console.log(res.data);
       })
       .catch((err) => {
         console.dir(err);

@@ -1,7 +1,7 @@
 // Initial State
 
 const initialState = {
-  user: null,
+  my: null,
 };
 
 export const SET_USER = 'SET_USER';
@@ -22,7 +22,7 @@ export const setUser = (data) => ({
 export const applySetUser = (state, action) => {
   return {
     ...state,
-    user: action.data,
+    my: action.data,
   };
 };
 
