@@ -37,13 +37,12 @@ export const TeamContainer = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.title}>팀명 : DevKor</div>
-        <div className={styles.membertitle}>멤버 구성(4)</div>
         {myTeam ? (
           myTeam.map((data, idx) => {
             return (
               <>
-                <p> {data.name} </p>
+                <div className={styles.title}>팀명 : {data.name}</div>
+                <div className={styles.membertitle}>멤버 구성({data.users.length})</div>
                 <div className={styles.memberwrapper}>
                   {myTeam[idx].users &&
                     myTeam[idx].users.map((item) => {
