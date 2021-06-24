@@ -20,3 +20,14 @@ export function getUserProfile() {
     }
   );
 }
+export function getUserTeam() {
+  return axios(
+    {
+      method: 'GET',
+      url: '/api/account/myteam/',
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
