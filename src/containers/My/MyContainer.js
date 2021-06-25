@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Popup } from 'components/Popup';
 import styles from 'styles/containers/myContainer.module.scss';
-import { setUser } from 'reducers/users';
+import { setUser, setUserProfile } from 'reducers/users';
 
 const defaultimg = '/images/default.jpg';
 
@@ -41,30 +41,32 @@ ButtonItem.propTypes = {
 
 export const MyContainer = () => {
   const [popup, setPopup] = React.useState(false);
-  const myInfo = useSelector((state) => state.users.my);
+  const myInfo = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
 
   console.log(myInfo);
-  let email;
-  let fullName;
-  let github;
-  let position;
-  if (myInfo && myInfo.profile) {
-    email = myInfo.profile.email || '';
-    fullName = myInfo.profile.fullName || '';
-    github = myInfo.profile.github || '';
-    position = myInfo.profile.position || '';
-  }
+  // I need typescript...
+  const email = myInfo ? myInfo.email || '' : '';
+  const username = myInfo ? myInfo.username || '' : '';
+  const url = myInfo && myInfo.profile ? myInfo.profile.url || '' : '';
+  const position = myInfo && myInfo.profile ? myInfo.profile.position || '' : '';
+
   const setProfile = (key, value) => {
-    dispatch(
-      setUser({
-        ...myInfo,
-        profile: {
+    if (['url', 'position'].includes(key)) {
+      dispatch(
+        setUserProfile({
           ...myInfo.profile,
           [key]: value,
-        },
-      })
-    );
+        })
+      );
+    } else {
+      dispatch(
+        setUser({
+          ...myInfo,
+          [key]: value,
+        })
+      );
+    }
   };
   return (
     <>
@@ -72,7 +74,7 @@ export const MyContainer = () => {
         <div className={styles.imagewrapper}>
           <img src={defaultimg} alt="profile" />
         </div>
-        <div className={styles.title}>name.join()</div>
+        <div className={styles.title}>{username}</div>
         <div className={styles.infowrapper}>
           <InfoItem
             title="email"
@@ -83,16 +85,16 @@ export const MyContainer = () => {
           />
           <InfoItem
             title="실명"
-            value={fullName}
+            value={username}
             onChange={(e) => {
-              setProfile('fullName', e.target.value);
+              setProfile('username', e.target.value);
             }}
           />
           <InfoItem
             title="github 주소"
-            value={github}
+            value={url}
             onChange={(e) => {
-              setProfile('github', e.target.value);
+              setProfile('url', e.target.value);
             }}
           />
           <InfoItem
