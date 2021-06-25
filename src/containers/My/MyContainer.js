@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 import { Popup } from 'components/Popup';
 import styles from 'styles/containers/myContainer.module.scss';
 import { setUser, setUserProfile } from 'reducers/users';
+import { putUserProfile } from 'axios/User';
 
 const defaultimg = '/images/default.jpg';
 
-const defaultOnClick = () => {
-  alert('준비 중인 기능입니다.');
+const defaultOnClick = async (profile) => {
+  try {
+    const res = await putUserProfile(profile);
+    console.log(res);
+  } catch (err) {
+    console.dir(err);
+  }
 };
 
 const InfoItem = ({ title, value, onChange }) => {
@@ -112,7 +118,7 @@ export const MyContainer = () => {
       {popup ? (
         <Popup
           title="정말 수정하시겠습니까?"
-          onClickY={defaultOnClick}
+          onClickY={() => defaultOnClick(myInfo.profile)}
           onClickN={() => setPopup((curVal) => !curVal)}
         />
       ) : null}

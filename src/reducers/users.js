@@ -1,5 +1,4 @@
 import { getUserProfile, getUserTeam } from 'axios/User';
-
 // Initial State
 const initialState = {
   user: null,

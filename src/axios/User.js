@@ -16,10 +16,23 @@ export function getUserProfile() {
     },
     {
       withCredentials: true,
-      // validateStatus: () => true,
     }
   );
 }
+
+export function putUserProfile(data) {
+  return axios(
+    {
+      method: 'POST',
+      url: '/api/account/profile/',
+      data,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
 export function getUserTeam() {
   return axios(
     {

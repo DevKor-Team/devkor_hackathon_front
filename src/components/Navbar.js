@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -40,6 +41,14 @@ export const DesktopNavbar = () => {
 
   const router = useRouter();
   React.useEffect(() => {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return '';
+    };
+    axios.defaults.headers.common['X-CSRFToken'] = getCookie('csrftoken');
+
     dispatch(getUser);
   }, []);
 
