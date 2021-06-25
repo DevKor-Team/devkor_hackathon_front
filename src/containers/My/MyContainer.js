@@ -8,15 +8,6 @@ import { putUserProfile } from 'axios/User';
 
 const defaultimg = '/images/default.jpg';
 
-const defaultOnClick = async (profile) => {
-  try {
-    const res = await putUserProfile(profile);
-    console.log(res);
-  } catch (err) {
-    console.dir(err);
-  }
-};
-
 const InfoItem = ({ title, value, onChange }) => {
   return (
     <div className={styles.info}>
@@ -56,6 +47,19 @@ export const MyContainer = () => {
   const username = myInfo ? myInfo.username || '' : '';
   const url = myInfo && myInfo.profile ? myInfo.profile.url || '' : '';
   const position = myInfo && myInfo.profile ? myInfo.profile.position || '' : '';
+
+  const defaultOnClick = async (profile) => {
+    try {
+      const res = await putUserProfile(profile);
+      dispatch(setUserProfile(res.data));
+      console.log('수정 성공'); // UI 표현 필요
+      // 0.5초 뒤에
+      setTimeout(setPopup(false), 0.5);
+    } catch (err) {
+      console.log('실패! 다시 시도해주세요 ㅠㅠ'); // UI 표현 필요
+      setTimeout(setPopup(false), 0.5);
+    }
+  };
 
   const setProfile = (key, value) => {
     if (['url', 'position'].includes(key)) {

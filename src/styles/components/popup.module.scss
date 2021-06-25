@@ -15,14 +15,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: solid 1px #707070;
+    border: solid 1px #ffffff;
     background-color: #ffffff;
   }
   &__title {
     position: relative;
     width: 100%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -48,6 +48,7 @@
       height: 1.7rem;
       padding: 0.32rem;
       margin-bottom: 12px;
+      cursor: pointer;
       &__text {
         position: relative;
         font-size: 1rem;
