@@ -6,6 +6,6 @@ if [ -d "$DIR" ]; then
   echo "${DIR} exists"
 else
   echo "Creating ${DIR} directory"
-  mkdir ${DIR}
+  mkdir -p ${DIR}
 fi
 
