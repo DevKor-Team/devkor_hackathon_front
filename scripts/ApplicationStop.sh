@@ -1,4 +1,7 @@
 #!/bin/bash
 #stop existing node servers
-pid=`sudo netstat -tnlp | grep :3000 | awk '{ print $7 }' | cut -f 1 -d '/'`
-kill -9 $pid
+export NVM_DIR="$HOME/.nvm"	
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # loads nvm	
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # loads nvm bash_completion (node is in path now)
+
+pm2 delete next
