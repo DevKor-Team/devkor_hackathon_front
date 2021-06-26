@@ -2,7 +2,7 @@
 
 # give permission
 DIR="/home/ec2-user/hackathon/front"
-chmod -R u+w ${DIR}
+sudo chmod -R u+w ${DIR}
 
 
 export NVM_DIR="$HOME/.nvm"	
