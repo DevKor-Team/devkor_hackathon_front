@@ -5,7 +5,7 @@ source /home/ec2-user/.bash_profile
 # give permission
 DIR="/home/ec2-user/hackathon/front"
 sudo chmod -R 777 ${DIR}
-
+pwd
 
 # insall modules
 yarn
