@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e
-yum update -y
-
 # download node and npm
 DIR="/home/ec2-user/hackathon/front"
 if [ -d "$DIR" ]; then
