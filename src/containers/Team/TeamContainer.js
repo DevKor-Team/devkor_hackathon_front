@@ -38,18 +38,17 @@ export const TeamContainer = () => {
     <>
       <div className={styles.container}>
         {myTeam ? (
-          myTeam.map((data, idx) => {
+          myTeam.map((data) => {
             return (
               <>
                 <div className={styles.title}>팀명 : {data.name}</div>
                 <div className={styles.membertitle}>멤버 구성({data.users.length})</div>
                 <div className={styles.memberwrapper}>
-                  {myTeam[idx].users &&
-                    myTeam[idx].users.map((item) => {
-                      return (
-                        <MemberItem title={item.username} sub="Member" onClick={defaultOnClick} />
-                      );
-                    })}
+                  {data.users.map((item) => {
+                    return (
+                      <MemberItem title={item.username} sub="Member" onClick={defaultOnClick} />
+                    );
+                  })}
                 </div>
               </>
             );

@@ -14,9 +14,6 @@ app.prepare().then(() => {
     proxy.createProxyMiddleware({
       target: 'http://localhost:8000',
       changeOrigin: true,
-      pathRewrite: {
-        '/api/': '/', // remove base path
-      },
     })
   );
 
