@@ -1,10 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { getUser } from 'reducers/users';
+import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
 import LoginModal from './Login';
 
@@ -35,22 +33,10 @@ NavbarItem.propTypes = {
 };
 
 export const DesktopNavbar = () => {
-  const dispatch = useDispatch();
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
-  const userProfile = useSelector((state) => state.users.user);
+  const [myInfo] = useMyInfo();
 
   const router = useRouter();
-  React.useEffect(() => {
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-      return '';
-    };
-    axios.defaults.headers.common['X-CSRFToken'] = getCookie('csrftoken');
-
-    dispatch(getUser);
-  }, []);
 
   const moveTo = (href) => {
     router.push(href);
@@ -82,7 +68,7 @@ export const DesktopNavbar = () => {
           <img src={logo} alt="devkor" />
         </div>
         <ul>
-          {userProfile === null ? (
+          {myInfo === null ? (
             <NavbarItem title="LOGIN/SIGNUP" onClick={toggleModal} />
           ) : (
             <>

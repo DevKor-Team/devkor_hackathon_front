@@ -46,6 +46,13 @@ export function postUserProfile(data) {
   );
 }
 
+export function fetchProfile(profile) {
+  if (!profile || !profile.id) {
+    return postUserProfile(profile);
+  }
+  return putUserProfile(profile, profile.id);
+}
+
 export function getUserTeam() {
   return axios(
     {
