@@ -3,16 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Popup } from 'components/Popup';
 import styles from 'styles/containers/myContainer.module.scss';
-import { setUser, setUserProfile } from 'reducers/users';
-import { putUserProfile } from 'axios/User';
+import { setUserProfile } from 'reducers/users';
+import { putUserProfile, postUserProfile } from 'axios/User';
 
 const defaultimg = '/images/default.jpg';
 
-const InfoItem = ({ title, value, onChange }) => {
+const InfoItem = ({ title, value, onChange, readOnly }) => {
   return (
     <div className={styles.info}>
       {/* <div className={styles.info__text}>{title}</div> */}
-      <input className={styles.info__text} placeholder={title} value={value} onChange={onChange} />
+      <input
+        className={styles.info__text}
+        placeholder={title}
+        value={value}
+        onChange={onChange}
+        readOnly={readOnly}
+      />
     </div>
   );
 };
@@ -21,6 +27,7 @@ InfoItem.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 const ButtonItem = ({ text, onClick }) => {
@@ -43,15 +50,21 @@ export const MyContainer = () => {
 
   console.log(myInfo);
   // I need typescript...
+  const username = myInfo ? `${myInfo.last_name || ''} ${myInfo.first_name || ''}` : '';
   const email = myInfo ? myInfo.email || '' : '';
-  const username = myInfo ? myInfo.username || '' : '';
+  console.log(username);
   const url = myInfo && myInfo.profile ? myInfo.profile.url || '' : '';
   const position = myInfo && myInfo.profile ? myInfo.profile.position || '' : '';
 
   const defaultOnClick = async (profile) => {
     try {
-      const res = await putUserProfile(profile);
-      dispatch(setUserProfile(res.data));
+      if (profile.id) {
+        const res = await postUserProfile(profile);
+        dispatch(setUserProfile(res.data));
+      } else {
+        const res = await putUserProfile(profile, profile.id);
+        dispatch(setUserProfile(res.data));
+      }
       console.log('수정 성공'); // UI 표현 필요
       // 0.5초 뒤에
       setTimeout(setPopup(false), 0.5);
@@ -66,13 +79,6 @@ export const MyContainer = () => {
       dispatch(
         setUserProfile({
           ...myInfo.profile,
-          [key]: value,
-        })
-      );
-    } else {
-      dispatch(
-        setUser({
-          ...myInfo,
           [key]: value,
         })
       );
@@ -92,6 +98,7 @@ export const MyContainer = () => {
             onChange={(e) => {
               setProfile('email', e.target.value);
             }}
+            readOnly
           />
           <InfoItem
             title="실명"
@@ -99,6 +106,7 @@ export const MyContainer = () => {
             onChange={(e) => {
               setProfile('username', e.target.value);
             }}
+            readOnly
           />
           <InfoItem
             title="github 주소"
@@ -106,6 +114,7 @@ export const MyContainer = () => {
             onChange={(e) => {
               setProfile('url', e.target.value);
             }}
+            readOnly={false}
           />
           <InfoItem
             title="Position"
@@ -113,6 +122,7 @@ export const MyContainer = () => {
             onChange={(e) => {
               setProfile('position', e.target.value);
             }}
+            readOnly={false}
           />
         </div>
         <div className={styles.buttonwrapper}>

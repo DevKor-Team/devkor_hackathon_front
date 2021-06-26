@@ -1,4 +1,4 @@
-import { getUserProfile, getUserTeam } from 'axios/User';
+import { getUserInfo, getUserTeam } from 'axios/User';
 // Initial State
 const initialState = {
   user: null,
@@ -27,7 +27,7 @@ export const setTeam = (data) => ({
 
 // API actions
 export const getUser = (dispatch) => {
-  getUserProfile()
+  getUserInfo()
     .then((res) => {
       dispatch(setUser(res.data));
     })

@@ -8,7 +8,7 @@ import axios from 'axios';
 // }
 
 // eslint-disable-next-line import/prefer-default-export
-export function getUserProfile() {
+export function getUserInfo() {
   return axios(
     {
       method: 'GET',
@@ -20,11 +20,24 @@ export function getUserProfile() {
   );
 }
 
-export function putUserProfile(data) {
+export function putUserProfile(data, id) {
+  return axios(
+    {
+      method: 'PATCH',
+      url: `/api/account/profile/${id}/`,
+      data,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
+export function postUserProfile(data) {
   return axios(
     {
       method: 'POST',
-      url: '/api/account/profile/',
+      url: `/api/account/profile/`,
       data,
     },
     {
