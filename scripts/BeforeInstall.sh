@@ -8,5 +8,3 @@ else
   echo "Creating ${DIR} directory"
   mkdir -p ${DIR}
 fi
-
-cd ${DIR}
