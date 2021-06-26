@@ -9,3 +9,4 @@ else
   mkdir -p ${DIR}
 fi
 
+cd ${DIR}
