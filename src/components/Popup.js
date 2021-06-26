@@ -52,11 +52,22 @@ PromisePopup.propTypes = {
 };
 
 export const Popup = ({ title, onClickY, onClickN, subtitle = '', isLoaded = true }) => {
+  let subtitleColor = 'black';
+
+  if (subtitle === 'loading..') {
+    subtitleColor = 'black';
+  } else if (subtitle === 'succeed!') {
+    subtitleColor = 'green';
+  } else {
+    subtitleColor = 'red';
+  }
   return (
     <div className={styles.popup}>
       <div className={styles.popup__container}>
         <div className={styles.popup__title}>{title}</div>
-        <div className={styles.popup__subtitle}>{subtitle}</div>
+        <div className={styles.popup__subtitle} style={{ color: subtitleColor }}>
+          {subtitle}
+        </div>
         <div className={styles.popup__buttonwrapper}>
           {isLoaded && <ButtonItem text="예" onClick={onClickY} />}
           {isLoaded && <ButtonItem text="아니요" onClick={onClickN} />}
