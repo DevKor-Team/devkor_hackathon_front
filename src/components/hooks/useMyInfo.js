@@ -2,7 +2,7 @@ import { setUser, getUser } from 'reducers/users';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-export default function useProfile() {
+export default function useMyInfo() {
   const dispatch = useDispatch();
   const myInfo = useSelector((state) => state.users.user);
 
