@@ -20,7 +20,7 @@ const LoginModal = ({ isOn, turnOff, title }) => {
             tabIndex={0}
             className={styles.button}
             onClick={() => {
-              moveTo('http://localhost:8000/oauth/google/login');
+              moveTo('http://localhost:8000/api/oauth/google/login');
             }}
           >
             <div className={styles.button_img}>

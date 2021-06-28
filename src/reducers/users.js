@@ -1,5 +1,4 @@
-import { getUserProfile, getUserTeam } from 'axios/User';
-
+import { getUserInfo, getUserTeam } from 'axios/User';
 // Initial State
 const initialState = {
   user: null,
@@ -7,12 +6,17 @@ const initialState = {
 };
 
 export const SET_USER = 'SET_USER';
+export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 export const SET_TEAM = 'SET_TEAM';
-
 // action creators
 
 export const setUser = (data) => ({
   type: SET_USER,
+  data,
+});
+
+export const setUserProfile = (data) => ({
+  type: SET_USER_PROFILE,
   data,
 });
 
@@ -23,7 +27,7 @@ export const setTeam = (data) => ({
 
 // API actions
 export const getUser = (dispatch) => {
-  getUserProfile()
+  getUserInfo()
     .then((res) => {
       dispatch(setUser(res.data));
     })
@@ -46,6 +50,16 @@ export const applySetUser = (state, action) => {
   };
 };
 
+export const applySetUserProfile = (state, action) => {
+  return {
+    ...state,
+    user: {
+      ...state.user,
+      profile: action.data,
+    },
+  };
+};
+
 export const applySetTeam = (state, action) => {
   return {
     ...state,
@@ -59,6 +73,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return applySetUser(state, action);
+    case SET_USER_PROFILE:
+      return applySetUserProfile(state, action);
     case SET_TEAM:
       return applySetTeam(state, action);
     default:

@@ -8,7 +8,7 @@ import axios from 'axios';
 // }
 
 // eslint-disable-next-line import/prefer-default-export
-export function getUserProfile() {
+export function getUserInfo() {
   return axios(
     {
       method: 'GET',
@@ -16,10 +16,43 @@ export function getUserProfile() {
     },
     {
       withCredentials: true,
-      // validateStatus: () => true,
     }
   );
 }
+
+export function putUserProfile(data, id) {
+  return axios(
+    {
+      method: 'PATCH',
+      url: `/api/account/profile/${id}/`,
+      data,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
+export function postUserProfile(data) {
+  return axios(
+    {
+      method: 'POST',
+      url: `/api/account/profile/`,
+      data,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
+export function fetchProfile(profile) {
+  if (!profile || !profile.id) {
+    return postUserProfile(profile);
+  }
+  return putUserProfile(profile, profile.id);
+}
+
 export function getUserTeam() {
   return axios(
     {
