@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { MemberItem } from 'components/MemberItem';
 import { Popup } from 'components/Popup';
 import styles from 'styles/containers/teamContainer.module.scss';
-import { getTeam } from 'reducers/users';
-import { useSelector, useDispatch } from 'react-redux';
+import useTeamInfoById from 'components/hooks/useTeamInfoById';
 
 const defaultOnClick = () => {
   alert('준비 중인 기능입니다.');
@@ -23,43 +22,48 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-export const TeamContainer = () => {
+export const TeamContainer = ({ id }) => {
+  console.log(id);
   const [popup, setPopup] = React.useState(false);
-  const myTeam = useSelector((state) => state.users.team);
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(getTeam).then(() => {
-      console.dir('팀 정보 불러오기 완료');
-    });
-  }, []);
-
+  const [myTeam] = useTeamInfoById(id);
   return (
     <>
       <div className={styles.container}>
-        {myTeam ? (
-          myTeam.map((data) => {
-            return (
-              <>
-                <div className={styles.title}>팀명 : {data.name}</div>
-                <div className={styles.membertitle}>멤버 구성({data.users.length})</div>
-                <div className={styles.memberwrapper}>
-                  {data.users.map((item) => {
-                    return (
-                      <MemberItem title={item.username} sub="Member" onClick={defaultOnClick} />
-                    );
-                  })}
-                </div>
-              </>
-            );
-          })
+        {myTeam && myTeam.length > 0 ? (
+          <>
+            {myTeam.map((data) => {
+              return (
+                <>
+                  <div className={styles.title}>팀명 : {data.name}</div>
+                  <div className={styles.membertitle}>
+                    멤버 구성({data.users ? data.users.length : 0})
+                  </div>
+                  <div className={styles.memberwrapper}>
+                    {data.users &&
+                      data.users.map((item) => {
+                        return (
+                          <MemberItem
+                            title={`${item.last_name} ${item.first_name}`}
+                            sub="Member"
+                            onClick={defaultOnClick}
+                            key={item.id}
+                          />
+                        );
+                      })}
+                  </div>
+                </>
+              );
+            })}
+            {id ? null : (
+              <div className={styles.buttonwrapper}>
+                <ButtonItem text="팀 초대링크 복사하기" onClick={defaultOnClick} />
+                <ButtonItem text="팀 탈퇴하기" onClick={() => setPopup((curVal) => !curVal)} />
+              </div>
+            )}
+          </>
         ) : (
-          <p> 속한 팀이 없습니다. </p>
+          <>{id ? <p> 해당 팀이 존재하지 않습니다. </p> : <p> 속한 팀이 없습니다. </p>}</>
         )}
-        <div className={styles.buttonwrapper}>
-          <ButtonItem text="팀 초대링크 복사하기" onClick={defaultOnClick} />
-          <ButtonItem text="팀 탈퇴하기" onClick={() => setPopup((curVal) => !curVal)} />
-        </div>
       </div>
       {popup ? (
         <Popup
@@ -70,6 +74,10 @@ export const TeamContainer = () => {
       ) : null}
     </>
   );
+};
+
+TeamContainer.propTypes = {
+  id: PropTypes.number,
 };
 
 export default TeamContainer;

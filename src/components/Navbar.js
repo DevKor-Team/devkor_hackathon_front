@@ -6,7 +6,7 @@ import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
 import LoginModal from './Login';
 
-const logo = 'images/containers/Navbar/devkor_logo.svg';
+const logo = '/images/containers/Navbar/devkor_logo.svg';
 
 const NavbarItem = ({ title, onClick }) => {
   return (

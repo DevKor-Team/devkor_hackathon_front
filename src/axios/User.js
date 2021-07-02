@@ -64,3 +64,10 @@ export function getUserTeam() {
     }
   );
 }
+
+export function getTeamById(id) {
+  return axios({
+    method: 'GET',
+    url: `/api/account/team/${id}`,
+  });
+}

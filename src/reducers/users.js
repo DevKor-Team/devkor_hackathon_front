@@ -42,6 +42,14 @@ export const getTeam = async (dispatch) => {
     .catch((err) => console.dir(err));
 };
 
+export const getTeamById = async (dispatch, id) => {
+  getUserTeam(id)
+    .then(async (res) => {
+      await dispatch(setTeam([res.data]));
+    })
+    .catch((err) => console.dir(err));
+};
+
 // Reducer Funtions
 export const applySetUser = (state, action) => {
   return {
