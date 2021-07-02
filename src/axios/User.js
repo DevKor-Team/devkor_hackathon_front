@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 // export function getUserData() {
 //   return axios({
@@ -6,6 +7,10 @@ import axios from 'axios';
 //     url: `${ROOT_URL}/posts`,
 //   });
 // }
+
+export function setCsrfToken() {
+  axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+}
 
 // eslint-disable-next-line import/prefer-default-export
 export function getUserInfo() {
