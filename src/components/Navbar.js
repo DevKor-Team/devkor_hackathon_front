@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
+import { userLogout } from 'reducers/users';
 import LoginModal from './Login';
 
 const logo = 'images/containers/Navbar/devkor_logo.svg';
 
-const NavbarItem = ({ title, onClick }) => {
+const NavbarItem = ({ title, onClick, dropdown = false }) => {
   return (
     <li>
       <div
@@ -23,6 +24,12 @@ const NavbarItem = ({ title, onClick }) => {
       >
         {title}
       </div>
+      {dropdown && (
+        <ul className={styles.dropdown}>
+          <li> 게시글 작성 </li>
+          <li> 팀 관리 </li>
+        </ul>
+      )}
     </li>
   );
 };
@@ -30,12 +37,12 @@ const NavbarItem = ({ title, onClick }) => {
 NavbarItem.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
+  dropdown: PropTypes.bool,
 };
 
 export const DesktopNavbar = () => {
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
   const [myInfo] = useMyInfo();
-
   const router = useRouter();
 
   const moveTo = (href) => {
@@ -77,6 +84,7 @@ export const DesktopNavbar = () => {
                 onClick={() => {
                   moveTo('/team');
                 }}
+                dropdown
               />
               <NavbarItem
                 title="MY"
@@ -98,6 +106,7 @@ export const DesktopNavbar = () => {
               moveTo('http://bit.ly/3pQdRsI');
             }}
           />
+          {myInfo && <NavbarItem title="LOGOUT" onClick={() => userLogout()} />}
         </ul>
       </div>
       <div className={styles.emptyblock} />
