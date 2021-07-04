@@ -9,7 +9,18 @@ import Cookies from 'js-cookie';
 // }
 
 export function setCsrfToken() {
-  axios.defaults.headers.common['X-CSRFToken'] = Cookies.get('csrftoken');
+  const token = Cookies.get('csrftoken');
+  if (!token) {
+    axios({
+      method: 'GET',
+      url: '/api/account/csrftoken/',
+    }).then((res) => {
+      Cookies.set('csrftoken', res.data.token);
+      axios.defaults.headers.common['X-CSRFToken'] = res.data.token;
+    });
+  } else {
+    axios.defaults.headers.common['X-CSRFToken'] = token;
+  }
 }
 
 // eslint-disable-next-line import/prefer-default-export
