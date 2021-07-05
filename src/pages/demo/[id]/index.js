@@ -20,15 +20,14 @@ export async function getStaticPaths() {
 export default function Demo({ data }) {
   const router = useRouter();
 
-  if (data) {
+  if (!router.isFallback) {
     return (
       <div className={styles.wrapper}>
         <DemoContainer postId={router.query.id} postData={data} />
       </div>
     );
   }
-  alert('네트워크 문제입니다. 확인 후 다시 시도해주세요.');
-  return null;
+  return <div>Loading...</div>;
 }
 
 Demo.propTypes = {
