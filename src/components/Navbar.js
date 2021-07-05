@@ -7,7 +7,7 @@ import styles from 'styles/components/navbar.module.scss';
 import { userLogout } from 'reducers/users';
 import LoginModal from './Login';
 
-const logo = 'images/containers/Navbar/devkor_logo.svg';
+const logo = '/images/containers/Navbar/devkor_logo.svg';
 
 const NavbarItem = ({ title, onClick, dropdown = false }) => {
   return (

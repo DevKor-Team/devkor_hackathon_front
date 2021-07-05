@@ -10,7 +10,7 @@ app.prepare().then(() => {
   const server = express();
 
   server.use(
-    '/api',
+    '/rpi',
     proxy.createProxyMiddleware({
       target: 'http://localhost:8000',
       changeOrigin: true,
