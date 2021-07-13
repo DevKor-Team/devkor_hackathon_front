@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
+import { setCsrfToken } from 'axios/User';
 import { userLogout } from 'reducers/users';
 import LoginModal from './Login';
 
@@ -51,6 +52,11 @@ export const DesktopNavbar = () => {
   const toggleModal = () => {
     setIsAuthModalOn(!isAuthModalOn);
   };
+
+  React.useEffect(() => {
+    setCsrfToken();
+  }, []);
+
   return (
     <>
       <LoginModal
