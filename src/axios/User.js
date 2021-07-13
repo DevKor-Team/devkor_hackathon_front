@@ -35,7 +35,17 @@ export function getUserInfo() {
     }
   );
 }
-
+export function Logout() {
+  return axios(
+    {
+      method: 'POST',
+      url: '/api/oauth/logout/',
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
 export function putUserProfile(data, id) {
   return axios(
     {

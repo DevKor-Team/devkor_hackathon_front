@@ -1,4 +1,5 @@
-import { getUserInfo, getUserTeam } from 'axios/User';
+import { getUserInfo, getUserTeam, Logout } from 'axios/User';
+
 // Initial State
 const initialState = {
   user: null,
@@ -42,6 +43,13 @@ export const getTeam = async (dispatch) => {
     .catch((err) => console.dir(err));
 };
 
+export const userLogout = async () => {
+  Logout()
+    .then(() => {
+      window.location.reload();
+    })
+    .catch((err) => console.dir(err));
+};
 // Reducer Funtions
 export const applySetUser = (state, action) => {
   return {
