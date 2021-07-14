@@ -14,10 +14,14 @@ export function setCsrfToken() {
     axios({
       method: 'GET',
       url: '/api/account/csrftoken/',
-    }).then((res) => {
-      Cookies.set('csrftoken', res.data.token);
-      axios.defaults.headers.common['X-CSRFToken'] = res.data.token;
-    });
+    })
+      .then((res) => {
+        Cookies.set('csrftoken', res.data.token);
+        axios.defaults.headers.common['X-CSRFToken'] = res.data.token;
+      })
+      .catch((err) => {
+        console.dir(err);
+      });
   } else {
     axios.defaults.headers.common['X-CSRFToken'] = token;
   }
