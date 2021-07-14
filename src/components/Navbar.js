@@ -60,7 +60,7 @@ export const DesktopNavbar = () => {
         }}
         title="LOGIN/SIGNUP"
       />
-      <div className={styles.container}>
+      <nav className={styles.container}>
         <div
           className={styles.logo}
           onClick={() => {
@@ -108,7 +108,7 @@ export const DesktopNavbar = () => {
           />
           {myInfo && <NavbarItem title="LOGOUT" onClick={() => userLogout()} />}
         </ul>
-      </div>
+      </nav>
       <div className={styles.emptyblock} />
     </>
   );

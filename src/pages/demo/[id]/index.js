@@ -22,9 +22,9 @@ export default function Demo({ data }) {
 
   if (!router.isFallback) {
     return (
-      <div className={styles.wrapper}>
+      <main className={styles.wrapper}>
         <DemoContainer postId={router.query.id} postData={data} />
-      </div>
+      </main>
     );
   }
   return <div>Loading...</div>;

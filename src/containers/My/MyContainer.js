@@ -47,7 +47,6 @@ export const MyContainer = () => {
   const [popup, setPopup] = React.useState(false);
   const myInfo = useSelector((state) => state.users.user);
   const [profile, setProfile] = useProfile();
-  console.log(myInfo);
 
   // I need typescript...
   const username = myInfo ? `${myInfo.last_name || ''} ${myInfo.first_name || ''}` : '';
