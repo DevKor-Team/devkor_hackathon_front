@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import ButtonItem from 'components/Button';
 import { PromisePopup } from 'components/Popup';
 import { MyTeamItem } from 'components/team/TeamItem';
@@ -15,24 +14,27 @@ ButtonItem.propTypes = {
 };
 
 const TeamContainer = ({ id }) => {
+  console.log(id);
   const router = useRouter();
   const [currTeamId, setCurrTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
-
-  const myInfo = useSelector((state) => state.users.user);
-  let isMyTeam = false;
-  const ids = team && team.users && team.users.map((item) => item.id);
-  if (ids && ids.includes(myInfo.id)) {
-    isMyTeam = true;
-  }
-
   return (
     <>
       <div className={styles.container}>
-        {team ? (
-          <MyTeamItem data={team} setCurrTeamId={setCurrTeamId} isMyTeam={isMyTeam} />
+        {team && team.length > 0 ? (
+          <>
+            {team.map((data) => {
+              return <MyTeamItem data={data} setCurrTeamId={setCurrTeamId} isMyTeam />;
+            })}
+          </>
         ) : (
-          <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
+          <>
+            {id ? (
+              <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
+            ) : (
+              <p> 현재 속한 팀이 없습니다. &#128575;</p>
+            )}
+          </>
         )}
       </div>
       {currTeamId ? (

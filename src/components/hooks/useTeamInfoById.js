@@ -8,13 +8,12 @@ export default function useTeamInfoById(id) {
   useEffect(() => {
     if (id !== undefined) {
       dispatch((d) => {
-        console.log(id);
         getTeamById(d, id);
       });
     } else {
       dispatch(getTeam);
     }
-  }, []);
+  }, [id]);
 
   const setTeamInfo = (data) => {
     dispatch(setTeam(data));

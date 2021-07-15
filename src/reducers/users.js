@@ -1,4 +1,5 @@
-import { getUserInfo, getUserTeam, Logout } from 'axios/User';
+import { getUserInfo, Logout } from 'axios/User';
+import { getUserTeam, getTeamInfoById } from 'axios/Team';
 
 // Initial State
 const initialState = {
@@ -44,9 +45,9 @@ export const getTeam = async (dispatch) => {
 };
 
 export const getTeamById = async (dispatch, id) => {
-  getUserTeam(id)
+  getTeamInfoById(id)
     .then(async (res) => {
-      await dispatch(setTeam([res.data]));
+      await dispatch(setTeam(res.data));
     })
     .catch((err) => console.dir(err));
 };

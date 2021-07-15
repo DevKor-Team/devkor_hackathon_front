@@ -82,22 +82,3 @@ export function fetchProfile(profile) {
   }
   return putUserProfile(profile, profile.id);
 }
-
-export function getUserTeam() {
-  return axios(
-    {
-      method: 'GET',
-      url: '/api/account/myteam/',
-    },
-    {
-      withCredentials: true,
-    }
-  );
-}
-
-export function getTeamById(id) {
-  return axios({
-    method: 'GET',
-    url: `/api/account/team/${id}`,
-  });
-}

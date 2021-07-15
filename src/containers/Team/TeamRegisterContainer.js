@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import ButtonItem from 'components/Button';
 import { PromisePopup } from 'components/Popup';
-import { MyTeamItem } from 'components/team/TeamItem';
+import { RegisterTeamItem } from 'components/team/TeamItem';
 import useTeamInfoById from 'components/hooks/useTeamInfoById';
-import { leaveTeamById } from 'components/team/teamAuth';
+import { registerTeamById } from 'components/team/teamAuth';
 import styles from 'styles/containers/teamContainer.module.scss';
 
 ButtonItem.propTypes = {
@@ -14,7 +14,7 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const TeamContainer = ({ id }) => {
+const TeamContainer = ({ id, token }) => {
   const router = useRouter();
   const [currTeamId, setCurrTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
@@ -29,20 +29,16 @@ const TeamContainer = ({ id }) => {
   return (
     <>
       <div className={styles.container}>
-        {team ? (
-          <MyTeamItem data={team} setCurrTeamId={setCurrTeamId} isMyTeam={isMyTeam} />
-        ) : (
-          <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
-        )}
+        {team && <RegisterTeamItem data={team} setCurrTeamId={setCurrTeamId} isMyTeam={isMyTeam} />}
       </div>
       {currTeamId ? (
         <PromisePopup
-          title="정말 탈퇴하시겠습니까?"
+          title="정말 가입하시겠습니까?"
           promiseOnClickY={() =>
-            leaveTeamById(currTeamId).then((res) => {
+            registerTeamById(team.id, token).then((res) => {
               setTimeout(() => {
                 setCurrTeamId(null);
-                router.reload();
+                router.push(`/team/${team.id}`);
               }, 1000);
               return res;
             })
@@ -56,6 +52,7 @@ const TeamContainer = ({ id }) => {
 
 TeamContainer.propTypes = {
   id: PropTypes.number,
+  token: PropTypes.string,
 };
 
 export default TeamContainer;
