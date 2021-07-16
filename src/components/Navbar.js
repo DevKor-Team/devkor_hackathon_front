@@ -33,7 +33,7 @@ const NavbarItem = ({ title, onClick, dropDown = false, dropDownData }) => {
 const DropDownNavbarItem = ({ dropDownData }) => {
   return (
     <ul className={styles.dropdown}>
-      {Object.keys(dropDownData).map(({ onClick, text }) => (
+      {dropDownData.map(({ onClick, text }) => (
         <li
           onClick={() => {
             if (onClick) {
@@ -115,9 +115,9 @@ export const DesktopNavbar = () => {
             <>
               <NavbarItem
                 title="TEAM"
-                onClick={() => {
-                  moveTo('/team');
-                }}
+                // onClick={() => {
+                //   moveTo('/team');
+                // }}
                 dropDown
                 dropDownData={[
                   {
@@ -129,7 +129,7 @@ export const DesktopNavbar = () => {
                   {
                     text: '팀 관리',
                     onClick: () => {
-                      moveTo('/team');
+                      moveTo('/team/my');
                     },
                   },
                 ]}
