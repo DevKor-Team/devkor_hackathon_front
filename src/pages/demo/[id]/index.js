@@ -1,11 +1,13 @@
 import styles from 'styles/index.module.scss';
 import { DemoContainer } from 'containers/Demo/DemoContainer';
 import { useRouter } from 'next/router';
-import fetch from 'node-fetch';
+import axios from 'axios';
 
-export async function getStaticProps() {
-  const res = await fetch('http://localhost:3000/api/demo');
-  const data = await res.json();
+export async function getStaticProps(context) {
+  const { id } = context.params;
+  const result = await axios.get(`http://localhost:3000/api/demo/${id}`);
+  const data = await result.data;
+
   return {
     props: { data },
   };
