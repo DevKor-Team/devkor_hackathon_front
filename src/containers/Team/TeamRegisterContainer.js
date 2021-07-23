@@ -14,7 +14,7 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const TeamContainer = ({ id, token }) => {
+const TeamRegisterContainer = ({ id, token }) => {
   const router = useRouter();
   const [currTeamId, setCurrTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
@@ -22,7 +22,7 @@ const TeamContainer = ({ id, token }) => {
   const myInfo = useSelector((state) => state.users.user);
   let isMyTeam = false;
   const ids = team && team.users && team.users.map((item) => item.id);
-  if (ids && ids.includes(myInfo.id)) {
+  if (ids && myInfo && ids.includes(myInfo.id)) {
     isMyTeam = true;
   }
 
@@ -50,9 +50,9 @@ const TeamContainer = ({ id, token }) => {
   );
 };
 
-TeamContainer.propTypes = {
-  id: PropTypes.number,
+TeamRegisterContainer.propTypes = {
+  id: PropTypes.string,
   token: PropTypes.string,
 };
 
-export default TeamContainer;
+export default TeamRegisterContainer;

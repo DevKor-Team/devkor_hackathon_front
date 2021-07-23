@@ -15,7 +15,9 @@ const NavbarItem = ({ title, onClick, dropDown = false, dropDownData }) => {
     <li>
       <div
         onClick={() => {
-          onClick();
+          if (onClick) {
+            onClick();
+          }
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') onClick();
@@ -63,7 +65,7 @@ NavbarItem.propTypes = {
 DropDownNavbarItem.propTypes = {
   dropDownData: PropTypes.arrayOf(
     PropTypes.objectOf({
-      onClick: PropTypes.oneOfType([PropTypes.func, undefined]),
+      onClick: PropTypes.func,
       text: PropTypes.string,
     })
   ),

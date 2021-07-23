@@ -2,7 +2,7 @@ import { setTeam, getTeam } from 'reducers/users';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-export default function useTeamInfo() {
+export default function useMyTeamInfo() {
   const dispatch = useDispatch();
   const teamInfo = useSelector((state) => state.users.team);
 

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ButtonItem from 'components/Button';
 import { PromisePopup } from 'components/Popup';
 import { MyTeamItem } from 'components/team/TeamItem';
-import useTeamInfoById from 'components/hooks/useTeamInfoById';
+import useMyTeamInfo from 'components/hooks/useMyTeamInfo';
 import { leaveTeamById } from 'components/team/teamAuth';
 import styles from 'styles/containers/teamContainer.module.scss';
 
@@ -13,11 +13,11 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const TeamContainer = ({ id }) => {
-  console.log(id);
+const MyTeamContainer = () => {
   const router = useRouter();
   const [currTeamId, setCurrTeamId] = React.useState(null);
-  const [team] = useTeamInfoById(id);
+  const [team] = useMyTeamInfo();
+
   return (
     <>
       <div className={styles.container}>
@@ -28,13 +28,7 @@ const TeamContainer = ({ id }) => {
             })}
           </>
         ) : (
-          <>
-            {id ? (
-              <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
-            ) : (
-              <p> 현재 속한 팀이 없습니다. &#128575;</p>
-            )}
-          </>
+          <p> 현재 속한 팀이 없습니다. &#128575;</p>
         )}
       </div>
       {currTeamId ? (
@@ -56,8 +50,4 @@ const TeamContainer = ({ id }) => {
   );
 };
 
-TeamContainer.propTypes = {
-  id: PropTypes.number,
-};
-
-export default TeamContainer;
+export default MyTeamContainer;

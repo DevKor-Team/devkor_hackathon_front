@@ -1,4 +1,4 @@
-import { setTeam, getTeamById, getTeam } from 'reducers/users';
+import { setTeam, getTeamById } from 'reducers/users';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -10,8 +10,6 @@ export default function useTeamInfoById(id) {
       dispatch((d) => {
         getTeamById(d, id);
       });
-    } else {
-      dispatch(getTeam);
     }
   }, [id]);
 

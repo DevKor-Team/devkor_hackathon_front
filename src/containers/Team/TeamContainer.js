@@ -18,6 +18,7 @@ const TeamContainer = ({ id }) => {
   const router = useRouter();
   const [currTeamId, setCurrTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
+  console.log(team);
 
   const myInfo = useSelector((state) => state.users.user);
   let isMyTeam = false;
@@ -55,7 +56,7 @@ const TeamContainer = ({ id }) => {
 };
 
 TeamContainer.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 
 export default TeamContainer;
