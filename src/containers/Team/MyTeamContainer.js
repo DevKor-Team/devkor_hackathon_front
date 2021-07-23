@@ -15,7 +15,7 @@ ButtonItem.propTypes = {
 
 const MyTeamContainer = () => {
   const router = useRouter();
-  const [currTeamId, setCurrTeamId] = React.useState(null);
+  const [focusTeamId, setFocusTeamId] = React.useState(null);
   const [team] = useMyTeamInfo();
 
   return (
@@ -24,26 +24,26 @@ const MyTeamContainer = () => {
         {team && team.length > 0 ? (
           <>
             {team.map((data) => {
-              return <MyTeamItem data={data} setCurrTeamId={setCurrTeamId} isMyTeam />;
+              return <MyTeamItem data={data} setFocusTeamId={setFocusTeamId} isMyTeam />;
             })}
           </>
         ) : (
           <p> 현재 속한 팀이 없습니다. &#128575;</p>
         )}
       </div>
-      {currTeamId ? (
+      {focusTeamId ? (
         <PromisePopup
           title="정말 탈퇴하시겠습니까?"
           promiseOnClickY={() =>
-            leaveTeamById(currTeamId).then((res) => {
+            leaveTeamById(focusTeamId).then((res) => {
               setTimeout(() => {
-                setCurrTeamId(null);
+                setFocusTeamId(null);
                 router.reload();
               }, 1000);
               return res;
             })
           }
-          onClickN={() => setCurrTeamId(null)}
+          onClickN={() => setFocusTeamId(null)}
         />
       ) : null}
     </>

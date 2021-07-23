@@ -16,7 +16,7 @@ ButtonItem.propTypes = {
 
 const TeamRegisterContainer = ({ id, token }) => {
   const router = useRouter();
-  const [currTeamId, setCurrTeamId] = React.useState(null);
+  const [focusTeamId, setFocusTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
 
   const myInfo = useSelector((state) => state.users.user);
@@ -29,21 +29,23 @@ const TeamRegisterContainer = ({ id, token }) => {
   return (
     <>
       <div className={styles.container}>
-        {team && <RegisterTeamItem data={team} setCurrTeamId={setCurrTeamId} isMyTeam={isMyTeam} />}
+        {team && (
+          <RegisterTeamItem data={team} setFocusTeamId={setFocusTeamId} isMyTeam={isMyTeam} />
+        )}
       </div>
-      {currTeamId ? (
+      {focusTeamId ? (
         <PromisePopup
           title="정말 가입하시겠습니까?"
           promiseOnClickY={() =>
             registerTeamById(team.id, token).then((res) => {
               setTimeout(() => {
-                setCurrTeamId(null);
+                setFocusTeamId(null);
                 router.push(`/team/${team.id}`);
               }, 1000);
               return res;
             })
           }
-          onClickN={() => setCurrTeamId(null)}
+          onClickN={() => setFocusTeamId(null)}
         />
       ) : null}
     </>

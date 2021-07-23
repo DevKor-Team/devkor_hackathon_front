@@ -12,6 +12,7 @@ const copyTeamInviteLink = async (teamId) => {
       const { token } = (await getTeamToken(teamId)).data;
       const url = `${window.location.protocol}//${window.location.host}/team/${teamId}/register?token=${token}`;
       copyToClipBoard(url);
+      alert('복사 되었습니다!');
     } catch (err) {
       console.dir(err);
     }
@@ -22,7 +23,7 @@ const defaultOnClick = () => {
   alert('준비 중인 기능입니다.');
 };
 
-export const MyTeamItem = ({ data, setCurrTeamId, isMyTeam }) => (
+export const MyTeamItem = ({ data, setFocusTeamId, isMyTeam }) => (
   <>
     <TeamItem data={data} />
     {isMyTeam && (
@@ -36,7 +37,7 @@ export const MyTeamItem = ({ data, setCurrTeamId, isMyTeam }) => (
         <ButtonItem
           text="팀 탈퇴하기"
           onClick={() => {
-            setCurrTeamId(data.id);
+            setFocusTeamId(data.id);
           }}
         />
       </div>
@@ -44,7 +45,7 @@ export const MyTeamItem = ({ data, setCurrTeamId, isMyTeam }) => (
   </>
 );
 
-export const RegisterTeamItem = ({ data, setCurrTeamId, isMyTeam }) => (
+export const RegisterTeamItem = ({ data, setFocusTeamId, isMyTeam }) => (
   <>
     <TeamItem data={data} />
     {isMyTeam ? (
@@ -54,7 +55,7 @@ export const RegisterTeamItem = ({ data, setCurrTeamId, isMyTeam }) => (
         <ButtonItem
           text="팀 가입하기"
           onClick={() => {
-            setCurrTeamId(data.id);
+            setFocusTeamId(data.id);
           }}
         />
       </div>
@@ -98,12 +99,12 @@ TeamItem.propTypes = {
 
 MyTeamItem.propTypes = {
   data: TeamItem.propTypes.data,
-  setCurrTeamId: PropTypes.func,
+  setFocusTeamId: PropTypes.func,
   isMyTeam: PropTypes.bool,
 };
 
 RegisterTeamItem.propTypes = {
   data: TeamItem.propTypes.data,
-  setCurrTeamId: PropTypes.func,
+  setFocusTeamId: PropTypes.func,
   isMyTeam: PropTypes.bool,
 };
