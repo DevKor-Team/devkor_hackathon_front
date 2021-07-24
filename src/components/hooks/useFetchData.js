@@ -9,6 +9,9 @@ export default function useFetchData(action) {
     if (!isLoaded) {
       try {
         const actionData = await action();
+        if (actionData instanceof Error) {
+          throw actionData;
+        }
         setData(actionData);
         setIsLoaded(true);
       } catch (err) {

@@ -46,6 +46,7 @@ ButtonItem.propTypes = {
 export const MyContainer = () => {
   const [popup, setPopup] = React.useState(false);
   const myInfo = useSelector((state) => state.users.user);
+
   const [profile, setProfile] = useProfile();
 
   // I need typescript...
@@ -65,39 +66,48 @@ export const MyContainer = () => {
   };
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.imagewrapper}>
-          <img src={defaultimg} alt="profile" />
+      {myInfo && (
+        <div className={styles.container}>
+          <div className={styles.imagewrapper}>
+            <img src={defaultimg} alt="profile" />
+          </div>
+          <div className={styles.title}>{username}</div>
+          <div className={styles.infowrapper}>
+            <InfoItem title="email" value={email} readOnly />
+            <InfoItem title="실명" value={username} readOnly />
+            <InfoItem
+              title="github 주소"
+              value={url}
+              onChange={(e) => {
+                setProfileByKey('url', e.target.value);
+              }}
+              readOnly={false}
+            />
+            <InfoItem
+              title="Position"
+              value={position}
+              onChange={(e) => {
+                setProfileByKey('position', e.target.value);
+              }}
+              readOnly={false}
+            />
+          </div>
+          <div className={styles.buttonwrapper}>
+            <ButtonItem text="수정하기" onClick={() => setPopup((curVal) => !curVal)} />
+          </div>
         </div>
-        <div className={styles.title}>{username}</div>
-        <div className={styles.infowrapper}>
-          <InfoItem title="email" value={email} readOnly />
-          <InfoItem title="실명" value={username} readOnly />
-          <InfoItem
-            title="github 주소"
-            value={url}
-            onChange={(e) => {
-              setProfileByKey('url', e.target.value);
-            }}
-            readOnly={false}
-          />
-          <InfoItem
-            title="Position"
-            value={position}
-            onChange={(e) => {
-              setProfileByKey('position', e.target.value);
-            }}
-            readOnly={false}
-          />
-        </div>
-        <div className={styles.buttonwrapper}>
-          <ButtonItem text="수정하기" onClick={() => setPopup((curVal) => !curVal)} />
-        </div>
-      </div>
+      )}
       {popup ? (
         <PromisePopup
           title="정말 수정하시겠습니까?"
-          promiseOnClickY={() => fetchProfile(myInfo.profile)}
+          promiseOnClickY={() => {
+            return fetchProfile(myInfo.profile).then((res) => {
+              setTimeout(() => {
+                setPopup((curVal) => !curVal);
+              }, 1000);
+              return res;
+            });
+          }}
           onClickN={() => setPopup((curVal) => !curVal)}
         />
       ) : null}

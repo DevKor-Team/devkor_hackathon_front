@@ -22,17 +22,25 @@ ButtonItem.propTypes = {
 
 export const PromisePopup = ({ title, promiseOnClickY, onClickN }) => {
   const [data, isLoaded, error, fetchData] = useFetchData(promiseOnClickY);
-  let subtitle = '';
+  console.log(isLoaded, data);
+  let subtitle;
   if (isLoaded) {
     if (data) {
-      console.log(data);
-      subtitle = 'succeed!';
+      subtitle = {
+        text: 'succeed!',
+        color: 'green',
+      };
     } else if (error) {
-      console.log(error.message);
-      subtitle = error.message;
+      subtitle = {
+        text: error.message,
+        color: 'red',
+      };
     }
   } else {
-    subtitle = 'loading..';
+    subtitle = {
+      text: 'loading..',
+      color: 'black',
+    };
   }
   return (
     <Popup
@@ -51,22 +59,22 @@ PromisePopup.propTypes = {
   onClickN: PropTypes.func,
 };
 
-export const Popup = ({ title, onClickY, onClickN, subtitle = '', isLoaded = true }) => {
-  let subtitleColor = 'black';
-
-  if (subtitle === 'loading..') {
-    subtitleColor = 'black';
-  } else if (subtitle === 'succeed!') {
-    subtitleColor = 'green';
-  } else {
-    subtitleColor = 'red';
-  }
+export const Popup = ({
+  title,
+  onClickY,
+  onClickN,
+  subtitle = {
+    text: '',
+    color: 'black',
+  },
+  isLoaded = true,
+}) => {
   return (
     <div className={styles.popup}>
       <div className={styles.popup__container}>
         <div className={styles.popup__title}>{title}</div>
-        <div className={styles.popup__subtitle} style={{ color: subtitleColor }}>
-          {subtitle}
+        <div className={styles.popup__subtitle} style={{ color: subtitle.color }}>
+          {subtitle.text}
         </div>
         <div className={styles.popup__buttonwrapper}>
           {isLoaded && <ButtonItem text="예" onClick={onClickY} />}
@@ -79,7 +87,10 @@ export const Popup = ({ title, onClickY, onClickN, subtitle = '', isLoaded = tru
 
 Popup.propTypes = {
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  subtitle: {
+    text: PropTypes.string,
+    color: PropTypes.string,
+  },
   isLoaded: PropTypes.bool,
   onClickY: PropTypes.func,
   onClickN: PropTypes.func,

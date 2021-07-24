@@ -4,17 +4,20 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
+import { setCsrfToken } from 'axios/User';
 import { userLogout } from 'reducers/users';
 import LoginModal from './Login';
 
 const logo = '/images/containers/Navbar/devkor_logo.svg';
 
-const NavbarItem = ({ title, onClick, dropdown = false }) => {
+const NavbarItem = ({ title, onClick, dropDown = false, dropDownData }) => {
   return (
     <li>
       <div
         onClick={() => {
-          onClick();
+          if (onClick) {
+            onClick();
+          }
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') onClick();
@@ -24,20 +27,48 @@ const NavbarItem = ({ title, onClick, dropdown = false }) => {
       >
         {title}
       </div>
-      {dropdown && (
-        <ul className={styles.dropdown}>
-          <li> 게시글 작성 </li>
-          <li> 팀 관리 </li>
-        </ul>
-      )}
+      {dropDown && <DropDownNavbarItem dropDownData={dropDownData} />}
     </li>
+  );
+};
+
+const DropDownNavbarItem = ({ dropDownData }) => {
+  return (
+    <ul className={styles.dropdown}>
+      {dropDownData.map(({ onClick, text }) => (
+        <li
+          onClick={() => {
+            if (onClick) {
+              onClick();
+            }
+          }}
+        >
+          {text}
+        </li>
+      ))}
+    </ul>
   );
 };
 
 NavbarItem.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
-  dropdown: PropTypes.bool,
+  dropDown: PropTypes.bool,
+  dropDownData: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      onClick: PropTypes.func,
+      text: PropTypes.string,
+    })
+  ),
+};
+
+DropDownNavbarItem.propTypes = {
+  dropDownData: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      onClick: PropTypes.func,
+      text: PropTypes.string,
+    })
+  ),
 };
 
 export const DesktopNavbar = () => {
@@ -51,6 +82,11 @@ export const DesktopNavbar = () => {
   const toggleModal = () => {
     setIsAuthModalOn(!isAuthModalOn);
   };
+
+  React.useEffect(() => {
+    setCsrfToken();
+  }, []);
+
   return (
     <>
       <LoginModal
@@ -81,10 +117,24 @@ export const DesktopNavbar = () => {
             <>
               <NavbarItem
                 title="TEAM"
-                onClick={() => {
-                  moveTo('/team');
-                }}
-                dropdown
+                // onClick={() => {
+                //   moveTo('/team');
+                // }}
+                dropDown
+                dropDownData={[
+                  {
+                    text: '게시글 작성',
+                    onClick: () => {
+                      moveTo('/write');
+                    },
+                  },
+                  {
+                    text: '팀 관리',
+                    onClick: () => {
+                      moveTo('/team/my');
+                    },
+                  },
+                ]}
               />
               <NavbarItem
                 title="MY"
