@@ -5,6 +5,8 @@ const initialState = {
   thumbnail: null,
   team: null,
   tags: [],
+  techStacks: [],
+  submitPopup: false,
 };
 
 // action type
@@ -15,6 +17,8 @@ export const CHANGE_DESCRIPTION = 'demo/CHANGE_DESCRIPTION';
 export const CHANGE_THUMBNAIL = 'demo/CHANGE_THUMBNAIL';
 export const CHANGE_TEAM = 'demo/CHANGE_TEAM';
 export const CHANGE_TAGS = 'demo/CHANGE_TAGS';
+export const CHANGE_TECH_STACKS = 'demo/CHANGE_TECH_STACKS';
+export const CHANGE_SUBMIT_POPUP = 'demo/CHANGE_SUBMIT_POPUP';
 
 // util
 const updateKey = (state, key, value) => {
@@ -44,6 +48,8 @@ export const changeDescription = actionCreator(CHANGE_DESCRIPTION);
 export const changeThumbnail = actionCreator(CHANGE_THUMBNAIL);
 export const changeTeam = actionCreator(CHANGE_TEAM);
 export const changeTags = actionCreator(CHANGE_TAGS);
+export const changeTechStacks = actionCreator(CHANGE_TECH_STACKS);
+export const changeSubmitPopup = actionCreator(CHANGE_SUBMIT_POPUP);
 
 // Reducer Funtions
 export const applySetDemo = (state, action) => {
@@ -71,6 +77,10 @@ const reducer = (state = initialState, action) => {
       return updateKey(state, 'team', action.data);
     case CHANGE_TAGS:
       return updateKey(state, 'tags', action.data);
+    case CHANGE_TECH_STACKS:
+      return updateKey(state, 'techStacks', action.data);
+    case CHANGE_SUBMIT_POPUP:
+      return updateKey(state, 'submitPopup', action.data);
     default:
       return state;
   }
