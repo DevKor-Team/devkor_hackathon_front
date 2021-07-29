@@ -28,6 +28,7 @@ const MarkdownDescEditor = () => {
     editor.setCursor(coords);
     const { line, ch } = coords;
     console.log(line, ch);
+    alert('준비중인 기능입니다.');
   };
 
   const handleToolbarClick = (mode) => {

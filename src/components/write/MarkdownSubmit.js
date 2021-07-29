@@ -1,12 +1,15 @@
 import React from 'react';
+import styles from 'styles/containers/write.module.scss';
 
 const MarkdownSubmit = () => {
   return (
-    <div>
-      <div>{'< 나가기'}</div>
-      <div>
-        <div>등륵하기</div>
-      </div>
+    <div className={styles.submitContainer}>
+      <button className={styles.submitContainerExit} type="button">
+        {'< 나가기'}
+      </button>
+      <button className={styles.submitContainerSubmit} type="button">
+        등륵하기
+      </button>
     </div>
   );
 };
