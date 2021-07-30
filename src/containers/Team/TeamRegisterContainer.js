@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import ButtonItem from 'components/Button';
 import { PromisePopup } from 'components/Popup';
-import { MyTeamItem } from 'components/team/TeamItem';
+import { RegisterTeamItem } from 'components/team/TeamItem';
 import useTeamInfoById from 'components/hooks/useTeamInfoById';
-import { leaveTeamById } from 'components/team/teamAuth';
+import { registerTeamById } from 'components/team/teamAuth';
 import styles from 'styles/containers/teamContainer.module.scss';
 
 ButtonItem.propTypes = {
@@ -14,36 +14,33 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const TeamContainer = ({ id }) => {
+const TeamRegisterContainer = ({ id, token }) => {
   const router = useRouter();
   const [focusTeamId, setFocusTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
-  console.log(team);
 
   const myInfo = useSelector((state) => state.users.user);
   let isMyTeam = false;
   const ids = team && team.users && team.users.map((item) => item.id);
-  if (ids && ids.includes(myInfo.id)) {
+  if (ids && myInfo && ids.includes(myInfo.id)) {
     isMyTeam = true;
   }
 
   return (
     <>
       <div className={styles.container}>
-        {team ? (
-          <MyTeamItem data={team} setFocusTeamId={setFocusTeamId} isMyTeam={isMyTeam} />
-        ) : (
-          <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
+        {team && (
+          <RegisterTeamItem data={team} setFocusTeamId={setFocusTeamId} isMyTeam={isMyTeam} />
         )}
       </div>
       {focusTeamId ? (
         <PromisePopup
-          title="정말 탈퇴하시겠습니까?"
+          title="정말 가입하시겠습니까?"
           promiseOnClickY={() =>
-            leaveTeamById(focusTeamId).then((res) => {
+            registerTeamById(team.id, token).then((res) => {
               setTimeout(() => {
                 setFocusTeamId(null);
-                router.reload();
+                router.push(`/team/${team.id}`);
               }, 1000);
               return res;
             })
@@ -55,8 +52,9 @@ const TeamContainer = ({ id }) => {
   );
 };
 
-TeamContainer.propTypes = {
+TeamRegisterContainer.propTypes = {
   id: PropTypes.string,
+  token: PropTypes.string,
 };
 
-export default TeamContainer;
+export default TeamRegisterContainer;

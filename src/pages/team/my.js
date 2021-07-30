@@ -1,13 +1,13 @@
 import React from 'react';
-import { MyContainer } from 'containers/My/MyContainer';
+import MyTeamContainer from 'containers/Team/MyTeamContainer';
 import CheckLogin from 'containers/CheckLogin';
 import styles from 'styles/index.module.scss';
 
-export default function My() {
+export default function Team() {
   return (
     <div className={styles.wrapper}>
       <CheckLogin>
-        <MyContainer />
+        <MyTeamContainer />
       </CheckLogin>
     </div>
   );
