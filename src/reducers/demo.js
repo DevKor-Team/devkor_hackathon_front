@@ -6,7 +6,7 @@ const initialState = {
   team: null,
   tags: [],
   techStacks: [],
-  submitPopup: false,
+  submitPopup: true,
 };
 
 // action type

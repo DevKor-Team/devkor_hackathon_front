@@ -3,6 +3,7 @@ import MarkdownEditor from 'components/write/MarkdownEditor';
 import MarkdownPreview from 'components/write/MarkdownPreview';
 import wrapperStyles from 'styles/index.module.scss';
 import styles from 'styles/containers/write.module.scss';
+import MarkdownPopup from 'components/write/MarkdownPopup';
 
 export default function WritePage() {
   // get id from query
@@ -16,7 +17,7 @@ export default function WritePage() {
         <MarkdownPreview />
         {/* Markdown */}
       </div>
-      {/* WritePopup */}
+      <MarkdownPopup />
     </div>
   );
 }

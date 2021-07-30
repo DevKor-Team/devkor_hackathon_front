@@ -2,27 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from 'styles/components/modal.module.scss';
 
-const LoginModal = ({ children, isOn, turnOff }) => {
+const Modal = ({ children, isOn, turnOff }) => {
   return (
     isOn && (
       <>
         <div
           className={styles.background}
-          onClick={() => {
-            turnOff();
+          onClick={(e) => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            if (e.target === e.currentTarget) {
+              turnOff();
+            }
           }}
           role="dialog"
-        />
-        {children}
+        >
+          {children}
+        </div>
       </>
     )
   );
 };
 
-LoginModal.propTypes = {
+Modal.propTypes = {
   children: PropTypes.elementType.isRequired,
   isOn: PropTypes.bool,
   turnOff: PropTypes.func,
 };
 
-export default LoginModal;
+export default Modal;

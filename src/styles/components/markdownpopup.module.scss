@@ -1,0 +1,50 @@
+.popupContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44%;
+  height: 85%;
+  background-color: #ffffff;
+  .thumbnailContainer {
+    position: relative;
+    height: 50%;
+    background-color: #ececec;
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      font-size: 18px;
+      text-align: center;
+    }
+    .thumbnailButtonContainer {
+      position: absolute;
+      bottom: 24px;
+      right: 16px;
+      display: flex;
+      flex-direction: row;
+      button { 
+        width: 120px;
+        height: 40px;
+        border-radius: 8px;
+        border: solid 1px #b0bbcd;
+        background-color: #ffffff;
+        font-size: 18px;
+        margin-left: 16px;
+      }
+    }
+  }
+  .subEditorContainer {
+    position: relative;
+    height: 50%;
+    background-color: #ffffff;
+  }
+}
