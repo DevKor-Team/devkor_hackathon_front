@@ -1,18 +1,15 @@
 .banner3 {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  .projectwrapper {
-    display: inline-flex;
-    margin-top: 12px;
-    div {
-      margin-right: 18px;
-    }
-    div:nth-last-child(1) {
-      margin-right: 0px;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  grid-gap: 10px;
+  @media (min-width: 576px) and (max-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
-  :first-child {
-    margin-top: 0px;
+  @media (min-width: 360px) and (max-width: 575.99px) {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+  @media (min-width: 0px) and (max-width: 359.99px) {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
   }
 }
