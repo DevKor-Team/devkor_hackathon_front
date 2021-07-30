@@ -71,7 +71,8 @@ DropDownNavbarItem.propTypes = {
   ),
 };
 
-export const DesktopNavbar = () => {
+export const Navbar = () => {
+  const isMobile = useMediaQuery({ maxWidth: 640 });
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
   const [myInfo] = useMyInfo();
   const router = useRouter();
@@ -87,6 +88,23 @@ export const DesktopNavbar = () => {
     setCsrfToken();
   }, []);
 
+  if (isMobile) {
+    return (
+      <>
+        <div className={styles.container}>
+          <div className={styles.logo}>
+            <img src={logo} alt="devkor" />
+          </div>
+          <div className={styles.hamburgermenu}>
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+        <div className={styles.emptyblock} />
+      </>
+    );
+  }
   return (
     <>
       <LoginModal
@@ -162,27 +180,5 @@ export const DesktopNavbar = () => {
       <div className={styles.emptyblock} />
     </>
   );
-};
-
-export const Navbar = () => {
-  const isMobile = useMediaQuery({ maxWidth: 640 });
-  if (isMobile) {
-    return (
-      <>
-        <div className={styles.container}>
-          <div className={styles.logo}>
-            <img src={logo} alt="devkor" />
-          </div>
-          <div className={styles.hamburgermenu}>
-            <div />
-            <div />
-            <div />
-          </div>
-        </div>
-        <div className={styles.emptyblock} />
-      </>
-    );
-  }
-  return DesktopNavbar();
 };
 export default Navbar;
