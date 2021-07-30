@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import ButtonItem from 'components/Button';
 import { PromisePopup } from 'components/Popup';
 import { MyTeamItem } from 'components/team/TeamItem';
-import useTeamInfoById from 'components/hooks/useTeamInfoById';
+import useMyTeamInfo from 'components/hooks/useMyTeamInfo';
 import { leaveTeamById } from 'components/team/teamAuth';
 import styles from 'styles/containers/teamContainer.module.scss';
 
@@ -14,26 +13,22 @@ ButtonItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-const TeamContainer = ({ id }) => {
+const MyTeamContainer = () => {
   const router = useRouter();
   const [focusTeamId, setFocusTeamId] = React.useState(null);
-  const [team] = useTeamInfoById(id);
-  console.log(team);
-
-  const myInfo = useSelector((state) => state.users.user);
-  let isMyTeam = false;
-  const ids = team && team.users && team.users.map((item) => item.id);
-  if (ids && ids.includes(myInfo.id)) {
-    isMyTeam = true;
-  }
+  const [team] = useMyTeamInfo();
 
   return (
     <>
       <div className={styles.container}>
-        {team ? (
-          <MyTeamItem data={team} setFocusTeamId={setFocusTeamId} isMyTeam={isMyTeam} />
+        {team && team.length > 0 ? (
+          <>
+            {team.map((data) => {
+              return <MyTeamItem data={data} setFocusTeamId={setFocusTeamId} isMyTeam />;
+            })}
+          </>
         ) : (
-          <p> 해당 팀이 존재하지 않습니다. &#128575;</p>
+          <p> 현재 속한 팀이 없습니다. &#128575;</p>
         )}
       </div>
       {focusTeamId ? (
@@ -55,8 +50,4 @@ const TeamContainer = ({ id }) => {
   );
 };
 
-TeamContainer.propTypes = {
-  id: PropTypes.string,
-};
-
-export default TeamContainer;
+export default MyTeamContainer;

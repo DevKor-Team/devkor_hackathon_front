@@ -1,13 +1,16 @@
 import React from 'react';
-import { MyContainer } from 'containers/My/MyContainer';
+import { useRouter } from 'next/router';
+import TeamContainer from 'containers/Team/TeamContainer';
 import CheckLogin from 'containers/CheckLogin';
 import styles from 'styles/index.module.scss';
 
-export default function My() {
+export default function Team() {
+  const router = useRouter();
+  const { id } = router.query;
   return (
     <div className={styles.wrapper}>
       <CheckLogin>
-        <MyContainer />
+        <TeamContainer id={id} />
       </CheckLogin>
     </div>
   );
