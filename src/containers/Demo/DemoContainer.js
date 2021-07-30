@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from 'styles/containers/demoContainer.module.scss';
 import { CommentComponent } from 'components/Comment';
+import Markdown from 'markdown-to-jsx';
 
 export const DemoContainer = ({ postData }) => {
   const data = postData;
@@ -19,7 +20,7 @@ export const DemoContainer = ({ postData }) => {
             {' '}
             {data.team.users.map((user) => user.username).join(', ')}{' '}
           </p>
-          <p className={styles.projectInfo}>{data.desc}</p>
+          <Markdown className={styles.desc}>{data.desc}</Markdown>
         </section>
         <CommentComponent />
       </>

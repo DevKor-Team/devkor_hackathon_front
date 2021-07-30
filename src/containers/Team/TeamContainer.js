@@ -18,7 +18,6 @@ const TeamContainer = ({ id }) => {
   const router = useRouter();
   const [focusTeamId, setFocusTeamId] = React.useState(null);
   const [team] = useTeamInfoById(id);
-  console.log(team);
 
   const myInfo = useSelector((state) => state.users.user);
   let isMyTeam = false;
