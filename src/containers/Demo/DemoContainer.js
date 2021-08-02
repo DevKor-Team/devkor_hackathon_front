@@ -3,6 +3,8 @@ import styles from 'styles/containers/demoContainer.module.scss';
 import { CommentComponent } from 'components/Comment';
 import Markdown from 'markdown-to-jsx';
 
+const defaultThumbnail = '../images/containers/Navbar/devkor_logo.svg';
+
 export const DemoContainer = ({ postData }) => {
   const data = postData;
   if (postData) {
@@ -11,7 +13,11 @@ export const DemoContainer = ({ postData }) => {
         <div className={styles.leftArrow} />
         <div className={styles.rightArrow} />
         <section>
-          <img className={styles.thumbnail} src={data.thumbnail} alt="thumbnail" />
+          <img
+            className={styles.thumbnail}
+            src={data.thumbnail ? data.thumbnail : defaultThumbnail}
+            alt="thumbnail"
+          />
         </section>
         <section className={styles.infobox}>
           <h1 className={styles.title}> {data.title} </h1>
