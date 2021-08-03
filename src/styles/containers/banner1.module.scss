@@ -14,17 +14,15 @@
   }
 };
 .wrapper {
-  width: 100vw;
-  position: absolute;
+  width: 100%;
+  min-height: 30%;
   left: 0;
-  height: 33.1vh;
   display: flex;
   flex-direction: column;
   .container {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0% 15%;
     > h1 {
       font-size: 3rem;
       display: inline;
