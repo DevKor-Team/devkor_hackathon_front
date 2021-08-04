@@ -4,10 +4,10 @@ import styles from 'styles/components/tageditor.module.scss';
 
 const getId = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
-const TagItem = ({ tag, isLastIndex, backspacePressedCount, handleOnRemoveTag, tagClassName }) => {
+const TagItem = ({ tag, isLastIndex, backspacePressedCount, handleOnRemoveTag }) => {
   return (
     <div
-      className={`${styles.tagBox} ${tagClassName} ${
+      className={`${styles.tagBox} ${
         backspacePressedCount === 1 && isLastIndex && styles.warningBox
       }`}
       key={`${getId()}`}
@@ -31,7 +31,7 @@ const tagsListReducer = (state, action) => {
   return newState;
 };
 
-const TagsInput = ({ tags, placeholder, onChange, tagClassName }) => {
+const TagsInput = ({ tags, placeholder, onChange }) => {
   const [tagsList, setTagsList] = useReducer(tagsListReducer, tags);
   const [tagInputValue, setTagInputValue] = useState('');
   const [backspacePressedCount, setBackspacePressedCount] = useState(0);
@@ -87,7 +87,6 @@ const TagsInput = ({ tags, placeholder, onChange, tagClassName }) => {
               isLastIndex={isLastIndex}
               backspacePressedCount={backspacePressedCount}
               handleOnRemoveTag={handleOnRemoveTag}
-              tagClassName={tagClassName}
             />
           );
         })}
