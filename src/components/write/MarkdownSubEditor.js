@@ -1,17 +1,21 @@
 import styles from 'styles/components/markdownpopup.module.scss';
 import useSubtitle from 'components/hooks/write/useSubtitle';
 import useTitle from 'components/hooks/write/useTitle';
-import TagEditor from 'components/write/TagEditor';
+import TagEditor from 'components/tagEditor';
 import TeamSelector from 'components/write/TeamSelector';
+import useTags from 'components/hooks/write/useTag';
 
 const MarkdownSubeditor = () => {
   const [title] = useTitle();
   const [subtitle, setSubtitle] = useSubtitle();
+  const [tags, setTags] = useTags();
 
   return (
     <div className={styles.subEditorContainer}>
-      <h4>{title}</h4>
-      <TagEditor placeholder="기술 스택을 입력하세요" />
+      <h3>{title}</h3>
+      <div className={styles.tagEditorWrapper}>
+        <TagEditor placeholder="기술 스택을 입력하세요" tags={tags} onChange={setTags} />
+      </div>
       <TeamSelector placeholder="프로젝트를 제작한 팀을 선택해주세요" />
       <div className={styles.subtitleContainer}>
         <input
