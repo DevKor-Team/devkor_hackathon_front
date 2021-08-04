@@ -22,7 +22,7 @@ ButtonItem.propTypes = {
 
 export const PromisePopup = ({ title, promiseOnClickY, onClickN }) => {
   const [data, isLoaded, error, fetchData] = useFetchData(promiseOnClickY);
-  console.log(isLoaded, data);
+
   let subtitle;
   if (isLoaded) {
     if (data) {
