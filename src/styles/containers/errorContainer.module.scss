@@ -1,0 +1,22 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    > img {
+        width: 50%;
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        h2 {
+            font-size: 2vw;
+        }
+        h3 {
+            font-size: 1.5vw;
+        }
+    }
+}

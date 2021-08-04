@@ -1,0 +1,22 @@
+@keyframes fadeinAndout {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 10vh;
+    flex-direction: column;
+    h1 {
+        animation: fadeinAndout 2s linear infinite;
+    }
+}
