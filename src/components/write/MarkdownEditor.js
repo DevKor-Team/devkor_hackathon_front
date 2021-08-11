@@ -1,4 +1,3 @@
-import React from 'react';
 // import PropTypes from 'prop-types';
 import MarkdownTitleEditor from 'components/write/MarkdownTitleEditor';
 import MarkdownSubmit from 'components/write/MarkdownSubmit';
@@ -19,7 +18,7 @@ const MarkdownEditor = () => {
       <MarkdownDescEditor />
       <MarkdownSubmit
         texts={{
-          yes: '등륵하기',
+          yes: '등록하기',
           no: '< 나가기',
         }}
         onClicks={{

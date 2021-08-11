@@ -25,6 +25,10 @@ const TeamSelector = ({ placeholder }) => {
   };
 
   const style = {
+    container: (base) => ({
+      ...base,
+      width: '90%',
+    }),
     control: (base) => ({
       ...base,
       border: 0,
@@ -48,6 +52,16 @@ const TeamSelector = ({ placeholder }) => {
       color: '#bbbbbb',
       textAlign: 'right',
     }),
+    menuList: (base) => ({
+      ...base,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }),
+    option: (base) => ({
+      ...base,
+      width: '95%',
+    }),
   };
   return (
     <Select
@@ -57,6 +71,7 @@ const TeamSelector = ({ placeholder }) => {
       placeholder={placeholder}
       components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
       styles={style}
+      isSearchable={false}
     />
   );
 };

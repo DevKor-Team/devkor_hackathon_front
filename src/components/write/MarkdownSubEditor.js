@@ -36,7 +36,7 @@ const MarkdownSubeditor = () => {
       </div>
       <MarkdownSubmit
         texts={{
-          yes: '등륵하기',
+          yes: '등록하기',
           no: '취소',
         }}
         onClicks={{

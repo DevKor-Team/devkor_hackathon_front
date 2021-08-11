@@ -21,14 +21,14 @@ const MarkdownPopup = () => {
             <img src={thumbnail} alt="thumbnail" />
           ) : (
             <span>
-              프로젝트를 가장 잘 나타내는 이미지를 등륵해주세요!
+              프로젝트를 가장 잘 나타내는 이미지를 등록해주세요!
               <br />
               ex.) 로고, 썸네일
             </span>
           )}
           <div className={styles.thumbnailButtonContainer}>
             <button type="button" onClick={setThumbnail}>
-              {thumbnail ? '수정하기' : '등륵하기'}
+              {thumbnail ? '수정하기' : '등록하기'}
             </button>
             {thumbnail && (
               <button type="button" onClick={resetThumbnail}>
