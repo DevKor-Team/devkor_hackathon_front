@@ -8,8 +8,10 @@ const MarkdownPreview = () => {
 
   return (
     <div className={styles.previewContainer}>
-      <h4>{demoInfo.title}</h4>
-      <Markdown>{demoInfo.description}</Markdown>
+      {demoInfo.title && <h1 className={styles.title}>{demoInfo.title}</h1>}
+      <div className={styles.previewBox}>
+        <Markdown>{demoInfo.description}</Markdown>
+      </div>
     </div>
   );
 };

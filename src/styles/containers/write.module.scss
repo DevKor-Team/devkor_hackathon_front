@@ -4,7 +4,7 @@
     flex-direction: row;
     height: max-content;
     // box-sizing: border-box;
-    width: 100%;
+    width: 100vw;
     height: calc(100vh - 60px);
     left: 50%;
     transform: translateX(-50%);
@@ -14,8 +14,8 @@
         width: 50%;
         height: 100%;
         background-color: #ffffff;
-        border-right: 1px solid black;
         .codeMirrorContainer {
+            padding-left: 50px;
             margin-right: 52px;
         }
         .CodeMirror {
@@ -23,6 +23,7 @@
             color: #000000;
         }    
         .titleContainer {
+            padding-left: 50px;
             position: relative;
             margin-top: 43px;
             input {
@@ -38,7 +39,7 @@
         }
         .panelContainer {
             position: relative;
-            // border: 1px solid black;
+            padding-left: 50px;
             margin-right: 52px;
             display: flex;
             flex-direction: row;
@@ -64,7 +65,32 @@
     .previewContainer {
         width: 50%;
         height: 100%;
+        overflow-y: scroll;
         background-color: #fbfdfc;
+        .title {
+            padding-top: 20px;
+            padding-left: 50px;
+            padding-right: 50px;
+            position: realtive;
+            margin-bottom: 64px;
+        }
+        .previewBox {
+            padding-left: 50px;
+            padding-right: 50px;
+            a {
+                color: #8b162c;
+            }
+            blockquote {
+                border-left: 4px solid #8b162c;
+                margin: 32px 0px;
+                background: rgb(248, 249, 250);
+                padding: 1rem 1rem 1rem 2rem;
+            }
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
     }
 }
 .submitContainer {
