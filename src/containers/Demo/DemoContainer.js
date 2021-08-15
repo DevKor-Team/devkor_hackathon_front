@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from 'styles/containers/demoContainer.module.scss';
-import { CommentComponent } from 'components/Comment';
+import CommentWrapper from 'containers/Demo/CommentContainer';
 import Markdown from 'markdown-to-jsx';
 
 const defaultThumbnail = '../images/containers/Navbar/devkor_logo.svg';
 
 export const DemoContainer = ({ postData }) => {
   const data = postData;
+
   if (postData) {
     return (
       <>
@@ -28,7 +29,7 @@ export const DemoContainer = ({ postData }) => {
           </p>
           <Markdown className={styles.desc}>{data.desc}</Markdown>
         </section>
-        <CommentComponent />
+        <CommentWrapper />
       </>
     );
   }
