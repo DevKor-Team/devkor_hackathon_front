@@ -11,7 +11,7 @@ export const CommentItem = (props) => {
       <div className={styles.textbox}>
         <span className={styles.title}> {writer.username} </span>
         <span className={styles.date}> 4months ago </span>
-        <p> {data.content} </p>
+        <p className={styles.content}> {data.content} </p>
         <div className={styles.buttonbox}>
           <div style={{ display: 'flex' }}>
             <CommentButton> ▲ </CommentButton>
