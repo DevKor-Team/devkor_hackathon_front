@@ -12,7 +12,6 @@ export const createComments = async (dispatch, data) => {
   const req = {
     data,
   };
-
   await createComment(req).then((res) => {
     console.log(res);
   });

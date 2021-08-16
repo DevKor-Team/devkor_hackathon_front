@@ -1,16 +1,17 @@
 import styles from 'styles/components/comment/commentItem.module.scss';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { CommentButton } from './CommentButton';
 
-export const CommentItem = (/* props */) => {
-  // console.log(props);
+export const CommentItem = (props) => {
+  const { data } = props;
+  const { writer } = data;
+
   return (
     <div className={styles.container}>
-      {/* <img src={test} alt="profile" /> */}
       <div className={styles.textbox}>
-        <span className={styles.title}> 5252 나씨 </span>
+        <span className={styles.title}> {writer.username} </span>
         <span className={styles.date}> 4months ago </span>
-        <p> 내용 </p>
+        <p> {data.content} </p>
         <div className={styles.buttonbox}>
           <div style={{ display: 'flex' }}>
             <CommentButton> ▲ </CommentButton>
@@ -25,8 +26,10 @@ export const CommentItem = (/* props */) => {
 
 export default CommentItem;
 
-// CommentItem.propTypes = {
-//   data: PropTypes.objectOf({
-//     id: PropTypes.number,
-//   }),
-// };
+CommentItem.propTypes = {
+  data: PropTypes.objectOf({
+    id: PropTypes.number,
+    writer: PropTypes.any,
+    content: PropTypes.string,
+  }),
+};
