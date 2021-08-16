@@ -5,21 +5,15 @@ import styles from 'styles/containers/banner3.module.scss';
 export const Banner3 = () => {
   return (
     <div className={styles.banner3}>
-      <div className={styles.projectwrapper}>
-        <ProjectItem />
-        <ProjectItem />
-        <ProjectItem />
-      </div>
-      <div className={styles.projectwrapper}>
-        <ProjectItem />
-        <ProjectItem />
-        <ProjectItem />
-      </div>
-      <div className={styles.projectwrapper}>
-        <ProjectItem />
-        <ProjectItem />
-        <ProjectItem />
-      </div>
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
+      <ProjectItem />
     </div>
   );
 };
