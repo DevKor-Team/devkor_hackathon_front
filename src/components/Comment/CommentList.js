@@ -7,9 +7,13 @@ export const CommentList = (props) => {
 
   return (
     <div className={styles.container}>
-      {comments.map((comment, id) => {
-        return <CommentCard data={comment} id={id} />;
-      })}
+      {comments.length > 0 ? (
+        comments.map((comment, id) => {
+          return <CommentCard data={comment} id={id} />;
+        })
+      ) : (
+        <p> 첫 댓글의 주인공이 되어주세요! </p>
+      )}
     </div>
   );
 };

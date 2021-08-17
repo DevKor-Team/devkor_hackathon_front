@@ -1,9 +1,9 @@
 import styles from 'styles/components/comment/commentButton.module.scss';
 import PropTypes from 'prop-types';
 
-export const CommentButton = ({ children }) => {
+export const CommentButton = ({ children, onClick }) => {
   return (
-    <button type="button" className={styles.login}>
+    <button type="button" className={styles.login} onClick={onClick}>
       {children}
     </button>
   );
@@ -19,6 +19,7 @@ export const SubmitButton = ({ children }) => {
 
 CommentButton.propTypes = {
   children: PropTypes.any,
+  onClick: PropTypes.func,
 };
 
 SubmitButton.propTypes = {
