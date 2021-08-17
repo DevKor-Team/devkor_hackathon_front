@@ -8,13 +8,12 @@ const initialState = {
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const CREATE_COMMENTS = 'CREATE_COMMENTS';
 
-export const createComments = async (dispatch, data) => {
+export const createComments = (dispatch, data) => {
   const req = {
     data,
   };
-  await createComment(req).then((res) => {
-    console.log(res);
-  });
+  console.log('b');
+  return createComment(req).then((res) => res);
 };
 export const setComments = (data) => ({
   type: SET_COMMENTS,

@@ -44,7 +44,7 @@ export default function Demo({ data }) {
   if (router.isFallback) {
     return (
       <main className={styles.wrapper}>
-        <LoadingSpinner />
+        <LoadingSpinner text="Loading ..." />
       </main>
     );
   }
