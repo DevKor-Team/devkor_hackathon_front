@@ -6,6 +6,8 @@ import useMyInfo from 'components/hooks/useMyInfo';
 import { createComments } from 'reducers/comments';
 import { useDispatch } from 'react-redux';
 import { LoadingSpinner } from 'components/Loading';
+import { handleModal } from 'components/hooks/handleModal';
+import { userLogout } from 'reducers/users';
 
 export const CommentComponent = () => {
   const router = useRouter();
@@ -52,8 +54,11 @@ export const CommentComponent = () => {
       <div className={styles.container}>
         <form onSubmit={onSubmitComment}>
           <div className={styles.buttonwrapper}>
-            <CommentButton>LOGIN</CommentButton>
-            <CommentButton>SIGNUP</CommentButton>
+            {!user ? (
+              <CommentButton onClick={handleModal}>LOGIN</CommentButton>
+            ) : (
+              <CommentButton onClick={userLogout}>LOGOUT</CommentButton>
+            )}
           </div>
           <textarea placeholder="댓글을 입력해 주세요" name="content" />
           <div className={styles.buttonwrapper} style={{ justifyContent: 'flex-end' }}>
