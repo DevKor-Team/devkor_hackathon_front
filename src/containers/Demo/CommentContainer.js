@@ -7,7 +7,6 @@ const test = '/images/default.jpg';
 
 export const CommentContainer = () => {
   const comments = useSelector((state) => state.comments.comments);
-
   const emotionList = [
     {
       text: 'Superb',

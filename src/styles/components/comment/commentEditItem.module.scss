@@ -11,5 +11,8 @@
         width: 95%;
         display: flex;
         justify-content: flex-end;
+        :nth-child(2) {
+            margin-left: 10px;
+        }
     }
 }

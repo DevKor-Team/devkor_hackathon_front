@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 
 export const CommentList = (props) => {
   const { comments } = props;
-
   return (
     <div className={styles.container}>
       {comments.length > 0 ? (
-        comments.map((comment, id) => {
-          return <CommentCard data={comment} id={id} />;
+        comments.map((comment, idx) => {
+          return <CommentCard data={comment} key={comment.id} idx={idx} />;
         })
       ) : (
         <p> 첫 댓글의 주인공이 되어주세요! </p>
@@ -25,7 +24,7 @@ CommentList.propTypes = {
     id: PropTypes.number,
     demo: PropTypes.number,
     content: PropTypes.string,
-    writer: PropTypes.number,
+    writer: PropTypes.object,
     updated_at: PropTypes.string,
     created_at: PropTypes.string,
   }),

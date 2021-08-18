@@ -29,7 +29,6 @@ export default function Demo({ data }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const IsError = typeof data === 'number'; // 에러가 난 경우, 에러 코드만 data로 넘어옴.
-
   // 로딩 완료, 에러 아닌 경우
   if (!router.isFallback && !IsError) {
     // 댓글 setting

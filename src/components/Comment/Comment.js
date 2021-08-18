@@ -31,6 +31,10 @@ export const CommentComponent = () => {
       return alert('로그인 후 댓글을 남겨 주세요!');
     }
 
+    if (formData.get('content').length === 0) {
+      return alert('내용을 입력해주세요!');
+    }
+
     setLoading('pending');
 
     dispatch((d, getState) => createComments(d, getState, formData))

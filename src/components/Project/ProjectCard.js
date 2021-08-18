@@ -19,8 +19,8 @@ export const ProjectCard = () => {
       <article className={styles.card}>
         <img src={thumbnail} alt="thumbnail" />
         <section className={styles.textbox}>
-          <h3> 스타트업 노예 후기 </h3>
-          <p> 스타트업에서 20년간 프론트엔드 개발자로 일하다 도망친 생생한 썰</p>
+          <h3> assdnaipsmdoopx </h3>
+          <p> abcdefg </p>
           <div className={styles.subinfo}>
             <span> 4일 전 </span>
             <span className={styles.separator}> . </span>

@@ -3,10 +3,13 @@ import styles from 'styles/components/loadingSpinner.module.scss';
 import PropTypes from 'prop-types';
 
 export const LoadingSpinner = (props) => {
-  const { text } = props;
+  const { text, width, height } = props;
+  const customWidth = width || 100;
+  const customHeight = height || 100;
+
   return (
     <div className={styles.wrapper}>
-      <Loader type="Puff" color="#00BFFF" height={100} width={100} />
+      <Loader type="Puff" color="#00BFFF" height={customHeight} width={customWidth} />
       <h2> {text} </h2>
     </div>
   );
@@ -14,6 +17,8 @@ export const LoadingSpinner = (props) => {
 
 LoadingSpinner.propTypes = {
   text: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 export default LoadingSpinner;
