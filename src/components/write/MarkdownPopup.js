@@ -18,7 +18,7 @@ const MarkdownPopup = () => {
       <div className={styles.popupContainer}>
         <div className={styles.thumbnailContainer}>
           {thumbnail ? (
-            <img src={thumbnail} alt="thumbnail" />
+            <img src={thumbnail.url} alt={thumbnail.name} />
           ) : (
             <span>
               프로젝트를 가장 잘 나타내는 이미지를 등록해주세요!

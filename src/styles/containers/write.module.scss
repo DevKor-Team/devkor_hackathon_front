@@ -72,16 +72,16 @@
             padding-left: 50px;
             padding-right: 50px;
             position: realtive;
-            margin-bottom: 64px;
         }
         .previewBox {
+            margin-top: 64px;
             padding-left: 50px;
             padding-right: 50px;
             a {
-                color: #8b162c;
+                color: var(--crimson);
             }
             blockquote {
-                border-left: 4px solid #8b162c;
+                border-left: 4px solid var(--crimson);
                 margin: 32px 0px;
                 background: rgb(248, 249, 250);
                 padding: 1rem 1rem 1rem 2rem;

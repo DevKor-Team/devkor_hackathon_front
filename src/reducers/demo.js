@@ -1,4 +1,5 @@
 const initialState = {
+  id: null,
   title: '',
   subtitle: '',
   description: '',

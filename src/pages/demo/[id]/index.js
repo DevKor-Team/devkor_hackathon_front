@@ -8,7 +8,7 @@ import { LoadingSpinner } from 'components/Loading';
 export async function getStaticProps(context) {
   const { id } = context.params;
   const result = await axios
-    .get(`http://localhost:3000/api/demo/${id}`)
+    .get(`http://localhost:3000/api/demo/demo/${id}`)
     .catch((error) => error.response.status);
   const data = typeof (await result) === 'number' ? result : result.data;
 
