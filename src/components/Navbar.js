@@ -161,7 +161,7 @@ export const Navbar = () => {
                 <NavbarItem
                   title="TEAM"
                   onClick={() => {
-                    moveTo('/team');
+                    moveTo('/team/my');
                   }}
                 />
               )}
