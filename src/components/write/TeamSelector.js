@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import useMyTeamInfo from 'components/hooks/useMyTeamInfo';
 import Select from 'react-select';
+import useMyLeaderInfo from 'components/hooks/useMyLeaderInfo';
 import useTeam from 'components/hooks/write/useTeam';
 
 const TeamSelector = ({ placeholder }) => {
-  const [teamInfo] = useMyTeamInfo();
+  const [teamInfo] = useMyLeaderInfo();
+
   const options = teamInfo
     ? teamInfo.map((team) => {
         return {

@@ -70,7 +70,7 @@ const ButtonItem2 = ({ text, onClick, className, color, click = true }) => {
 const ButtonItem = ({ text, onClick, className, click = true }) => {
   return (
     <div
-      className={className && styles.button}
+      className={className || styles.button}
       onClick={() => {
         if (click) onClick();
       }}

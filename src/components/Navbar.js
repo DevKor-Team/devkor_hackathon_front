@@ -7,6 +7,7 @@ import styles from 'styles/components/navbar.module.scss';
 import { setCsrfToken } from 'axios/User';
 import { userLogout } from 'reducers/users';
 import LoginModal from './Login';
+import useMyLeaderInfo from './hooks/useMyLeaderInfo';
 
 const logo = '/images/containers/Navbar/devkor_logo.svg';
 
@@ -75,6 +76,7 @@ export const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 });
   const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
   const [myInfo] = useMyInfo();
+  const [myLeaderInfo] = useMyLeaderInfo();
   const router = useRouter();
 
   const moveTo = (href) => {
@@ -133,27 +135,36 @@ export const Navbar = () => {
             <NavbarItem title="LOGIN/SIGNUP" onClick={toggleModal} />
           ) : (
             <>
-              <NavbarItem
-                title="TEAM"
-                // onClick={() => {
-                //   moveTo('/team');
-                // }}
-                dropDown
-                dropDownData={[
-                  {
-                    text: '게시글 작성',
-                    onClick: () => {
-                      moveTo('/write');
+              {myLeaderInfo && myLeaderInfo.length > 0 ? (
+                <NavbarItem
+                  title="TEAM"
+                  // onClick={() => {
+                  //   moveTo('/team');
+                  // }}
+                  dropDown
+                  dropDownData={[
+                    {
+                      text: '게시글 작성',
+                      onClick: () => {
+                        moveTo('/write');
+                      },
                     },
-                  },
-                  {
-                    text: '팀 관리',
-                    onClick: () => {
-                      moveTo('/team/my');
+                    {
+                      text: '팀 관리',
+                      onClick: () => {
+                        moveTo('/team/my');
+                      },
                     },
-                  },
-                ]}
-              />
+                  ]}
+                />
+              ) : (
+                <NavbarItem
+                  title="TEAM"
+                  onClick={() => {
+                    moveTo('/team');
+                  }}
+                />
+              )}
               <NavbarItem
                 title="MY"
                 onClick={() => {

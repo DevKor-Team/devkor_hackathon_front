@@ -28,22 +28,22 @@ const MarkdownSubeditor = () => {
       });
       formData.append('thumbnail', blob, demo.thumbnail.name);
     } else {
-      return new Error('썸네일을 등록해주세요');
+      throw new Error('썸네일을 등록해주세요');
     }
     if (demo.title) {
       formData.append('title', demo.title);
     } else {
-      return new Error('제목을 입력해주세요');
+      throw new Error('제목을 입력해주세요');
     }
     if (demo.description) {
       formData.append('desc', demo.description);
     } else {
-      return new Error('설명을 입력해주세요');
+      throw new Error('설명을 입력해주세요');
     }
     if (demo.subtitle) {
       formData.append('sub_title', demo.subtitle);
     } else {
-      return new Error('간단한 설명을 입력해주세요');
+      throw new Error('간단한 설명을 입력해주세요');
     }
     // 기본값이 empty array
     formData.append('tags', JSON.stringify(demo.tags));
@@ -51,21 +51,21 @@ const MarkdownSubeditor = () => {
     if (demo.team.id) {
       formData.append('team', demo.team.id);
     } else {
-      return new Error('팀을 선택해주세요');
+      throw new Error('팀을 선택해주세요');
     }
     if (typeof demo.id === 'number') {
       try {
         const res = await fetchDemo(formData, demo.id);
         return res;
       } catch (err) {
-        return new Error(err.message);
+        throw new Error(err.message);
       }
     } else {
       try {
         const res = await postDemo(formData);
         return res;
       } catch (err) {
-        return new Error(err.message);
+        throw new Error(err.message);
       }
     }
   };
@@ -101,9 +101,14 @@ const MarkdownSubeditor = () => {
         }}
         onClicks={{
           yes: () =>
-            submit().then((res) => {
-              return moveTo(router, `/demo/${res.data.id}`);
-            }),
+            submit()
+              .then((res) => {
+                console.log(res);
+                return moveTo(router, `/demo/${res.data.id}`);
+              })
+              .catch((err) => {
+                return new Error(err.message);
+              }),
           no: () => setSubmitPopup(false),
         }}
         promise
