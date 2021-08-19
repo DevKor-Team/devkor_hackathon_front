@@ -28,7 +28,7 @@ const TeamSelectContainer = () => {
           customStyle={{
             container: (base) => ({
               ...base,
-              width: '50%',
+              width: '60%',
               left: '50%',
               transform: 'translateX(-50%)',
             }),
