@@ -9,6 +9,7 @@
   width: 536px;
   height: 100vh;
   z-index: 5;
+  display: var(--popup);
   .auth__title {
     position: relative;
     margin: 13.4% auto 0px;

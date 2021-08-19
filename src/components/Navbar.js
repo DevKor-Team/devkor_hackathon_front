@@ -6,6 +6,7 @@ import useMyInfo from 'components/hooks/useMyInfo';
 import styles from 'styles/components/navbar.module.scss';
 import { setCsrfToken } from 'axios/User';
 import { userLogout } from 'reducers/users';
+import { handleModal } from 'components/hooks/handleModal';
 import LoginModal from './Login';
 import useMyLeaderInfo from './hooks/useMyLeaderInfo';
 
@@ -74,7 +75,6 @@ DropDownNavbarItem.propTypes = {
 
 export const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 });
-  const [isAuthModalOn, setIsAuthModalOn] = React.useState(false);
   const [myInfo] = useMyInfo();
   const [myLeaderInfo] = useMyLeaderInfo();
   const router = useRouter();
@@ -82,8 +82,9 @@ export const Navbar = () => {
   const moveTo = (href) => {
     router.push(href);
   };
+
   const toggleModal = () => {
-    setIsAuthModalOn(!isAuthModalOn);
+    handleModal();
   };
 
   React.useEffect(() => {
@@ -110,7 +111,6 @@ export const Navbar = () => {
   return (
     <>
       <LoginModal
-        isOn={isAuthModalOn}
         turnOff={() => {
           toggleModal();
         }}

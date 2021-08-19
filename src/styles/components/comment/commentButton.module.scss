@@ -1,0 +1,33 @@
+.login {
+    border-radius: 30px;
+    background: none;
+    border-color: rgba(0,0,240,0.5);
+    font-size: 16px;
+    color: rgba(0,0,240,0.9);
+    font-weight: 600;
+    box-sizing: border-box;
+    padding: 7px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: rgba(0,0,240,0.9);
+        color: white;
+    }
+}
+.submit {
+    border-radius: 30px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    background-color: rgba(0,0,240,0.9);
+    color: white;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding: 12px 22px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        background-color: white;
+        color: rgba(0,0,240,0.9);
+    }
+}

@@ -18,6 +18,10 @@ time, mark, audio, video, textarea, input {
 	vertical-align: baseline;
 }
 
+:root {
+  --popup: none;
+}
+
 html,
 body {
   padding: 0;
@@ -26,7 +30,10 @@ body {
   overflow-x: hidden;
   --crimson: #8b162c;
 }
-
+h1, h2, h3, h4, p, span {
+  margin: 0;
+  padding: 0;
+}
 html {
   overflow-y: auto;
 }

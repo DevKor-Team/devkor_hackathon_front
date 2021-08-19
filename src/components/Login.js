@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 import styles from 'styles/components/auth.module.scss';
 import Modal from './Modal';
 
-const LoginModal = ({ isOn, turnOff, title }) => {
+const LoginModal = ({ turnOff, title }) => {
   const router = useRouter();
   const moveTo = (href) => {
     router.push(href);
   };
   return (
-    <Modal isOn={isOn} turnOff={turnOff}>
+    <Modal turnOff={turnOff}>
       <div className={styles.auth}>
         <div className={styles.auth__title}>{title}</div>
         <div className={styles.auth__subtitle}>Welcome to DevKor</div>
@@ -41,7 +41,6 @@ const LoginModal = ({ isOn, turnOff, title }) => {
 };
 
 LoginModal.propTypes = {
-  isOn: PropTypes.bool,
   turnOff: PropTypes.func,
   title: PropTypes.string,
 };
