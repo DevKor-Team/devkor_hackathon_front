@@ -17,7 +17,7 @@
     right: 1.5vw;
     top: 40%;
     transform: rotate(45deg);
-    background-color: white;
+    background-color: none;
 }
 .leftArrow {
     width: 50px;
@@ -41,12 +41,18 @@
     min-height: 350px;
     padding-top: 60px;
     padding-bottom: 40px;
-    text-align: right;
-    margin-right: 30px;
+    text-align: left;
+    margin-left: 30px;
     display: flex;
     flex-direction: column;
+    h1, h2, h3, h4, span, p {
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        font-size: 2rem;
+    }
     .title {
-        font-size: 32px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
@@ -62,7 +68,7 @@
         font-style: normal;
         line-height: normal;
         letter-spacing: normal;
-        text-align: right;
+        text-align: left;
         color: #666666;
         margin: 0;
     }
@@ -73,7 +79,7 @@
         font-style: normal;
         line-height: normal;
         letter-spacing: normal;
-        text-align: right;
+        text-align: left;
         color: #bbbbbb;
         margin: 0;
     }

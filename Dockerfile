@@ -13,4 +13,4 @@ RUN yarn build
 EXPOSE 3000
 
 
-CMD ["pm2", "start", "yarn", "--name", "'next'" ,"--", "start"]
+CMD ["./node_modules/.bin/pm2-runtime", "start", "yarn", "--interpreter", "bash", "--name", "'next'" ,"--", "start"]

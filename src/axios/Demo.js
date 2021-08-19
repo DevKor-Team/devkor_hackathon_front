@@ -13,7 +13,7 @@ export function postImage(file) {
   );
 }
 
-export function getDemo(id) {
+export async function getDemo(id) {
   return axios(
     {
       method: 'GET',
@@ -52,3 +52,5 @@ export function fetchDemo(data, id) {
     }
   );
 }
+
+export default getDemo;
