@@ -82,7 +82,7 @@ const MarkdownSubeditor = () => {
           />
         </div>
         <div className={styles.teamEditorWrapper}>
-          <TeamSelector placeholder="프로젝트를 제작한 팀을 선택해주세요" />
+          <TeamSelector placeholder="프로젝트를 제작한 팀을 선택해주세요" readOnly />
         </div>
         <div className={styles.subtitleContainer}>
           <TextareaAutosize

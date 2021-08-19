@@ -1,3 +1,5 @@
+import { getDemo } from 'axios/Demo';
+
 const initialState = {
   id: null,
   title: '',
@@ -12,6 +14,7 @@ const initialState = {
 
 // action type
 export const SET_DEMO = 'SET_DEMO';
+export const INITIALIZE_DEMO = 'demo/INITIALIZE_DEMO';
 export const CHANGE_TITLE = 'demo/CHANGE_TITLE';
 export const CHANGE_SUBTITLE = 'demo/CHANGE_SUBTITLE';
 export const CHANGE_DESCRIPTION = 'demo/CHANGE_DESCRIPTION';
@@ -20,7 +23,6 @@ export const CHANGE_TEAM = 'demo/CHANGE_TEAM';
 export const CHANGE_TAGS = 'demo/CHANGE_TAGS';
 export const CHANGE_TECH_STACKS = 'demo/CHANGE_TECH_STACKS';
 export const CHANGE_SUBMIT_POPUP = 'demo/CHANGE_SUBMIT_POPUP';
-
 // util
 const updateKey = (state, key, value) => {
   return {
@@ -43,6 +45,7 @@ const actionCreator = (type) => {
 // actions
 
 export const setDemo = actionCreator(SET_DEMO);
+export const resetDemo = actionCreator(INITIALIZE_DEMO);
 export const changeTitle = actionCreator(CHANGE_TITLE);
 export const changeSubtitle = actionCreator(CHANGE_SUBTITLE);
 export const changeDescription = actionCreator(CHANGE_DESCRIPTION);
@@ -60,12 +63,43 @@ export const applySetDemo = (state, action) => {
   };
 };
 
+export const initializeDemo = () => {
+  return initialState;
+};
+
+export const getDemoById = async (dispatch, id) => {
+  getDemo(id)
+    .then(async (res) => {
+      const { title, thumbnail, team, tags } = res.data;
+
+      const data = {
+        id: res.data.id,
+        title,
+        subtitle: res.data.sub_title,
+        description: res.data.desc,
+        thumbnail: {
+          url: thumbnail,
+          name: thumbnail.substring(thumbnail.lastIndexOf('/') + 1),
+        },
+        team,
+        tags,
+        techStacks: res.data.tech_stacks,
+        submitPopup: false,
+      };
+      console.log(data);
+      await dispatch(setDemo(data));
+    })
+    .catch((err) => console.dir(err));
+};
+
 // Reducer
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DEMO:
       return applySetDemo(state, action);
+    case INITIALIZE_DEMO:
+      return initializeDemo();
     case CHANGE_TITLE:
       return updateKey(state, 'title', action.data);
     case CHANGE_SUBTITLE:

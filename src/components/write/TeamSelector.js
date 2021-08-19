@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
+import useMyTeamInfo from 'components/hooks/useMyTeamInfo';
 import Select from 'react-select';
-import useMyLeaderInfo from 'components/hooks/useMyLeaderInfo';
 import useTeam from 'components/hooks/write/useTeam';
 
-const TeamSelector = ({ placeholder }) => {
-  const [teamInfo] = useMyLeaderInfo();
-
+const TeamSelector = ({ placeholder, customStyle = {}, readOnly = false }) => {
+  const [teamInfo] = useMyTeamInfo();
   const options = teamInfo
     ? teamInfo.map((team) => {
         return {
@@ -63,6 +62,7 @@ const TeamSelector = ({ placeholder }) => {
       ...base,
       width: '95%',
     }),
+    ...customStyle,
   };
   return (
     <Select
@@ -73,12 +73,17 @@ const TeamSelector = ({ placeholder }) => {
       components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
       styles={style}
       isSearchable={false}
+      menuIsOpen={readOnly ? false : undefined}
+      isClearable={!readOnly}
+      openMenuOnClick={!readOnly}
     />
   );
 };
 
 TeamSelector.propTypes = {
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  customStyle: PropTypes.object,
 };
 
 export default TeamSelector;

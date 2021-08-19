@@ -1,26 +1,19 @@
 import React from 'react';
-import MarkdownEditor from 'components/write/MarkdownEditor';
-import MarkdownPreview from 'components/write/MarkdownPreview';
-import wrapperStyles from 'styles/index.module.scss';
-import styles from 'styles/containers/write.module.scss';
-import MarkdownPopup from 'components/write/MarkdownPopup';
 import CheckLogin from 'containers/CheckLogin';
 import CheckLeader from 'containers/CheckLeader';
+import WriteContainer from 'containers/Write/WriteContainer';
+import { useRouter } from 'next/router';
+import TeamSelectContainer from 'containers/Write/TeamSelectContainer';
 
 export default function WritePage() {
-  // get id from query
+  const router = useRouter();
+  const { phase } = router.query;
 
   return (
     // check permission - 로그인, 팀장
     <CheckLogin>
       <CheckLeader>
-        <div className={wrapperStyles.wrapper}>
-          <div className={styles.container}>
-            <MarkdownEditor />
-            <MarkdownPreview />
-          </div>
-          <MarkdownPopup />
-        </div>
+        {['1', '2'].includes(phase) && phase === '2' ? <WriteContainer /> : <TeamSelectContainer />}
       </CheckLeader>
     </CheckLogin>
   );

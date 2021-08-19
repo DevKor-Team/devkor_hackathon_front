@@ -17,8 +17,6 @@ export default function useThumbnail() {
 
   React.useEffect(() => {
     const localImageUrl = file && window.URL.createObjectURL(file);
-    console.log(file);
-    console.log(localImageUrl);
     if (localImageUrl && file) {
       dispatch(
         changeThumbnail({

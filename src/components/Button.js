@@ -51,7 +51,7 @@ PromiseButtonItem.propTypes = {
   color: PropTypes.string,
 };
 
-const ButtonItem2 = ({ text, onClick, className, color, click = true }) => {
+export const ButtonItem2 = ({ text, onClick, className, color, click = true }) => {
   return (
     <button
       className={className || styles.button}
