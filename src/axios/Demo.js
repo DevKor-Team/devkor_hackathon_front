@@ -11,3 +11,15 @@ export default function getDemo(id) {
     }
   );
 }
+
+export function getDemoList() {
+  return axios(
+    {
+      method: 'GET',
+      url: '/api/demo/demo/',
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
