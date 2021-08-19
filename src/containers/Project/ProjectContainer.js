@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from 'styles/containers/projectContainer.module.scss';
 import ProjectItem from 'components/Project/ProjectCard';
 import { getDemoList } from 'axios/Demo';
 import DateCalculator from 'components/hooks/DateCalculator';
 import moment from 'moment';
 
-export const ProjectContainer = () => {
+export const ProjectContainer = ({ searchTags = [] }) => {
   const [demos, setDemos] = React.useState([]);
   React.useEffect(() => {
     const getDemos = async () => {
@@ -47,15 +48,23 @@ export const ProjectContainer = () => {
   }, []);
   return (
     <div className={styles.wrapper}>
-      {demos.map((demo) => {
-        return <ProjectItem demo={demo} key={demo.id} />;
-      })}
+      {demos
+        .filter((demo) => {
+          if (searchTags.length === 0) return true;
+          return searchTags.every((r) => {
+            console.log(demo.techStacks.includes(r));
+            return demo.techStacks.includes(r);
+          });
+        })
+        .map((demo) => {
+          return <ProjectItem demo={demo} key={demo.id} />;
+        })}
     </div>
   );
 };
 
-// ProjectContainer.propTypes = {
-//   techStacks: PropTypes.arrayOf(PropTypes.string),
-// };
+ProjectContainer.propTypes = {
+  searchTags: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default ProjectContainer;
