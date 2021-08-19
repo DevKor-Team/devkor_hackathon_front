@@ -1,30 +1,31 @@
 import styles from 'styles/demo.module.scss';
 import { DemoContainer } from 'containers/Demo/DemoContainer';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+// import axios from 'axios';
 import { setComments } from 'reducers/comments';
 import { ErrorContainer } from 'containers/Error/ErrorContainer';
 import { LoadingSpinner } from 'components/Loading';
 import { useDispatch } from 'react-redux';
 
-export async function getStaticProps(context) {
-  const { id } = context.params;
-  const result = await axios
-    .get(`http://localhost:3000/api/demo/demo/${id}`)
-    .catch((error) => error.response.status);
-  const data = typeof (await result) === 'number' ? result : result.data;
+// export async function getStaticProps(context) {
+//   const { id } = context.params;
+//   const result = await axios
+//     .get(`http://localhost:3000/api/demo/demo/${id}`)
+//     .catch((error) => error.response.status);
+//   const data = typeof (await result) === 'number' ? result : result.data;
 
-  return {
-    props: { data },
-  };
-}
+//   return {
+//     props: { data },
+//   };
+// }
 
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { id: '1' } }],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [{ params: { id: '1' } }],
+//     fallback: true,
+//   };
+// }
+
 export default function Demo({ data }) {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ export default function Demo({ data }) {
   // 로딩 완료, 에러 아닌 경우
   if (!router.isFallback && !IsError) {
     // 댓글 setting
-    dispatch(setComments(data.comments));
+    if (data) {
+      dispatch(setComments(data.comments));
+    }
     return (
       <main className={styles.wrapper}>
         <DemoContainer postId={router.query.id} postData={data} />
