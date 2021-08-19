@@ -5,10 +5,12 @@ WORKDIR /app/front
 COPY package*.json ./
 
 RUN yarn
+
+COPY . .
+
 RUN yarn build
 
 EXPOSE 3000
 
-COPY . .
 
 CMD ["pm2", "start", "yarn", "--name", "'next'" ,"--", "start"]
