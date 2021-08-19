@@ -47,6 +47,7 @@
       line-height: 1.34;
       letter-spacing: normal;
       color: #000000;
+      cursor: pointer;
       .dropdown {
           position: absolute;
           top: 60px;
@@ -60,6 +61,7 @@
             margin :0;
             height: 0px;
             transition-duration: 0.2s;
+            cursor: pointer;
           }
           li:hover {
               background-color: rgba(0, 102, 255, 0.2);

@@ -13,9 +13,11 @@ export default function useFetchData(action) {
           throw actionData;
         }
         setData(actionData);
-        setIsLoaded(true);
+        setError(null);
       } catch (err) {
+        setData(null);
         setError(err);
+      } finally {
         setIsLoaded(true);
       }
     }

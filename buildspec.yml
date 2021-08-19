@@ -1,0 +1,30 @@
+version: 0.2
+
+run-as: root
+
+proxy:
+  upload-artifacts: yes
+  logs: yes
+
+phases:
+  pre_build:
+    commands:
+      - REPO_FRONT=792939917746.dkr.ecr.ap-northeast-2.amazonaws.com/devkor-hackathon-front
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - IMAGE_TAG=release
+      - docker pull $REPO_FRONT:latest || true
+  build:
+    commands:
+      - docker build ./devkor_hackathon_front -t devkor-hackathon-front -f ./devkor_hackathon_front/Dockerfile
+      - docker tag devkor-hackathon-front:latest $REPO_FRONT:latest
+      - docker tag devkor-hackathon-front:latest $REPO_FRONT:$IMAGE_TAG
+
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPO_FRONT:latest
+      - docker push $REPO_FRONT:$IMAGE_TAG
