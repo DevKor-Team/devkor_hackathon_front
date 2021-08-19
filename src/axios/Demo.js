@@ -1,13 +1,15 @@
 import axios from 'axios';
 
-export default function getDemo(id) {
+export async function getDemo(id) {
   return axios(
     {
       method: 'GET',
-      url: `/api/demo/${id}/`,
+      url: `/api/demo/demo/${id}/`,
     },
     {
       withCredentials: true,
     }
   );
 }
+
+export default getDemo;
