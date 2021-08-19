@@ -17,11 +17,13 @@ export const CommentItem = (props) => {
   const createdAt = data.created_at;
   const dateObj = createdAt ? new DateCalculator(createdAt, moment()) : '';
   const user = useSelector((state) => state.users.user);
+  const fullName = writer.last_name + writer.first_name;
   // edit mode
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
+  console.log(writer);
   const deleteComment = () => {
     const checkTrue = window.confirm('정말 삭제하시겠습니까?');
 
@@ -44,7 +46,9 @@ export const CommentItem = (props) => {
               <p onClick={deleteComment}> X </p>
             </div>
           )}
-          <span className={styles.title}> {writer ? writer.username : '익명'} </span>
+          <span className={styles.title}>
+            {writer ? (fullName.length === 0 ? writer.username : fullName) : '익명'}
+          </span>
           {!edit && (
             <>
               <span className={styles.date}> {dateObj && dateObj.diffAuto()} </span>
