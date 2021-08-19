@@ -11,8 +11,8 @@ export const DemoContainer = ({ postData }) => {
   if (postData) {
     return (
       <>
-        <div className={styles.leftArrow} />
-        <div className={styles.rightArrow} />
+        {/* <div className={styles.leftArrow} />
+        <div className={styles.rightArrow} /> */}
         <section>
           <img
             className={styles.thumbnail}
@@ -27,7 +27,9 @@ export const DemoContainer = ({ postData }) => {
             {' '}
             {data.team.users.map((user) => user.username).join(', ')}{' '}
           </p>
-          <Markdown className={styles.desc}>{data.desc}</Markdown>
+          <div>
+            <Markdown className={styles.desc}>{data.desc}</Markdown>
+          </div>
         </section>
         <CommentWrapper />
       </>

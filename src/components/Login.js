@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import styles from 'styles/components/auth.module.scss';
-import Modal from './Modal';
+import { LoginModal as Modal } from './Modal';
 
 const LoginModal = ({ turnOff, title }) => {
   const router = useRouter();

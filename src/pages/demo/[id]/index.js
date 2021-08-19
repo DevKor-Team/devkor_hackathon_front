@@ -2,7 +2,6 @@ import styles from 'styles/demo.module.scss';
 import { useState } from 'react';
 import { DemoContainer } from 'containers/Demo/DemoContainer';
 import { useRouter } from 'next/router';
-// import axios from 'axios';
 import { setComments } from 'reducers/comments';
 import { ErrorContainer } from 'containers/Error/ErrorContainer';
 import { LoadingSpinner } from 'components/Loading';
