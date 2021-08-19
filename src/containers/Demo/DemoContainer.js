@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from 'styles/containers/demoContainer.module.scss';
-import { CommentComponent } from 'components/Comment';
+import CommentWrapper from 'containers/Demo/CommentContainer';
 import Markdown from 'markdown-to-jsx';
+import PropTypes from 'prop-types';
 
 const defaultThumbnail = '../images/containers/Navbar/devkor_logo.svg';
 
@@ -28,7 +29,7 @@ export const DemoContainer = ({ postData }) => {
           </p>
           <Markdown className={styles.desc}>{data.desc}</Markdown>
         </section>
-        <CommentComponent />
+        <CommentWrapper />
       </>
     );
   }
@@ -36,7 +37,18 @@ export const DemoContainer = ({ postData }) => {
 };
 
 DemoContainer.propTypes = {
-  postData: Object,
+  postData: PropTypes.objectOf({
+    id: PropTypes.number,
+    created_at: PropTypes.string,
+    desc: PropTypes.string,
+    sub_title: PropTypes.string,
+    tags: PropTypes.array,
+    team: PropTypes.object,
+    tech_stacks: PropTypes.array,
+    thumbnail: PropTypes.string,
+    title: PropTypes.string,
+    updated_at: PropTypes.string,
+  }),
 };
 
 export default DemoContainer;

@@ -1,0 +1,18 @@
+.editbox{
+    width: 100%;
+    height: fit-content;
+    > textarea {
+        width: 95%;
+        height: 50px;
+        resize: none;
+        margin-top: 10px;
+    }
+    .button_wrapper {
+        width: 95%;
+        display: flex;
+        justify-content: flex-end;
+        :nth-child(2) {
+            margin-left: 10px;
+        }
+    }
+}
