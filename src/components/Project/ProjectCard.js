@@ -39,9 +39,16 @@ export const ProjectCard = ({ demo }) => {
         </section>
         <div className={styles.footer}>
           <div className={styles.footer__infobox}>
-            <span>
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/team/${demo.team.id}`);
+              }}
+            >
               {' by '}
-              {demo.team.map((user) => <b>{user}</b>).reduce((prev, curr) => [prev, ', ', curr])}
+              <b>{demo.team.name}</b>{' '}
             </span>
             <span> + {demo.likes || 0} </span>
           </div>
@@ -66,7 +73,7 @@ ProjectCard.propTypes = {
     description: PropTypes.string,
     createdAt: PropTypes.string,
     updatedAt: PropTypes.string,
-    team: PropTypes.object,
+    team: PropTypes.string,
     tags: PropTypes.arrayOf(PropTypes.string),
     techStacks: PropTypes.arrayOf(PropTypes.string),
   }),

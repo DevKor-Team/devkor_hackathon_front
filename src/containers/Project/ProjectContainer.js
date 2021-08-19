@@ -14,9 +14,10 @@ export const ProjectContainer = () => {
         setDemos(
           res.data.results.map((data) => {
             const { id, title, thumbnail, tags } = data;
-            const team = data.team.users.map((user) => {
-              return user.last_name + user.first_name;
-            });
+            const team = {
+              id: data.team.id,
+              name: data.team.name,
+            };
             const createdDateObj = data.created_at
               ? new DateCalculator(data.created_at, moment())
               : '';
@@ -44,7 +45,6 @@ export const ProjectContainer = () => {
     };
     getDemos();
   }, []);
-  console.log(demos);
   return (
     <div className={styles.wrapper}>
       {demos.map((demo) => {
@@ -53,5 +53,9 @@ export const ProjectContainer = () => {
     </div>
   );
 };
+
+// ProjectContainer.propTypes = {
+//   techStacks: PropTypes.arrayOf(PropTypes.string),
+// };
 
 export default ProjectContainer;
