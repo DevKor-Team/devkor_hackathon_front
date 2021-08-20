@@ -6,9 +6,11 @@ import styles from 'styles/components/project/projectCard.module.scss';
 const techStacks = {
   aws: '/images/components/ProjectItem/AWS.svg',
   css: '/images/components/ProjectItem/CSS.svg',
+  css3: '/images/components/ProjectItem/CSS.svg',
   django: '/images/components/ProjectItem/Django.svg',
   html: '/images/components/ProjectItem/HTML.svg',
-  js: '/images/components/ProjectItem/JS.svg',
+  html5: '/images/components/ProjectItem/HTML.svg',
+  javascript: '/images/components/ProjectItem/JS.svg',
   nodejs: '/images/components/ProjectItem/nodejs.svg',
   mysql: '/images/components/ProjectItem/mysql.svg',
   postgresql: '/images/components/ProjectItem/postgresql.svg',
@@ -18,6 +20,7 @@ const techStacks = {
 
 export const ProjectCard = ({ demo }) => {
   const router = useRouter();
+
   return (
     <>
       <article
@@ -54,10 +57,18 @@ export const ProjectCard = ({ demo }) => {
           </div>
           <div className={styles.stackbox}>
             {demo.techStacks
-              .filter((stack) => Object.prototype.hasOwnProperty.call(techStacks, stack))
-              .map((stack) => (
-                <img src={techStacks[stack]} alt={stack} className={styles.item} key={stack} />
-              ))}
+              .filter((stack) => {
+                let tmp = stack[0] === '#' ? stack.substring(1) : stack;
+                tmp = tmp.toLowerCase();
+                return Object.prototype.hasOwnProperty.call(techStacks, tmp);
+              })
+              .map((stack) => {
+                let tmp = stack[0] === '#' ? stack.substring(1) : stack;
+                tmp = tmp.toLowerCase();
+                return (
+                  <img src={techStacks[tmp]} alt={stack} className={styles.item} key={stack} />
+                );
+              })}
           </div>
         </div>
       </article>
