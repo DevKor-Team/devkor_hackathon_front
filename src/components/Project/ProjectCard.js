@@ -6,9 +6,11 @@ import styles from 'styles/components/project/projectCard.module.scss';
 const techStacks = {
   aws: '/images/components/ProjectItem/AWS.svg',
   css: '/images/components/ProjectItem/CSS.svg',
+  css3: '/images/components/ProjectItem/CSS.svg',
   django: '/images/components/ProjectItem/Django.svg',
   html: '/images/components/ProjectItem/HTML.svg',
-  js: '/images/components/ProjectItem/JS.svg',
+  html5: '/images/components/ProjectItem/HTML.svg',
+  javascript: '/images/components/ProjectItem/JS.svg',
   nodejs: '/images/components/ProjectItem/nodejs.svg',
   mysql: '/images/components/ProjectItem/mysql.svg',
   postgresql: '/images/components/ProjectItem/postgresql.svg',

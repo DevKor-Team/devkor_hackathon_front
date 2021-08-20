@@ -14,6 +14,14 @@ const initialState = {
       active: false,
     },
     {
+      name: 'html5',
+      active: false,
+    },
+    {
+      name: 'css3',
+      active: false,
+    },
+    {
       name: 'nodejs',
       active: false,
     },
@@ -23,6 +31,18 @@ const initialState = {
     },
     {
       name: 'aws',
+      active: false,
+    },
+    {
+      name: 'javascript',
+      active: false,
+    },
+    {
+      name: 'postgresql',
+      active: false,
+    },
+    {
+      name: 'mysql',
       active: false,
     },
   ],
