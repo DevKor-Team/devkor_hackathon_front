@@ -24,7 +24,9 @@ const MyTeamContainer = () => {
         {team && team.length > 0 ? (
           <>
             {team.map((data) => {
-              return <MyTeamItem data={data} setFocusTeamId={setFocusTeamId} isMyTeam />;
+              return (
+                <MyTeamItem data={data} setFocusTeamId={setFocusTeamId} isMyTeam key={data.id} />
+              );
             })}
           </>
         ) : (

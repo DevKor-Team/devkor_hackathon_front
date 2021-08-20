@@ -12,6 +12,7 @@ const MarkdownEditorPanel = ({ handleToolbarClick }) => {
           onClick={() => {
             handleToolbarClick(`heading${headingNumber}`);
           }}
+          key={headingNumber}
         >
           <div className={styles.panelButtonText}>
             H<span>{headingNumber}</span>

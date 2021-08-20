@@ -29,7 +29,6 @@ export const ProjectContainer = ({ searchTags = [] }) => {
               id,
               title,
               subtitle: data.sub_title,
-              description: data.desc,
               thumbnail,
               team,
               tags,
