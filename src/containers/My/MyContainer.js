@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { PromisePopup } from 'components/Popup';
 import useProfile from 'components/hooks/useProfile';
-import { fetchProfile } from 'axios/User';
+import { fetchProfile, putUserProfileImg } from 'axios/User';
 import styles from 'styles/containers/myContainer.module.scss';
 
 const defaultimg = '/images/default.jpg';
@@ -44,10 +44,11 @@ ButtonItem.propTypes = {
 };
 
 export const MyContainer = () => {
-  const [popup, setPopup] = React.useState(false);
   const myInfo = useSelector((state) => state.users.user);
-
   const [profile, setProfile] = useProfile();
+  const [popup, setPopup] = React.useState(false);
+  const [profileImg, setProfileImg] = React.useState(profile?.profile_img ?? defaultimg);
+  const editImg = React.useRef();
 
   // I need typescript...
   const username = myInfo ? `${myInfo.last_name || ''} ${myInfo.first_name || ''}` : '';
@@ -57,19 +58,51 @@ export const MyContainer = () => {
   const position = profile ? profile.position || '' : '';
 
   const setProfileByKey = (key, value) => {
-    if (['url', 'position'].includes(key)) {
+    if (['url', 'position', 'profile_img'].includes(key)) {
       setProfile({
         ...profile,
         [key]: value,
       });
     }
   };
+
+  const readFile = (file) =>
+    new Promise((res) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imgURI = reader.result;
+        if (typeof imgURI === 'string') res(imgURI);
+      };
+      reader.readAsDataURL(file);
+    });
+
+  const onChangeImg = async () => {
+    const file = editImg.current.files[0];
+    const res = await putUserProfileImg(file);
+    if (res.status === 200) {
+      setProfileByKey('profile_img', res.data.profile_img);
+      setProfileImg(await readFile(file));
+    } else {
+      // TODO: handle error
+    }
+  };
+
   return (
     <>
       {myInfo && (
         <div className={styles.container}>
           <div className={styles.imagewrapper}>
-            <img src={defaultimg} alt="profile" />
+            <input
+              className={styles.editImg}
+              type="file"
+              ref={editImg}
+              onChange={() => onChangeImg()}
+            />
+            <img
+              src={profileImg}
+              alt="profile"
+              onClick={() => editImg?.current && editImg.current.click()}
+            />
           </div>
           <div className={styles.title}>{username}</div>
           <div className={styles.infowrapper}>
