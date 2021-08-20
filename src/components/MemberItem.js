@@ -10,8 +10,8 @@ export const MemberItem = ({ title, sub, onClick }) => {
         <img src={memberItemIamg} alt="profile" />
       </div>
       <div className={styles.memberItem__textwrapper}>
-        <div className={styles.memberItem__textwrapper__title}>{title}</div>
-        <div className={styles.memberItem__textwrapper__sub}>{sub}</div>
+        <p className={styles.memberItem__textwrapper__title}>{title}</p>
+        <p className={styles.memberItem__textwrapper__sub}>{sub}</p>
       </div>
     </div>
   );

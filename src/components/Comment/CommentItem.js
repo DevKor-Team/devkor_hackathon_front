@@ -39,6 +39,10 @@ export const CommentItem = (props) => {
   };
 
   const onLikeButtonClick = () => {
+    if (user === null) {
+      alert('로그인 후 이용 가능합니다!');
+      return null;
+    }
     dispatch(() => likeComments(id))
       .then((res) => {
         const [newLike, newDisLike] = [res.data.likes, res.data.dislikes];
@@ -46,9 +50,14 @@ export const CommentItem = (props) => {
         setDisLike(newDisLike);
       })
       .catch((err) => console.log(err));
+    return null;
   };
 
   const onDisLikeButtonClick = () => {
+    if (user === null) {
+      alert('로그인 후 이용 가능합니다!');
+      return null;
+    }
     dispatch(() => dislikeComments(id))
       .then((res) => {
         const [newLike, newDisLike] = [res.data.likes, res.data.dislikes];
@@ -56,6 +65,7 @@ export const CommentItem = (props) => {
         setDisLike(newDisLike);
       })
       .catch((err) => console.log(err));
+    return null;
   };
 
   if (!loading) {

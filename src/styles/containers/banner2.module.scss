@@ -26,23 +26,30 @@
     flex-wrap: wrap;
     align-items: center;
     cursor: pointer;
+    justify-content: center;
     .tagbox__item {
-      margin-bottom: 8px;
       width: 130px;
       height: 40px;
       border-radius: 31px;
       border: solid 1px #707070;
       background-color: #ffffff;
-      margin-right: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: 0.5s;
+      margin-bottom: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
       &:hover {
         transform: translateY(-5px);
       }
-      @media (min-width: 0px) and (max-width: 575.99px) {
+      @media (min-width: 0px) and (max-width: 359.99px) {
         font-size: 8px;
+        width: 60px;
+      }
+      @media (min-width: 360px) and (max-width: 575.99px) {
+        font-size: 8px;
+        width: 80px;
       }
       @media (min-width: 576px) and (max-width: 767.99px) {
         font-size: 0.5vw;

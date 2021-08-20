@@ -1,0 +1,41 @@
+.background {
+    background-color: rgba(128, 128, 128, 0.5);
+    z-index: 9;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.wrapper {
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    background-color: white;
+    .innerbox {
+        box-sizing: border-box;
+        padding: 20% 10%;
+        display: flex;
+        flex-direction: column;
+        .item {
+            box-sizing: border-box;
+            padding: 20% 10%;
+            cursor: pointer;
+        }
+        .leaderitem {
+            box-sizing: border-box;
+            padding: 10% 10%;
+            list-style: none;
+            cursor: pointer;
+            > li {
+                margin-top: 10px;
+                cursor: pointer;
+                &::before{
+                    content: "-";
+                }
+            }
+        }
+    }
+}
