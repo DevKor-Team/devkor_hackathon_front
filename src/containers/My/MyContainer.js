@@ -11,7 +11,6 @@ const defaultimg = '/images/default.jpg';
 const InfoItem = ({ title, value, onChange, readOnly }) => {
   return (
     <div className={styles.info}>
-      {/* <div className={styles.info__text}>{title}</div> */}
       <input
         className={styles.info__text}
         placeholder={title}

@@ -9,10 +9,12 @@
   letter-spacing: normal;
   height: max-content;
   width: 50%;
-  min-width: max-content;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 3vh;
+  @media (min-width: 0px) and (max-width: 767.99px) {
+    width: 100%;
+  }
   .title {
     position: relative;
     font-size: 1.6rem;
@@ -24,14 +26,12 @@
   .membertitle {
     position: relative;
     font-size: 1.1rem;
-    width: 100%;
+    padding: 0% 5%;
   }
   .memberwrapper {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 90%;
-    min-width: max-content;
     padding: 5%;
     margin-bottom: 10%;
   }
@@ -50,13 +50,12 @@
       background-color: #ffffff;
       cursor: pointer;
       width: 50%;
-      height: 1.7rem;
+      height: auto;
       padding: 0.32rem;
       margin-bottom: 12px;
       &__text {
         position: relative;
         font-size: 1rem;
-        top: 0.3rem;
         font-weight: normal;
         font-stretch: normal;
         font-style: normal;
@@ -64,6 +63,7 @@
         letter-spacing: normal;
         text-align: center;
         color: #000000;
+        word-break: keep-all;
       }
     }
   }
