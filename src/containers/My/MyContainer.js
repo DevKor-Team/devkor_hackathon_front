@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { PromisePopup } from 'components/Popup';
 import useProfile from 'components/hooks/useProfile';
-import { fetchProfile } from 'axios/User';
+import { fetchProfile, putUserProfileImg } from 'axios/User';
 import styles from 'styles/containers/myContainer.module.scss';
 
 const defaultimg = '/images/default.jpg';
@@ -58,7 +58,7 @@ export const MyContainer = () => {
   const position = profile ? profile.position || '' : '';
 
   const setProfileByKey = (key, value) => {
-    if (['url', 'position'].includes(key)) {
+    if (['url', 'position', 'profile_img'].includes(key)) {
       setProfile({
         ...profile,
         [key]: value,
@@ -77,7 +77,14 @@ export const MyContainer = () => {
     });
 
   const onChangeImg = async () => {
-    setProfileImg(await readFile(editImg.current.files[0]));
+    const file = editImg.current.files[0];
+    const res = await putUserProfileImg(file);
+    if (res.status === 200) {
+      setProfileByKey('profile_img', res.data.profile_img);
+      setProfileImg(await readFile(file));
+    } else {
+      // TODO: handle error
+    }
   };
 
   return (
