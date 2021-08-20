@@ -44,10 +44,11 @@ ButtonItem.propTypes = {
 };
 
 export const MyContainer = () => {
-  const [popup, setPopup] = React.useState(false);
   const myInfo = useSelector((state) => state.users.user);
-
   const [profile, setProfile] = useProfile();
+  const [popup, setPopup] = React.useState(false);
+  const [profileImg, setProfileImg] = React.useState(profile?.profile_img ?? defaultimg);
+  const editImg = React.useRef();
 
   // I need typescript...
   const username = myInfo ? `${myInfo.last_name || ''} ${myInfo.first_name || ''}` : '';
@@ -64,12 +65,37 @@ export const MyContainer = () => {
       });
     }
   };
+
+  const readFile = (file) =>
+    new Promise((res) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imgURI = reader.result;
+        if (typeof imgURI === 'string') res(imgURI);
+      };
+      reader.readAsDataURL(file);
+    });
+
+  const onChangeImg = async () => {
+    setProfileImg(await readFile(editImg.current.files[0]));
+  };
+
   return (
     <>
       {myInfo && (
         <div className={styles.container}>
           <div className={styles.imagewrapper}>
-            <img src={defaultimg} alt="profile" />
+            <input
+              className={styles.editImg}
+              type="file"
+              ref={editImg}
+              onChange={() => onChangeImg()}
+            />
+            <img
+              src={profileImg}
+              alt="profile"
+              onClick={() => editImg?.current && editImg.current.click()}
+            />
           </div>
           <div className={styles.title}>{username}</div>
           <div className={styles.infowrapper}>
