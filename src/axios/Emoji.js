@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const getEmojis = () => {
+export const getMyEmojis = (demoId) => {
   return axios(
     {
       method: 'GET',
-      url: `/api/demo/emoji/`,
+      url: `/api/demo/emoji/?demo=${demoId}`,
     },
     {
       withCredentials: true,
@@ -12,32 +12,12 @@ export const getEmojis = () => {
   );
 };
 
-export const createEmoji = (req) => {
+export const toggleEmoji = (demoId, data) => {
   return axios(
     {
       method: 'POST',
-      url: `/api/demo/comments/`,
-      data: req.data,
-    },
-    {
-      withCredentials: true,
-    }
-  );
-};
-
-export const patchComment = (req, id) => {
-  return axios({
-    method: 'PATCH',
-    url: `/api/demo/comments/${id}/`,
-    data: req.data,
-  });
-};
-
-export const deleteComment = (id) => {
-  return axios(
-    {
-      method: 'DELETE',
-      url: `/api/demo/comments/${id}/`,
+      url: `/api/demo/demo/${demoId}/emoji/`,
+      data,
     },
     {
       withCredentials: true,

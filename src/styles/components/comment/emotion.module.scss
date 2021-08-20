@@ -23,6 +23,9 @@
             margin-bottom: 10px;
         }
     }
+    .active {
+        transform: scale(1.1);
+    }
     li:hover {
         transform: scale(1.1);
     }

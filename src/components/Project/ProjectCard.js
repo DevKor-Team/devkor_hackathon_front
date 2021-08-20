@@ -50,7 +50,7 @@ export const ProjectCard = ({ demo }) => {
               {' by '}
               <b>{demo.team.name}</b>{' '}
             </span>
-            <span> + {demo.likes || 0} </span>
+            <span> + {demo.like || 0} </span>
           </div>
           <div className={styles.stackbox}>
             {demo.techStacks

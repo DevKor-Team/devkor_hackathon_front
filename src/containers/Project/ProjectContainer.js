@@ -36,6 +36,12 @@ export const ProjectContainer = ({ searchTags = [] }) => {
               comments: data.comments.length,
               createdAt: createdDateObj && createdDateObj.diffAuto(),
               updatedAt: updatedDateObj && updatedDateObj.diffAuto(),
+              like:
+                data.like_count +
+                data.wow_count +
+                data.fire_count +
+                data.fun_count +
+                data.sad_count,
             };
           })
         );

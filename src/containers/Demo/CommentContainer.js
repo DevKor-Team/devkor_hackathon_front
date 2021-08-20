@@ -5,29 +5,37 @@ import { useSelector } from 'react-redux';
 
 export const CommentContainer = () => {
   const comments = useSelector((state) => state.comments.comments);
+  const emojis = useSelector((state) => state.emojis.emojis);
+  const myEmojis = useSelector((state) => state.emojis.emojis);
+
   const emotionList = [
     {
-      count: 0,
+      count: emojis.fire,
+      isOn: myEmojis.fire,
       text: 'Superb',
       img: '/images/components/emotion/superb.svg',
     },
     {
-      count: 0,
+      count: emojis.like,
+      isOn: myEmojis.like,
       text: 'Love',
       img: '/images/components/emotion/love.svg',
     },
     {
-      count: 0,
+      count: emojis.wow,
+      isOn: myEmojis.wow,
       text: 'Wow',
       img: '/images/components/emotion/wow.svg',
     },
     {
-      count: 0,
+      count: emojis.sad,
+      isOn: myEmojis.sad,
       text: 'Sad',
       img: '/images/components/emotion/sad.svg',
     },
     {
-      count: 10,
+      count: emojis.fun,
+      isOn: myEmojis.fun,
       text: 'Laugh',
       img: '/images/components/emotion/laugh.svg',
     },
