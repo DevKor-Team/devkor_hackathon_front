@@ -71,7 +71,6 @@ export const getDemoById = async (dispatch, id) => {
   getDemo(id)
     .then(async (res) => {
       const { title, thumbnail, team, tags } = res.data;
-
       const data = {
         id: res.data.id,
         title,
