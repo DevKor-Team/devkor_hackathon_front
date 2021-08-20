@@ -9,6 +9,8 @@ export const SET_COMMENTS = 'SET_COMMENTS';
 export const CREATE_COMMENTS = 'CREATE_COMMENTS';
 export const PATCH_COMMENTS = 'PATCH_COMMENTS';
 export const DELETE_COMMENTS = 'DELETE_COMMENTS';
+export const LIKE_COMMENTS = 'LIKE_COMMENTS';
+export const DISLIKE_COMMENTS = 'DISLIKE_COMMENTS';
 
 // actions
 export const setComments = (data) => ({
@@ -31,6 +33,16 @@ export const setPatchedComment = (data, idx) => ({
 export const setDeletedComment = (idx) => ({
   type: DELETE_COMMENTS,
   idx,
+});
+
+export const setLikeComment = (id) => ({
+  type: LIKE_COMMENTS,
+  id,
+});
+
+export const setDisLikeComment = (id) => ({
+  type: DISLIKE_COMMENTS,
+  id,
 });
 
 // API functions
@@ -75,6 +87,14 @@ export const deleteComments = async (dispatch, id, idx) => {
         throw new Error(err);
       }
     });
+};
+
+export const likeComments = async (id) => {
+  return CommentAPI.likeComment(id);
+};
+
+export const dislikeComments = async (id) => {
+  return CommentAPI.dislikeComment(id);
 };
 
 // Reducer Funtions

@@ -32,3 +32,27 @@ export const deleteComment = (id) => {
     }
   );
 };
+
+export const likeComment = (id) => {
+  return axios(
+    {
+      method: 'POST',
+      url: `/api/demo/comments/${id}/like/`,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+};
+
+export const dislikeComment = (id) => {
+  return axios(
+    {
+      method: 'POST',
+      url: `/api/demo/comments/${id}/dislike/`,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+};
