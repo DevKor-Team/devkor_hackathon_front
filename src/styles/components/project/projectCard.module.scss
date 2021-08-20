@@ -5,6 +5,7 @@
     border-radius: 10px;
     overflow: hidden;
     transition: 0.5s;
+    cursor: pointer;
     &:hover {
       transform: translateY(-5px);
     }

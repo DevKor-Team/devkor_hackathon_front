@@ -23,11 +23,12 @@
   }
   .tagbox {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
+    justify-content: space-evenly;
     cursor: pointer;
     .tagbox__item {
+      margin-bottom: 8px;
       width: 130px;
       height: 40px;
       border-radius: 31px;
@@ -49,6 +50,11 @@
         width: 15%;
         box-sizing: border-box;
       }
+    }
+    .active {
+      border: solid 1px #707070;
+      background-color: var(--crimson);
+      color: #e5e5e5;
     }
     div:nth-last-child(1) {
       margin-right: 0px;
