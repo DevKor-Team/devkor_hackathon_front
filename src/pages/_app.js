@@ -2,6 +2,7 @@
 import 'styles/globals.scss'; // 글로벌css
 import React from 'react';
 import withRedux from 'next-redux-wrapper';
+import Head from 'next/head';
 import configureStore from 'reducers/store';
 import PropTypes from 'prop-types';
 import { Navbar } from 'components/Navbar';
@@ -9,14 +10,14 @@ import { Navbar } from 'components/Navbar';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <head>
+      <Head>
         <title> devkor-front </title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap"
           rel="stylesheet"
         />
-      </head>
+      </Head>
       <Navbar />
       <Component {...pageProps} />
       {/* <Footer /> */}

@@ -4,7 +4,6 @@ import styles from 'styles/containers/banner2.module.scss';
 
 export const Banner2 = () => {
   const [tags, toggleTag] = useSearchTags();
-  console.log(tags);
   return (
     <div className={styles.banner2}>
       <span>TAGS</span>
@@ -18,6 +17,7 @@ export const Banner2 = () => {
                 toggleTag(index);
               }}
               className={`${styles.tagbox__item} ${tag.active ? styles.active : ''}`}
+              key={tag.name}
             >
               {tag.name}
             </div>

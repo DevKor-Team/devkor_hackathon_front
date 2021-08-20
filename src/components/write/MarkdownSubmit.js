@@ -25,14 +25,8 @@ const MarkdownSubmit = ({ texts, onClicks, promise }) => {
 };
 
 MarkdownSubmit.propTypes = {
-  texts: PropTypes.objectOf({
-    no: PropTypes.string,
-    yes: PropTypes.string,
-  }),
-  onClicks: PropTypes.objectOf({
-    no: PropTypes.func,
-    yes: PropTypes.func,
-  }),
+  texts: PropTypes.object,
+  onClicks: PropTypes.object,
   promise: PropTypes.bool,
 };
 

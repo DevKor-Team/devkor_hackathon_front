@@ -56,7 +56,7 @@ export const ProjectCard = ({ demo }) => {
             {demo.techStacks
               .filter((stack) => Object.prototype.hasOwnProperty.call(techStacks, stack))
               .map((stack) => (
-                <img src={techStacks[stack]} alt={stack} className={styles.item} />
+                <img src={techStacks[stack]} alt={stack} className={styles.item} key={stack} />
               ))}
           </div>
         </div>
@@ -66,17 +66,7 @@ export const ProjectCard = ({ demo }) => {
 };
 
 ProjectCard.propTypes = {
-  demo: PropTypes.objectOf({
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    thumbnail: PropTypes.string,
-    description: PropTypes.string,
-    createdAt: PropTypes.string,
-    updatedAt: PropTypes.string,
-    team: PropTypes.string,
-    tags: PropTypes.arrayOf(PropTypes.string),
-    techStacks: PropTypes.arrayOf(PropTypes.string),
-  }),
+  demo: PropTypes.object,
 };
 
 export default ProjectCard;

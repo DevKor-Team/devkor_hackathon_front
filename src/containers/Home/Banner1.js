@@ -20,39 +20,44 @@ export const Banner1 = () => {
     let spanBox = null; // 색상 입힌 텍스트 넣을 곳
 
     const IntervalID = setInterval(() => {
-      const currentWord = textList[idx];
-      // 모든 글자 다 입력되었으면 인터벌 종료
-      if (idx === Text.length) {
-        blinker.current.className = styles.text_line__active;
+      try {
+        // error handling
+        const currentWord = textList[idx];
+        // 모든 글자 다 입력되었으면 인터벌 종료
+        if (idx === Text.length) {
+          blinker.current.className = styles.text_line__active;
+          clearInterval(IntervalID);
+        }
+
+        // 줄바꿈 처리
+        if (currentWord === '\n') {
+          Target.innerHTML += '<br/>';
+        }
+
+        // undefined 처리
+        if (currentWord !== undefined && currentWord !== '$') {
+          if (inputMode === 'normal') {
+            Target.innerHTML += currentWord;
+          }
+          if (inputMode === 'bold') {
+            spanBox.innerHTML += currentWord;
+          }
+        }
+
+        // 색상처리
+        if (currentWord === '$') {
+          // 입력 모드 변경
+          inputMode = inputMode === 'normal' ? 'bold' : 'normal';
+          if (inputMode === 'bold') {
+            spanBox = document.createElement('span');
+            spanBox.classList.add(styles.crimson);
+            Target.appendChild(spanBox);
+          }
+        }
+        idx += 1;
+      } catch {
         clearInterval(IntervalID);
       }
-
-      // 줄바꿈 처리
-      if (currentWord === '\n') {
-        Target.innerHTML += '<br/>';
-      }
-
-      // undefined 처리
-      if (currentWord !== undefined && currentWord !== '$') {
-        if (inputMode === 'normal') {
-          Target.innerHTML += currentWord;
-        }
-        if (inputMode === 'bold') {
-          spanBox.innerHTML += currentWord;
-        }
-      }
-
-      // 색상처리
-      if (currentWord === '$') {
-        // 입력 모드 변경
-        inputMode = inputMode === 'normal' ? 'bold' : 'normal';
-        if (inputMode === 'bold') {
-          spanBox = document.createElement('span');
-          spanBox.classList.add(styles.crimson);
-          Target.appendChild(spanBox);
-        }
-      }
-      idx += 1;
     }, 70);
   }, []);
 

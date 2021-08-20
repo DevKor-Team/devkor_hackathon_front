@@ -44,6 +44,7 @@ const DropDownNavbarItem = ({ dropDownData }) => {
               onClick();
             }
           }}
+          key={text}
         >
           {text}
         </li>
@@ -56,21 +57,11 @@ NavbarItem.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
   dropDown: PropTypes.bool,
-  dropDownData: PropTypes.arrayOf(
-    PropTypes.objectOf({
-      onClick: PropTypes.func,
-      text: PropTypes.string,
-    })
-  ),
+  dropDownData: PropTypes.arrayOf(PropTypes.object),
 };
 
 DropDownNavbarItem.propTypes = {
-  dropDownData: PropTypes.arrayOf(
-    PropTypes.objectOf({
-      onClick: PropTypes.func,
-      text: PropTypes.string,
-    })
-  ),
+  dropDownData: PropTypes.arrayOf(PropTypes.object),
 };
 
 export const Navbar = () => {
