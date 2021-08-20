@@ -101,12 +101,20 @@ export const MyContainer = () => {
         <PromisePopup
           title="정말 수정하시겠습니까?"
           promiseOnClickY={() => {
-            return fetchProfile(myInfo.profile).then((res) => {
-              setTimeout(() => {
-                setPopup((curVal) => !curVal);
-              }, 1000);
-              return res;
-            });
+            return fetchProfile(myInfo.profile)
+              .then((res) => {
+                setTimeout(() => {
+                  setPopup((curVal) => !curVal);
+                }, 1000);
+                return res;
+              })
+              .catch((err) => {
+                if (err.response.status === 400 && err.response.data) {
+                  const message = Object.values(err.response.data);
+                  return new Error(message[0][0]);
+                }
+                return new Error(err.message);
+              });
           }}
           onClickN={() => setPopup((curVal) => !curVal)}
         />
