@@ -8,6 +8,7 @@ import moment from 'moment';
 
 export const ProjectContainer = ({ searchTags = [] }) => {
   const [demos, setDemos] = React.useState([]);
+
   React.useEffect(() => {
     const getDemos = async () => {
       try {
@@ -45,14 +46,17 @@ export const ProjectContainer = ({ searchTags = [] }) => {
     };
     getDemos();
   }, []);
+
   return (
     <div className={styles.wrapper}>
       {demos
         .filter((demo) => {
+          const refinedTechStacks = demo.techStacks.map((item) =>
+            item[0] === '#' ? item.substring(1).toLowerCase() : item.toLowerCase()
+          );
           if (searchTags.length === 0) return true;
           return searchTags.every((r) => {
-            console.log(demo.techStacks.includes(r));
-            return demo.techStacks.includes(r);
+            return refinedTechStacks.includes(r);
           });
         })
         .map((demo) => {

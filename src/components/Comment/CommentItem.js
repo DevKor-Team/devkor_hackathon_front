@@ -4,12 +4,13 @@ import DateCalculator from 'components/hooks/DateCalculator';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { deleteComments } from 'reducers/comments';
+import { deleteComments, likeComments, dislikeComments } from 'reducers/comments';
 import { LoadingSpinner } from 'components/Loading';
 import { CommentButton } from './CommentButton';
 import CommentEditCard from './CommentEditItem';
 
 const Edit = '/images/components/Comment/CommentItem/edit.svg';
+const Like = '/images/components/Comment/CommentItem/like.svg';
 
 export const CommentItem = (props) => {
   const { data, idx } = props;
@@ -22,6 +23,8 @@ export const CommentItem = (props) => {
   const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [likes, setLike] = useState(data.likes);
+  const [dislikes, setDisLike] = useState(data.dislikes);
 
   const deleteComment = () => {
     const checkTrue = window.confirm('정말 삭제하시겠습니까?');
@@ -33,6 +36,26 @@ export const CommentItem = (props) => {
         .catch(() => setLoading(false));
     }
     return null;
+  };
+
+  const onLikeButtonClick = () => {
+    dispatch(() => likeComments(id))
+      .then((res) => {
+        const [newLike, newDisLike] = [res.data.likes, res.data.dislikes];
+        setLike(newLike);
+        setDisLike(newDisLike);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const onDisLikeButtonClick = () => {
+    dispatch(() => dislikeComments(id))
+      .then((res) => {
+        const [newLike, newDisLike] = [res.data.likes, res.data.dislikes];
+        setLike(newLike);
+        setDisLike(newDisLike);
+      })
+      .catch((err) => console.log(err));
   };
 
   if (!loading) {
@@ -54,9 +77,18 @@ export const CommentItem = (props) => {
               <p className={styles.content}> {data.content} </p>
               <div className={styles.buttonbox}>
                 <div style={{ display: 'flex' }}>
-                  <CommentButton> ▲ </CommentButton>
+                  <CommentButton onClick={onLikeButtonClick}>
+                    <img src={Like} alt="like" /> + {likes || 0}
+                  </CommentButton>
                   <div style={{ width: '5px' }} />
-                  <CommentButton> ▼ </CommentButton>
+                  <CommentButton onClick={onDisLikeButtonClick}>
+                    <img
+                      src={Like}
+                      alt="like"
+                      style={{ transform: 'rotate(180deg)', paddingBottom: '3px' }}
+                    />{' '}
+                    + {dislikes || 0}
+                  </CommentButton>
                 </div>
               </div>
             </>
