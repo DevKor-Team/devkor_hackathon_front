@@ -84,17 +84,20 @@ export const TeamItem = ({ data }) => (
 );
 
 TeamItem.propTypes = {
-  data: PropTypes.objectOf({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    users: PropTypes.arrayOf(
-      PropTypes.objectOf({
-        id: PropTypes.number,
-        first_name: PropTypes.string,
-        last_name: PropTypes.string,
-      })
-    ),
-  }),
+  data: PropTypes.oneOfType([
+    PropTypes.objectOf({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      users: PropTypes.arrayOf(
+        PropTypes.objectOf({
+          id: PropTypes.number,
+          first_name: PropTypes.string,
+          last_name: PropTypes.string,
+        })
+      ),
+    }),
+    PropTypes.object,
+  ]),
 };
 
 MyTeamItem.propTypes = {

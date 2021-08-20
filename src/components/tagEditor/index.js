@@ -10,7 +10,6 @@ const TagItem = ({ tag, isLastIndex, backspacePressedCount, handleOnRemoveTag })
       className={`${styles.tagBox} ${
         backspacePressedCount === 1 && isLastIndex && styles.warningBox
       }`}
-      key={`${getId()}`}
     >
       <span>{tag}</span>
       <button className={styles.closeMark} onClick={() => handleOnRemoveTag(tag)} type="button">
@@ -75,7 +74,7 @@ const TagsInput = ({ tags, placeholder, onChange }) => {
     <div
       className={styles.tagsEditorContainer}
       onClick={focusInputElement}
-      tagIndex="0"
+      // tagIndex="0"
       role="group"
     >
       <div className={styles.tagsSection}>
@@ -87,6 +86,7 @@ const TagsInput = ({ tags, placeholder, onChange }) => {
               isLastIndex={isLastIndex}
               backspacePressedCount={backspacePressedCount}
               handleOnRemoveTag={handleOnRemoveTag}
+              key={`${getId()}`}
             />
           );
         })}

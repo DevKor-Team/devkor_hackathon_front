@@ -7,7 +7,7 @@ export const EmotionBox = (props) => {
     <>
       <ul className={styles.emotion_wrapper}>
         {emotionList.map((item) => (
-          <li>
+          <li key={item.text}>
             <img src={item.img} alt={item.text} />
             {item.text}
           </li>
@@ -20,8 +20,5 @@ export const EmotionBox = (props) => {
 export default EmotionBox;
 
 EmotionBox.propTypes = {
-  emotionList: PropTypes.objectOf({
-    text: PropTypes.string,
-    img: PropTypes.object,
-  }),
+  emotionList: PropTypes.array,
 };

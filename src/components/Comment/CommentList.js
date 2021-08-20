@@ -20,12 +20,5 @@ export const CommentList = (props) => {
 export default CommentList;
 
 CommentList.propTypes = {
-  comments: PropTypes.objectOf({
-    id: PropTypes.number,
-    demo: PropTypes.number,
-    content: PropTypes.string,
-    writer: PropTypes.object,
-    updated_at: PropTypes.string,
-    created_at: PropTypes.string,
-  }),
+  comments: PropTypes.array,
 };

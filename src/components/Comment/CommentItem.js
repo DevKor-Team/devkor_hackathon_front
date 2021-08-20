@@ -23,7 +23,6 @@ export const CommentItem = (props) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  console.log(writer);
   const deleteComment = () => {
     const checkTrue = window.confirm('정말 삭제하시겠습니까?');
 
@@ -89,9 +88,5 @@ export default CommentItem;
 
 CommentItem.propTypes = {
   idx: PropTypes.number,
-  data: PropTypes.objectOf({
-    id: PropTypes.number,
-    writer: PropTypes.any,
-    content: PropTypes.string,
-  }),
+  data: PropTypes.object,
 };

@@ -40,12 +40,12 @@ export const LoginModal = ({ children, turnOff }) => {
 };
 
 LoginModal.propTypes = {
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.elementType.isRequired]),
   turnOff: PropTypes.func,
 };
 
 Modal.propTypes = {
-  children: PropTypes.elementType.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.elementType.isRequired]),
   isOn: PropTypes.bool,
   turnOff: PropTypes.func,
 };

@@ -9,7 +9,6 @@ export default function Home() {
   const tags = useSelector((state) => state.tags.tags)
     .filter((tag) => tag.active)
     .map((tag) => tag.name);
-  console.log(tags);
   return (
     <main className={styles.wrapper}>
       <Banner1 />

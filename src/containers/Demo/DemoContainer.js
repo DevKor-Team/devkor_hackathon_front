@@ -39,18 +39,7 @@ export const DemoContainer = ({ postData }) => {
 };
 
 DemoContainer.propTypes = {
-  postData: PropTypes.objectOf({
-    id: PropTypes.number,
-    created_at: PropTypes.string,
-    desc: PropTypes.string,
-    sub_title: PropTypes.string,
-    tags: PropTypes.array,
-    team: PropTypes.object,
-    tech_stacks: PropTypes.array,
-    thumbnail: PropTypes.string,
-    title: PropTypes.string,
-    updated_at: PropTypes.string,
-  }),
+  postData: PropTypes.object,
 };
 
 export default DemoContainer;
