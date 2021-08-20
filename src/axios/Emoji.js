@@ -17,7 +17,7 @@ export const toggleEmoji = (demoId, data) => {
     {
       method: 'POST',
       url: `/api/demo/demo/${demoId}/emoji/`,
-      data,
+      data: `typ=${data.typ}`,
     },
     {
       withCredentials: true,
