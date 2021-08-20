@@ -120,9 +120,5 @@ export default CommentItem;
 
 CommentItem.propTypes = {
   idx: PropTypes.number,
-  data: PropTypes.objectOf({
-    id: PropTypes.number,
-    writer: PropTypes.any,
-    content: PropTypes.string,
-  }),
+  data: PropTypes.object,
 };

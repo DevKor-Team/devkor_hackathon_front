@@ -53,4 +53,14 @@ export function fetchDemo(data, id) {
   );
 }
 
-export default getDemo;
+export function getDemoList() {
+  return axios(
+    {
+      method: 'GET',
+      url: '/api/demo/demo/',
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
