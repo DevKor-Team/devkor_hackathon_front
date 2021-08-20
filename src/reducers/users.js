@@ -63,7 +63,7 @@ export const getTeamById = async (dispatch, id) => {
 export const userLogout = async () => {
   Logout()
     .then(() => {
-      window.location.reload();
+      window.location.href = '/';
     })
     .catch((err) => console.dir(err));
 };
