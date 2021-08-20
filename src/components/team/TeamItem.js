@@ -19,10 +19,6 @@ const copyTeamInviteLink = async (teamId) => {
   }
 };
 
-const defaultOnClick = () => {
-  alert('준비 중인 기능입니다.');
-};
-
 export const MyTeamItem = ({ data, setFocusTeamId, isMyTeam }) => (
   <>
     <TeamItem data={data} />
@@ -74,7 +70,6 @@ export const TeamItem = ({ data }) => (
             <MemberItem
               title={`${item.last_name} ${item.first_name}`}
               sub={item.id === data.leader.id ? 'Leader' : 'Member'}
-              onClick={defaultOnClick}
               key={item.id}
             />
           );

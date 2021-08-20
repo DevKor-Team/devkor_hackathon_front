@@ -6,6 +6,14 @@ export const EmotionBox = () => {
   const dispatch = useDispatch();
   const emojis = useSelector((state) => state.emojis.emojis);
   const myEmojis = useSelector((state) => state.emojis.myEmojis);
+  const user = useSelector((state) => state.users.user);
+
+  const checkLogin = () => {
+    if (user === null) {
+      return false;
+    }
+    return true;
+  };
 
   const emotionList = [
     {
@@ -41,19 +49,23 @@ export const EmotionBox = () => {
   ];
   console.log(emotionList);
   const onClick = (type) => {
-    let typ = '';
-    if (type === 'Superb') {
-      typ = 'FR';
-    } else if (type === 'Love') {
-      typ = 'LK';
-    } else if (type === 'Wow') {
-      typ = 'WW';
-    } else if (type === 'Sad') {
-      typ = 'SD';
-    } else if (type === 'Laugh') {
-      typ = 'FN';
+    if (checkLogin() === false) {
+      alert('로그인 후 댓글을 남겨 주세요!');
+    } else {
+      let typ = '';
+      if (type === 'Superb') {
+        typ = 'FR';
+      } else if (type === 'Love') {
+        typ = 'LK';
+      } else if (type === 'Wow') {
+        typ = 'WW';
+      } else if (type === 'Sad') {
+        typ = 'SD';
+      } else if (type === 'Laugh') {
+        typ = 'FN';
+      }
+      dispatch((d, getState) => toggleMyEmojis(d, getState, typ));
     }
-    dispatch((d, getState) => toggleMyEmojis(d, getState, typ));
   };
 
   return (
