@@ -40,8 +40,10 @@ const MarkdownSubeditor = () => {
     } else {
       throw new Error('설명을 입력해주세요');
     }
-    if (demo.subtitle) {
+    if (demo.subtitle && demo.subtitle.length < 128) {
       formData.append('sub_title', demo.subtitle);
+    } else if (demo.subtitle && demo.subtitle.length >= 128) {
+      throw new Error('간단한 설명은 128자 이내만 가능합니다.');
     } else {
       throw new Error('간단한 설명을 입력해주세요');
     }
@@ -87,7 +89,7 @@ const MarkdownSubeditor = () => {
         <div className={styles.subtitleContainer}>
           <TextareaAutosize
             value={subtitle}
-            placeholder="프로젝트에 대해 간단하게 설명해주세요"
+            placeholder="프로젝트에 대해 간단하게 설명해주세요(128자 이내)"
             onChange={(e) => {
               setSubtitle(e.target.value);
             }}

@@ -73,7 +73,7 @@ export const TeamItem = ({ data }) => (
           return (
             <MemberItem
               title={`${item.last_name} ${item.first_name}`}
-              sub="Member"
+              sub={item.id === data.leader.id ? 'Leader' : 'Member'}
               onClick={defaultOnClick}
               key={item.id}
             />
