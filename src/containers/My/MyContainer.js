@@ -103,6 +103,7 @@ export const MyContainer = () => {
           promiseOnClickY={() => {
             return fetchProfile(myInfo.profile)
               .then((res) => {
+                setProfile(res.data);
                 setTimeout(() => {
                   setPopup((curVal) => !curVal);
                 }, 1000);
