@@ -6,16 +6,23 @@ import { setComments } from 'reducers/comments';
 import { setEmojis, getMyEmojis } from 'reducers/emojis';
 import { ErrorContainer } from 'containers/Error/ErrorContainer';
 import { LoadingSpinner } from 'components/Loading';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as DemoAPI from 'axios/Demo';
 
 export default function Demo() {
   const router = useRouter();
+  const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [IsError, setError] = useState(false);
   const [data, setData] = useState(null);
 
+  const checkLogin = () => {
+    if (user === null) {
+      return false;
+    }
+    return true;
+  };
   React.useEffect(() => {
     if (router.query.id !== undefined && loading === false) {
       DemoAPI.getDemo(router.query.id)
@@ -33,7 +40,6 @@ export default function Demo() {
   // 로딩 완료, 에러 아닌 경우
   if (loading && IsError === false) {
     // 댓글 setting
-    console.log(data);
     if (data) {
       dispatch(setComments(data.comments));
       dispatch(
@@ -45,9 +51,11 @@ export default function Demo() {
           sad: data.sad_count,
         })
       );
-      dispatch((d) => {
-        getMyEmojis(d, router.query.id);
-      });
+      if (checkLogin()) {
+        dispatch((d) => {
+          getMyEmojis(d, router.query.id);
+        });
+      }
     }
     return (
       <main className={styles.wrapper}>
