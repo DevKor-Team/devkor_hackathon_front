@@ -76,6 +76,24 @@ export function postUserProfile(data) {
   );
 }
 
+export function putUserProfileImg(file) {
+  const data = new FormData();
+  data.append('profile_img', file);
+  return axios(
+    {
+      method: 'POST',
+      url: `/api/account/profile/`,
+      data,
+    },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true,
+    }
+  );
+}
+
 export function fetchProfile(profile) {
   if (!profile || !profile.id) {
     return postUserProfile(profile);

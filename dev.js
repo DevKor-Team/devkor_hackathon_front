@@ -17,6 +17,14 @@ app.prepare().then(() => {
     })
   );
 
+  server.use(
+    '/media',
+    proxy.createProxyMiddleware({
+      target: 'http://localhost:8000',
+      changeOrigin: true,
+    })
+  );
+
   server.all('*', (req, res) => handle(req, res));
 
   server.listen(port, (err) => {
