@@ -18,6 +18,7 @@ const techStacks = {
 
 export const ProjectCard = ({ demo }) => {
   const router = useRouter();
+
   return (
     <>
       <article
@@ -54,10 +55,18 @@ export const ProjectCard = ({ demo }) => {
           </div>
           <div className={styles.stackbox}>
             {demo.techStacks
-              .filter((stack) => Object.prototype.hasOwnProperty.call(techStacks, stack))
-              .map((stack) => (
-                <img src={techStacks[stack]} alt={stack} className={styles.item} key={stack} />
-              ))}
+              .filter((stack) => {
+                let tmp = stack[0] === '#' ? stack.substring(1) : stack;
+                tmp = tmp.toLowerCase();
+                return Object.prototype.hasOwnProperty.call(techStacks, tmp);
+              })
+              .map((stack) => {
+                let tmp = stack[0] === '#' ? stack.substring(1) : stack;
+                tmp = tmp.toLowerCase();
+                return (
+                  <img src={techStacks[tmp]} alt={stack} className={styles.item} key={stack} />
+                );
+              })}
           </div>
         </div>
       </article>

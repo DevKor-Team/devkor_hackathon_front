@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
     grid-gap: 10px;
+    padding-bottom: 50px;
+    padding-top: 50px;
     @media (min-width: 0px) and (max-width: 575.99px) {
         grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
