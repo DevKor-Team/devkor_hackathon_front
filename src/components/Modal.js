@@ -2,11 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from 'styles/components/modal.module.scss';
 
-const LoginModal = ({ children, turnOff }) => {
+const Modal = ({ children, isOn, turnOff }) => {
+  return (
+    isOn && (
+      <>
+        <div
+          className={styles.modalBackground}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.nativeEvent.stopImmediatePropagation();
+            if (e.target === e.currentTarget) {
+              turnOff();
+            }
+          }}
+          role="dialog"
+        >
+          {children}
+        </div>
+      </>
+    )
+  );
+};
+
+export const LoginModal = ({ children, turnOff }) => {
   return (
     <>
       <div
-        className={styles.background}
+        className={styles.loginModalBackground}
         onClick={() => {
           turnOff();
         }}
@@ -22,4 +44,10 @@ LoginModal.propTypes = {
   turnOff: PropTypes.func,
 };
 
-export default LoginModal;
+Modal.propTypes = {
+  children: PropTypes.elementType.isRequired,
+  isOn: PropTypes.bool,
+  turnOff: PropTypes.func,
+};
+
+export default Modal;

@@ -35,8 +35,9 @@ class DateCalculator {
     return parseInt(this.dateTo.diff(this.dateFrom, 'months') / 12, 10);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   DjangoTimeToMoment(t) {
-    console.log(this);
+    // console.log(this);
     const String = `${t.split('T')[0]} ${t.split('T')[1]}`;
     const result = moment(String).format('YYYY-MM-DD HH:mm:ss');
     return result;

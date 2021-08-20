@@ -1,60 +1,82 @@
+import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 import styles from 'styles/components/project/projectCard.module.scss';
 
-const thumbnail = '/images/default.jpg';
-
 // tech stacks
-const aws = '/images/components/ProjectItem/AWS.svg';
-const css = '/images/components/ProjectItem/CSS.svg';
-const django = '/images/components/ProjectItem/Django.svg';
-const html = '/images/components/ProjectItem/HTML.svg';
-const js = '/images/components/ProjectItem/JS.svg';
-const mysql = '/images/components/ProjectItem/mysql.svg';
-const postgresql = '/images/components/ProjectItem/postgresql.svg';
-const react = '/images/components/ProjectItem/React.svg';
-const redux = '/images/components/ProjectItem/Redux.svg';
+const techStacks = {
+  aws: '/images/components/ProjectItem/AWS.svg',
+  css: '/images/components/ProjectItem/CSS.svg',
+  django: '/images/components/ProjectItem/Django.svg',
+  html: '/images/components/ProjectItem/HTML.svg',
+  js: '/images/components/ProjectItem/JS.svg',
+  nodejs: '/images/components/ProjectItem/nodejs.svg',
+  mysql: '/images/components/ProjectItem/mysql.svg',
+  postgresql: '/images/components/ProjectItem/postgresql.svg',
+  react: '/images/components/ProjectItem/React.svg',
+  redux: '/images/components/ProjectItem/Redux.svg',
+};
 
-export const ProjectCard = () => {
+export const ProjectCard = ({ demo }) => {
+  const router = useRouter();
   return (
     <>
-      <article className={styles.card}>
-        <img src={thumbnail} alt="thumbnail" />
+      <article
+        className={styles.card}
+        onClick={() => {
+          router.push(`/demo/${demo.id}`);
+        }}
+        tabIndex={-1}
+      >
+        <img src={demo.thumbnail} alt="thumbnail" />
         <section className={styles.textbox}>
-          <h3> assdnaipsmdoopx </h3>
-          <p> abcdefg </p>
+          <h3>{demo.title}</h3>
+          <p>{demo.subtitle}</p>
           <div className={styles.subinfo}>
-            <span> 4일 전 </span>
+            <span>{demo.createdAt}</span>
             <span className={styles.separator}> . </span>
-            <span> n개의 댓글 </span>
+            <span> {demo.comments}개의 댓글 </span>
           </div>
         </section>
         <div className={styles.footer}>
           <div className={styles.footer__infobox}>
-            <span>
-              {' '}
-              by <b> 김점동 </b>{' '}
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/team/${demo.team.id}`);
+              }}
+            >
+              {' by '}
+              <b>{demo.team.name}</b>{' '}
             </span>
-            <span> + 26 </span>
+            <span> + {demo.likes || 0} </span>
           </div>
           <div className={styles.stackbox}>
-            <img src={aws} alt="aws" className={styles.item} />
-            <img src={css} alt="aws" className={styles.item} />
-            <img src={html} alt="aws" className={styles.item} />
-            <img src={django} alt="aws" className={styles.item} />
-            <img src={js} alt="aws" className={styles.item} />
-            <img src={react} alt="aws" className={styles.item} />
-            <img src={postgresql} alt="aws" className={styles.item} />
-            <img src={mysql} alt="aws" className={styles.item} />
-            <img src={redux} alt="aws" className={styles.item} />
-            <img src={js} alt="aws" className={styles.item} />
-            <img src={redux} alt="aws" className={styles.item} />
-            <img src={js} alt="aws" className={styles.item} />
-            <img src={redux} alt="aws" className={styles.item} />
-            <img src={js} alt="aws" className={styles.item} />
+            {demo.techStacks
+              .filter((stack) => Object.prototype.hasOwnProperty.call(techStacks, stack))
+              .map((stack) => (
+                <img src={techStacks[stack]} alt={stack} className={styles.item} />
+              ))}
           </div>
         </div>
       </article>
     </>
   );
+};
+
+ProjectCard.propTypes = {
+  demo: PropTypes.objectOf({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    thumbnail: PropTypes.string,
+    description: PropTypes.string,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    team: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    techStacks: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 export default ProjectCard;
