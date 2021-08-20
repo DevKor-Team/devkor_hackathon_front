@@ -28,12 +28,12 @@ const LoginModal = ({ turnOff, title }) => {
             </div>
             <div className={styles.button__description}>Google 로그인</div>
           </div>
-          <div className={styles.button}>
+          {/* <div className={styles.button}>
             <div className={styles.button_img}>
               <img src="/images/github_logo.svg" alt="github login" />
             </div>
             <div className={styles.button__description}>Github 로그인</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Modal>
