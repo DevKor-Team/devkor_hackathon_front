@@ -73,7 +73,7 @@ export const CommentItem = (props) => {
     return (
       <div className={styles.container}>
         <div className={styles.textbox}>
-          {user.id === writer.id && (
+          {user && writer && user.id === writer.id && (
             <div className={styles.close_btn}>
               <img src={Edit} alt="수정하기" onClick={() => setEdit(!edit)} />
               <p onClick={deleteComment}> X </p>
