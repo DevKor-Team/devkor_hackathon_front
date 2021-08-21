@@ -19,6 +19,11 @@
         padding: 0.625rem 1rem;
         > h3 {
             margin-bottom: 5px;
+
+            .notPublished{
+                font-weight: normal;
+                color: rgba(128,128,128,0.7);
+            }
         }
         > p {
             word-break: keep-all;
