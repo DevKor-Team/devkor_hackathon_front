@@ -64,3 +64,10 @@ export function getDemoList() {
     }
   );
 }
+
+export function getDemoTags() {
+  return axios({
+    method: 'GET',
+    url: '/api/demo/tags',
+  });
+}

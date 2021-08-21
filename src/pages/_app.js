@@ -12,7 +12,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>DevKor Hackathon</title>
-        <meta name="description" content="DevKor Hackathon" />
+        <meta name="og:image" content="/static/favicon.ico" />
+        <meta property="og:title" content="DevKor Hackathon Archive" />
+        <meta property="og:description" content="Demo archiving service for hackathon" />
+        <meta property="og:type" content="website" />
         <meta
           name="keywords"
           content="devkor, 데브코, hackathon, 해커톤, korea university, 고려대"
