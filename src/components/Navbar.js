@@ -205,6 +205,12 @@ export const Navbar = () => {
                         moveTo('/team/my');
                       },
                     },
+                    {
+                      text: '팀 목록',
+                      onClick: () => {
+                        moveTo('/team');
+                      },
+                    },
                   ]}
                 />
               ) : (
