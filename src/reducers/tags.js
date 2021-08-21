@@ -1,3 +1,5 @@
+import * as DemoAPI from 'axios/Demo';
+
 // Initial State
 const initialState = {
   tags: [
@@ -80,6 +82,19 @@ export const applySetTags = (state, action) => {
     ...state,
     tags: action.data,
   };
+};
+
+export const getTags = (dispatch) => {
+  DemoAPI.getDemoTags().then((res) => {
+    console.log(res.data.results);
+    const tags = res.data.results.map((tag) => {
+      return {
+        name: tag.name,
+        active: false,
+      };
+    });
+    dispatch(setTags(tags));
+  });
 };
 
 // Reducer
