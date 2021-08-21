@@ -76,13 +76,13 @@ export function postUserProfile(data) {
   );
 }
 
-export function putUserProfileImg(file) {
+export function putUserProfileImg(file, id) {
   const data = new FormData();
   data.append('profile_img', file);
   return axios(
     {
-      method: 'POST',
-      url: `/api/account/profile/`,
+      method: 'PATCH',
+      url: `/api/account/profile/${id}/`,
       data,
     },
     {

@@ -77,7 +77,7 @@ export const MyContainer = () => {
 
   const onChangeImg = async () => {
     const file = editImg.current.files[0];
-    const res = await putUserProfileImg(file);
+    const res = await putUserProfileImg(file, myInfo.profile.id);
     if (res.status === 200) {
       setProfileByKey('profile_img', res.data.profile_img);
       setProfileImg(await readFile(file));
