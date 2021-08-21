@@ -10,17 +10,26 @@ import { useSelector } from 'react-redux';
 import { fetchDemo, postDemo } from 'axios/Demo';
 import moveTo from 'components/util/moveTo';
 import { useRouter } from 'next/router';
+import useDemo from 'components/hooks/write/useDemo';
 
 const MarkdownSubeditor = () => {
   const router = useRouter();
   const title = useSelector((state) => state.demo.title);
-  const demo = useSelector((state) => state.demo);
 
   const [subtitle, setSubtitle] = useSubtitle();
   const [techStacks, setTechStacks] = useTechStacks();
+  const [demo, setDemo] = useDemo();
   const setSubmitPopup = useSubmitPopup()[1]; // using only setSubmitPopup
 
-  const submit = async () => {
+  const buildThumbnail = (data) => ({
+    ...data,
+    thumbnail: {
+      url: data.thumbnail,
+      name: data.thumbnail.substring(data.thumbnail.lastIndexOf('/') + 1),
+    },
+  });
+
+  const submit = async (publish) => {
     const formData = new FormData();
     if (demo.thumbnail) {
       const blob = await fetch(demo.thumbnail.url).then((r) => {
@@ -47,6 +56,12 @@ const MarkdownSubeditor = () => {
     } else {
       throw new Error('간단한 설명을 입력해주세요');
     }
+    if (publish) {
+      formData.append('show', 'True');
+    } else {
+      formData.append('show', demo.publish ? 'True' : 'False');
+    }
+
     // 기본값이 empty array
     formData.append('tags', JSON.stringify(demo.tags));
     formData.append('tech_stacks', JSON.stringify(demo.techStacks));
@@ -57,14 +72,16 @@ const MarkdownSubeditor = () => {
     }
     if (typeof demo.id === 'number') {
       try {
-        const res = await fetchDemo(formData, demo.id);
+        const res = await fetchDemo(formData, demo.id, publish);
+        setDemo(buildThumbnail(res.data));
         return res;
       } catch (err) {
         throw new Error(err.message);
       }
     } else {
       try {
-        const res = await postDemo(formData);
+        const res = await postDemo(formData, publish);
+        setDemo(buildThumbnail(res.data));
         return res;
       } catch (err) {
         throw new Error(err.message);
@@ -99,14 +116,24 @@ const MarkdownSubeditor = () => {
       <MarkdownSubmit
         texts={{
           yes: '등록하기',
+          save: demo.show ? '' : '저장하기',
           no: '취소',
         }}
         onClicks={{
           yes: () =>
-            submit()
+            window.confirm('정말 게시하시겠습니까?') &&
+            submit(true)
               .then((res) => {
-                console.log(res);
                 return moveTo(router, `/demo/${res.data.id}`);
+              })
+              .catch((err) => {
+                return new Error(err.message);
+              }),
+          save: () =>
+            submit(false)
+              .then(() => {
+                alert('저장되었습니다.');
+                setSubmitPopup(false);
               })
               .catch((err) => {
                 return new Error(err.message);

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 const MarkdownDescEditor = dynamic(import('components/write/MarkdownDescEditor'), { ssr: false });
 const MarkdownEditor = () => {
-  const setSubmitPopup = useSubmitPopup()[1]; // using only setSubmitPopup
+  const [, setSubmitPopup] = useSubmitPopup(); // using only setSubmitPopup
   const router = useRouter();
 
   return (
@@ -18,7 +18,7 @@ const MarkdownEditor = () => {
       <MarkdownDescEditor />
       <MarkdownSubmit
         texts={{
-          yes: '등록하기',
+          yes: '저장하기',
           no: '< 나가기',
         }}
         onClicks={{

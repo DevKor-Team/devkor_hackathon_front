@@ -10,6 +10,7 @@ const initialState = {
   tags: [],
   techStacks: [],
   submitPopup: false,
+  show: false,
 };
 
 // action type
@@ -84,8 +85,8 @@ export const getDemoById = async (dispatch, id) => {
         tags,
         techStacks: res.data.tech_stacks,
         submitPopup: false,
+        show: res.data.show,
       };
-      console.log(data);
       await dispatch(setDemo(data));
     })
     .catch((err) => console.dir(err));

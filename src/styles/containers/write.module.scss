@@ -119,10 +119,9 @@
         font-size: 18px;
         color: #000000;
     }
-    .submitContainerSubmit {
+    .submitContainerbtn {
         position: absolute;
         top: 50%;
-        right: 16px;
         transform: translateY(-50%);
         width: 144px;
         height: 40px;
@@ -131,5 +130,13 @@
         background-color: #ffffff;
         font-size: 18px;
         color: #3c4558;
+    }
+    .submitContainerSubmit {
+        @extend .submitContainerbtn;
+        right: 16px;
+    }
+    .submitContainerSave {
+        @extend .submitContainerbtn;
+        right: 180px;
     }
 }
