@@ -33,7 +33,9 @@ export const ProjectCard = ({ demo }) => {
       >
         <img src={demo.thumbnail} alt="thumbnail" />
         <section className={styles.textbox}>
-          <h3>{demo.title}</h3>
+          <h3>
+            {demo.title} {!demo.show && <span className={styles.notPublished}>(게시 안 됨)</span>}
+          </h3>
           <p>{demo.subtitle}</p>
           <div className={styles.subinfo}>
             <span>{demo.createdAt}</span>
