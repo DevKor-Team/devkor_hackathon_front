@@ -25,7 +25,7 @@ export const DemoContainer = ({ postData }) => {
           <h2 className={styles.tag}> {data.tech_stacks.map((item) => item).join(', ')} </h2>
           <p className={styles.members}>
             {' '}
-            {data.team.users.map((user) => user.username).join(', ')}{' '}
+            {data.team.users.map((user) => `${user.last_name} ${user.first_name}`).join(', ')}{' '}
           </p>
           <div>
             <Markdown className={styles.desc}>{data.desc}</Markdown>
