@@ -95,9 +95,9 @@ export function putUserProfileImg(file, id) {
 }
 
 export function fetchProfile(profile) {
-  console.log(profile);
+  const { id, position, bio, url } = profile;
   if (!profile || !profile.id) {
-    return postUserProfile(profile);
+    return postUserProfile({ id, position, bio, url });
   }
-  return putUserProfile(profile, profile.id);
+  return putUserProfile({ position, bio, url }, id);
 }
