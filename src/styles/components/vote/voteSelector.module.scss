@@ -30,6 +30,7 @@
     border-radius: 4px;
     align-items: center; 
     justify-content: center; 
+    cursor: pointer;
     svg {
       position: absolute;
       top: 1rem;
@@ -54,33 +55,36 @@
 }
 .demoWrapper {
   transition: all 0.5s ease-in-out;
-  height: 500px;
+  height: auto;
 }
 .demoBox {
-  display: grid;
+  display: flex;
   width: 100%;
   height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin-left: 5rem;
-  grid-template-columns: repeat(6, minmax(250px, 1fr));
   grid-gap: 10px;
   .projectItemBox {
     position: relative;
     button {
       position: absolute;
       border-radius: 10px;
-      background-color: black;
-      opacity: 0%;
+      background-color: rgba(0, 0, 0, 0);
       width: 100%;
       height: 100%;
+      cursor: pointer;
       img {
         position: absolute;
         top: 50%;
         left: 50%;
+        width: 50%;
+        object-fit: contain;
         transform: translate(-50%, -50%);
       }
     }
     button.active {
-      opacity: 30%;
+      background-color: rgba(0, 0, 0, 0.3);
     }
   }
 }

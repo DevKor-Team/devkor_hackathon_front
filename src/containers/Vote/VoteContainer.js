@@ -10,6 +10,7 @@ import { PromisePopup } from 'components/Popup';
 import { ButtonItem2 } from 'components/Button';
 import * as VoteAPI from 'axios/Vote';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const VoteSelector = ({ title, demos, voteKey, vote, setVoteByKey }) => {
   const [toggle, setToggle] = React.useState(false);
@@ -42,7 +43,9 @@ const VoteSelector = ({ title, demos, voteKey, vote, setVoteByKey }) => {
                 aria-label="vote"
                 className={demo.id === vote[voteKey] && styles.active}
               >
-                {demo.id === vote[voteKey] && <img src="/static/favicon.ico" alt="check" />}
+                {demo.id === vote[voteKey] && (
+                  <img src="/images/components/vote/check.svg" alt="check" />
+                )}
               </button>
               <ProjectItem demo={demo} key={demo.id} />
             </div>
@@ -70,7 +73,7 @@ const VoteContainer = () => {
   });
   const [popup, setPopup] = React.useState(false);
   const teamInfo = useSelector((state) => state.users.team);
-  console.log(teamInfo);
+  const router = useRouter();
 
   const setVoteByKey = (key, demoId) => {
     if (Object.keys(vote).includes(key)) {
@@ -141,6 +144,7 @@ const VoteContainer = () => {
         return (
           <VoteSelector
             demos={demos.filter((demo) => {
+              if (teamInfo && teamInfo[0].id === demo.team.id) return false;
               return !Object.values(vote).includes(demo.id) || vote[key] === demo.id;
             })}
             title={`${key}순위`}
@@ -162,7 +166,10 @@ const VoteContainer = () => {
         <PromisePopup
           title="투표하시겠습니까?"
           promiseOnClickY={() => {
-            const demo = [vote['1'], vote['2'], vote['3']];
+            const voteEntries = Object.entries(vote);
+            voteEntries.sort((a, b) => a[0] < b[0]);
+            const demo = voteEntries.map((voteEntry) => voteEntry[1]);
+
             if (demo.includes(null)) {
               return new Error('모든 팀을 투표해주셔야 합니다.');
             }
@@ -170,8 +177,8 @@ const VoteContainer = () => {
               team: teamInfo[0].id,
               demo,
             })
-              .then((res) => {
-                return res;
+              .then(() => {
+                return router.push('/');
               })
               .catch((err) => {
                 return new Error(err.message);
