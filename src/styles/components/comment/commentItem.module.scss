@@ -28,8 +28,20 @@
             }
         }
         .title {
+            display: inline-flex;
+            align-items: center;
             font-weight: bold;
             font-size: 1rem;
+
+            .name {
+                margin-left: 8px;
+            }
+
+            > img {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 100%;
+            }
         }
         .date {
             color: rgba(128,128,128,0.7);
