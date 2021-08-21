@@ -1,0 +1,86 @@
+.selectorWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-left: 40px;
+}
+.toggleBox {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  .title {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #ddd;
+    transition: transform 0.25s;
+  }
+  .title.on {
+    color: #000;
+  }
+  .toggleButton {
+    position: relative;
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 4px;
+    align-items: center; 
+    justify-content: center; 
+    svg {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      width: 2rem;
+      height: 2rem;
+      fill: #ddd;
+      transform: rotate(90deg);    
+      transition: transform 0.25s;
+    }
+  }
+  .toggleButton.on {
+    svg {
+      fill: #000;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.demoWrapper.off {
+  height: 0px;
+}
+.demoWrapper {
+  transition: all 0.5s ease-in-out;
+  height: 500px;
+}
+.demoBox {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin-left: 5rem;
+  grid-template-columns: repeat(6, minmax(250px, 1fr));
+  grid-gap: 10px;
+  .projectItemBox {
+    position: relative;
+    button {
+      position: absolute;
+      border-radius: 10px;
+      background-color: black;
+      opacity: 0%;
+      width: 100%;
+      height: 100%;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    button.active {
+      opacity: 30%;
+    }
+  }
+}
