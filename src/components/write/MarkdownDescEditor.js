@@ -7,10 +7,14 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 import styles from 'styles/containers/write.module.scss';
+import useUpload from 'components/hooks/useUpload';
+import { postDemoImage } from 'axios/Demo';
+import { useSelector } from 'react-redux';
 
 const MarkdownDescEditor = () => {
   const [description, setDescription] = useDescription();
-
+  const [upload] = useUpload();
+  const demo = useSelector((state) => state.demo);
   const codeMirrorRef = useRef(null);
 
   const onChange = useCallback(
@@ -19,17 +23,35 @@ const MarkdownDescEditor = () => {
     },
     [setDescription]
   );
-  const onDrop = (editor, event) => {
-    // console.log(event);
-    const coords = editor.coordsChar({
-      left: event.x,
-      top: event.y,
-    });
-    editor.setCursor(coords);
-    const { line, ch } = coords;
-    console.log(line, ch);
-    alert('준비중인 기능입니다.');
+
+  const onImageUpload = async (doc, cursor, file, id) => {
+    const res = await postDemoImage(file, id);
+    const selected = doc.getSelection();
+    if (selected.length === 0) {
+      doc.replaceSelection(`![image${res.data.id}](${res.data.image})`);
+      doc.setSelection(
+        {
+          line: cursor.line + 1,
+          ch: 0,
+        },
+        {
+          line: cursor.line + 1,
+          ch: 9,
+        }
+      );
+    }
   };
+
+  // const onDrop = (editor, event) => {
+  //   const doc = editor.getDoc();
+  //   const cursor = editor.coordsChar({
+  //     left: event.x,
+  //     top: event.y,
+  //   });
+  //   const file = event.dataTransfer.files[0];
+  //   editor.setCursor(cursor);
+  //   onImageUpload(doc, cursor, file, demo.id);
+  // };
 
   const handleToolbarClick = (mode) => {
     const codemirror = codeMirrorRef.current.editor;
@@ -306,8 +328,9 @@ const MarkdownDescEditor = () => {
           });
         }
       },
-      image: () => {
-        alert('준비중인 기능입니다.');
+      image: async () => {
+        const file = await upload();
+        onImageUpload(doc, cursor, file, demo.id);
       },
       codeblock: () => {
         const selected = doc.getSelection();
@@ -352,7 +375,7 @@ const MarkdownDescEditor = () => {
             lineWrapping: true,
           }}
           onBeforeChange={onChange}
-          onDrop={onDrop}
+          // onDrop={onDrop}
           defaultValue="프로젝트를 구체적으로 기술해주세요\r\n# 안녕하세요"
         />
       </div>
