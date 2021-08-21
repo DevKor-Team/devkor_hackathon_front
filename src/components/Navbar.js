@@ -185,42 +185,47 @@ export const Navbar = () => {
             <NavbarItem title="LOGIN/SIGNUP" onClick={toggleModal} />
           ) : (
             <>
-              {myLeaderInfo && myLeaderInfo.length > 0 ? (
-                <NavbarItem
-                  title="TEAM"
-                  // onClick={() => {
-                  //   moveTo('/team');
-                  // }}
-                  dropDown
-                  dropDownData={[
-                    {
-                      text: '게시글 작성',
-                      onClick: () => {
-                        moveTo('/write');
-                      },
-                    },
-                    {
-                      text: '팀 관리',
-                      onClick: () => {
-                        moveTo('/team/my');
-                      },
-                    },
-                    {
-                      text: '팀 목록',
-                      onClick: () => {
-                        moveTo('/team');
-                      },
-                    },
-                  ]}
-                />
-              ) : (
-                <NavbarItem
-                  title="TEAM"
-                  onClick={() => {
-                    moveTo('/team/my');
-                  }}
-                />
-              )}
+              <NavbarItem
+                title="TEAM"
+                dropDown
+                dropDownData={
+                  myLeaderInfo && myLeaderInfo.length > 0
+                    ? [
+                        {
+                          text: '게시글 작성',
+                          onClick: () => {
+                            moveTo('/write');
+                          },
+                        },
+                        {
+                          text: '팀 관리',
+                          onClick: () => {
+                            moveTo('/team/my');
+                          },
+                        },
+                        {
+                          text: '팀 목록',
+                          onClick: () => {
+                            moveTo('/team');
+                          },
+                        },
+                      ]
+                    : [
+                        {
+                          text: '팀 관리',
+                          onClick: () => {
+                            moveTo('/team/my');
+                          },
+                        },
+                        {
+                          text: '팀 목록',
+                          onClick: () => {
+                            moveTo('/team');
+                          },
+                        },
+                      ]
+                }
+              />
               <NavbarItem
                 title="MY"
                 onClick={() => {
