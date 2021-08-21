@@ -43,6 +43,7 @@ export const ProjectContainer = ({ searchTags = [] }) => {
                 data.fire_count +
                 data.fun_count +
                 data.sad_count,
+              show: data.show,
             };
           })
         );
