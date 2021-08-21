@@ -79,7 +79,7 @@ export const MyContainer = () => {
     const file = editImg.current.files[0];
     const res = await putUserProfileImg(file, myInfo.profile?.id);
     if (res.status === 200 || res.status === 201) {
-      setProfileByKey('profile_img', res.data.profile_img);
+      setProfile(res.data);
       setProfileImg(await readFile(file));
     } else {
       // TODO: handle error
