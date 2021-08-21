@@ -77,6 +77,16 @@
             margin-bottom: 64px;
             padding-left: 50px;
             padding-right: 50px;
+            h1, h2, h3, h4 {
+                line-height: 1.5;
+                margin-bottom: 1rem;            
+            }
+            p {
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+            }
             a {
                 color: var(--crimson);
             }
