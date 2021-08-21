@@ -7,6 +7,7 @@ import { fetchProfile, putUserProfileImg } from 'axios/User';
 import styles from 'styles/containers/myContainer.module.scss';
 
 const defaultimg = '/images/default.jpg';
+const cameraimg = '/images/components/MemberItem/camera.png';
 
 const InfoItem = ({ title, value, onChange, readOnly }) => {
   return (
@@ -55,9 +56,10 @@ export const MyContainer = () => {
   // I need typescript...
   const url = profile ? profile.url || '' : '';
   const position = profile ? profile.position || '' : '';
+  const bio = profile ? profile.bio || '' : '';
 
   const setProfileByKey = (key, value) => {
-    if (['url', 'position', 'profile_img'].includes(key)) {
+    if (['url', 'position', 'bio', 'profile_img'].includes(key)) {
       setProfile({
         ...profile,
         [key]: value,
@@ -79,7 +81,7 @@ export const MyContainer = () => {
     const file = editImg.current.files[0];
     const res = await putUserProfileImg(file, myInfo.profile?.id);
     if (res.status === 200 || res.status === 201) {
-      setProfileByKey('profile_img', res.data.profile_img);
+      // setProfileByKey('profile_img', res.data.profile_img);
       setProfileImg(await readFile(file));
     } else {
       // TODO: handle error
@@ -98,10 +100,19 @@ export const MyContainer = () => {
               onChange={() => onChangeImg()}
             />
             <img
+              className={styles.profileImg}
               src={profileImg}
               alt="profile"
               onClick={() => editImg?.current && editImg.current.click()}
             />
+            <div
+              role="button"
+              tabIndex={0}
+              className={styles.cameraImg}
+              onClick={() => editImg?.current && editImg.current.click()}
+            >
+              <img src={cameraimg} alt="camera" />
+            </div>
           </div>
           <div className={styles.title}>{username}</div>
           <div className={styles.infowrapper}>
@@ -120,6 +131,14 @@ export const MyContainer = () => {
               value={position}
               onChange={(e) => {
                 setProfileByKey('position', e.target.value);
+              }}
+              readOnly={false}
+            />
+            <InfoItem
+              title="Bio"
+              value={bio}
+              onChange={(e) => {
+                setProfileByKey('bio', e.target.value);
               }}
               readOnly={false}
             />
