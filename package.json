@@ -9,6 +9,7 @@
     "lint": "eslint ./src"
   },
   "dependencies": {
+    "@next/react-refresh-utils": "^11.1.0",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.1",
     "codemirror": "^5.62.2",
