@@ -81,8 +81,8 @@ export function putUserProfileImg(file, id) {
   data.append('profile_img', file);
   return axios(
     {
-      method: 'PATCH',
-      url: `/api/account/profile/${id}/`,
+      method: id !== undefined ? 'PATCH' : 'POST',
+      url: `/api/account/profile/${id !== undefined ? id : ''}/`,
       data,
     },
     {
