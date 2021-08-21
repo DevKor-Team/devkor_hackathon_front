@@ -23,6 +23,9 @@ export const DemoContainer = ({ postData }) => {
         <section className={styles.infobox}>
           <h1 className={styles.title}> {data.title} </h1>
           <h2 className={styles.tag}> {data.tech_stacks.map((item) => item).join(', ')} </h2>
+          <h3>
+            <a href={`/team/${data.team.id}`}>{data.team.name}</a>
+          </h3>
           <p className={styles.members}>
             {' '}
             {data.team.users.map((user) => `${user.last_name} ${user.first_name}`).join(', ')}{' '}
