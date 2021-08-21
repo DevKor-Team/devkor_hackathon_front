@@ -5,17 +5,19 @@ import * as UserAPI from 'axios/User';
 
 const defaultimg = '/images/default.jpg';
 
-const InfoItem = ({ title, value, onChange, readOnly }) => {
+const InfoItem = ({ title, value, onChange, link }) => {
   return (
-    <div className={styles.info}>
-      <input
-        className={styles.info__text}
-        placeholder={title}
-        value={value}
-        onChange={onChange}
-        readOnly={readOnly}
-      />
-    </div>
+    <>
+      <div>
+        <span className={styles.label}>{title}</span>
+      </div>
+      <div className={styles.info}>
+        <div className={styles.info__text} onChange={onChange}>
+          {link ? <a href={value}>{value}</a> : value}
+          {!value && <br />}
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -23,7 +25,7 @@ InfoItem.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  readOnly: PropTypes.bool,
+  link: PropTypes.bool,
 };
 
 const ButtonItem = ({ text, onClick }) => {
@@ -76,11 +78,11 @@ const UserContainer = ({ id }) => {
           </div>
           <div className={styles.title}>{userInfo.username}</div>
           <div className={styles.infowrapper}>
-            <InfoItem title="email" value={userInfo.email} readOnly />
-            <InfoItem title="실명" value={userInfo.username} readOnly />
-            <InfoItem title="github 주소" value={userInfo.profile?.url} readOnly />
-            <InfoItem title="Position" value={userInfo.profile?.position} readOnly />
-            <InfoItem title="Bio" value={userInfo.profile?.bio} readOnly />
+            <InfoItem title="email" value={userInfo.email} />
+            <InfoItem title="실명" value={userInfo.username} />
+            <InfoItem title="github 주소" value={userInfo.profile?.url} link />
+            <InfoItem title="Position" value={userInfo.profile?.position} />
+            <InfoItem title="Bio" value={userInfo.profile?.bio} />
           </div>
         </div>
       )}

@@ -5,6 +5,8 @@ import { MemberItem } from 'components/MemberItem';
 import ButtonItem from 'components/Button';
 import copyToClipBoard from 'components/CopyToClipBoard';
 import { getTeamToken } from 'axios/Team';
+import moveTo from 'components/util/moveTo';
+import router from 'next/router';
 
 const copyTeamInviteLink = async (teamId) => {
   if (teamId) {
@@ -72,6 +74,7 @@ export const TeamItem = ({ data }) => (
               sub={item.id === data.leader.id ? 'Leader' : 'Member'}
               profile={item.profile}
               key={item.id}
+              onClick={() => moveTo(router, `/user/${item.id}`)}
             />
           );
         })}
