@@ -9,6 +9,21 @@ const MarkdownSubmit = ({ texts, onClicks, promise }) => {
       <button className={styles.submitContainerExit} type="button" onClick={onClicks.no}>
         {texts.no}
       </button>
+      {texts.save ? (
+        promise ? (
+          <PromiseButtonItem
+            text={texts.save}
+            className={styles.submitContainerSave}
+            onClick={onClicks.save}
+          />
+        ) : (
+          <button className={styles.submitContainerSave} type="button" onClick={onClicks.save}>
+            {texts.save}
+          </button>
+        )
+      ) : (
+        <></>
+      )}
       {promise ? (
         <PromiseButtonItem
           text={texts.yes}
