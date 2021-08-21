@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { deleteComments, likeComments, dislikeComments } from 'reducers/comments';
 import { LoadingSpinner } from 'components/Loading';
+import { useRouter } from 'next/router';
+import moveTo from 'components/util/moveTo';
 import { CommentButton } from './CommentButton';
 import CommentEditCard from './CommentEditItem';
 
@@ -26,6 +28,7 @@ export const CommentItem = (props) => {
   const [loading, setLoading] = useState(false);
   const [likes, setLike] = useState(data.likes);
   const [dislikes, setDisLike] = useState(data.dislikes);
+  const router = useRouter();
 
   const deleteComment = () => {
     const checkTrue = window.confirm('정말 삭제하시겠습니까?');
@@ -79,7 +82,12 @@ export const CommentItem = (props) => {
               <p onClick={deleteComment}> X </p>
             </div>
           )}
-          <div className={styles.title}>
+          <div
+            className={styles.title}
+            role="button"
+            tabIndex={0}
+            onClick={() => moveTo(router, `/user/${writer?.id}`)}
+          >
             <img
               src={writer?.profile?.profile_img ? writer.profile.profile_img : defaultProfileImg}
               alt="profile"

@@ -27,7 +27,6 @@ export function setCsrfToken() {
   }
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function getUserInfo() {
   return axios(
     {
@@ -39,6 +38,19 @@ export function getUserInfo() {
     }
   );
 }
+
+export function getUserInfoById(id) {
+  return axios(
+    {
+      method: 'GET',
+      url: `/api/account/user/${id}/`,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
 export function Logout() {
   return axios(
     {

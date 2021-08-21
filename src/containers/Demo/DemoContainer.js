@@ -11,8 +11,6 @@ export const DemoContainer = ({ postData }) => {
   if (postData) {
     return (
       <>
-        {/* <div className={styles.leftArrow} />
-        <div className={styles.rightArrow} /> */}
         <section>
           <img
             className={styles.thumbnail}
@@ -29,7 +27,11 @@ export const DemoContainer = ({ postData }) => {
           <p className={styles.members}>
             <a href={`/team/${data.team.id}`}>{data.team.name}</a>
             {' - '}
-            {data.team.users.map((user) => `${user.last_name} ${user.first_name}`).join(', ')}{' '}
+            {data.team.users
+              .map((user) => (
+                <a href={`/user/${user.id}`}>{`${user.last_name} ${user.first_name}`}</a>
+              ))
+              .reduce((prev, curr) => [prev, ', ', curr])}{' '}
           </p>
           <h3 className={styles.subtitle}>{data.sub_title}</h3>
           <div>
