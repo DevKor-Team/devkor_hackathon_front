@@ -63,7 +63,7 @@ button {
   background-color: #ffffff;
 }
 
-
-// textarea:focus, input:focus{
-//   outline: none;
-// }
+.CodeMirror {
+  height: 60vh !important;
+  overflow-y: scroll;
+}
