@@ -15,6 +15,7 @@ const techStacks = {
   mysql: '/images/components/ProjectItem/mysql.svg',
   postgresql: '/images/components/ProjectItem/postgresql.svg',
   react: '/images/components/ProjectItem/React.svg',
+  reactjs: '/images/components/ProjectItem/React.svg',
   redux: '/images/components/ProjectItem/Redux.svg',
 };
 
