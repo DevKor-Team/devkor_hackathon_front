@@ -12,6 +12,18 @@ export function getUserTeam() {
   );
 }
 
+export function getTeamList() {
+  return axios(
+    {
+      method: 'GET',
+      url: '/api/account/team/',
+    },
+    {
+      withCredentials: true,
+    }
+  );
+}
+
 export function getTeamInfoById(id) {
   return axios({
     method: 'GET',
