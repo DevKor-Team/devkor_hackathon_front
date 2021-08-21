@@ -11,6 +11,7 @@ import CommentEditCard from './CommentEditItem';
 
 const Edit = '/images/components/Comment/CommentItem/edit.svg';
 const Like = '/images/components/Comment/CommentItem/like.svg';
+const defaultProfileImg = '/images/default.jpg';
 
 export const CommentItem = (props) => {
   const { data, idx } = props;
@@ -72,18 +73,22 @@ export const CommentItem = (props) => {
     return (
       <div className={styles.container}>
         <div className={styles.textbox}>
-          {JSON.stringify(user) === JSON.stringify(writer) && (
+          {user.id === writer.id && (
             <div className={styles.close_btn}>
               <img src={Edit} alt="수정하기" onClick={() => setEdit(!edit)} />
               <p onClick={deleteComment}> X </p>
             </div>
           )}
-          <span className={styles.title}>
-            {writer ? (fullName.length === 0 ? writer.username : fullName) : '익명'}
-          </span>
+          <div className={styles.title}>
+            <img src={writer ? writer.profile.profile_img : defaultProfileImg} alt="profile" />
+            <div className={styles.info}>
+              <div>{writer ? (fullName.length === 0 ? writer.username : fullName) : '익명'}</div>
+              <div className={styles.weak}>{writer?.profile.position}</div>
+              <div className={styles.weak}> {dateObj && dateObj.diffAuto()} </div>
+            </div>
+          </div>
           {!edit && (
             <>
-              <span className={styles.date}> {dateObj && dateObj.diffAuto()} </span>
               <p className={styles.content}> {data.content} </p>
               <div className={styles.buttonbox}>
                 <div style={{ display: 'flex' }}>

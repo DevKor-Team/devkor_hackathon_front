@@ -70,6 +70,7 @@ export const TeamItem = ({ data }) => (
             <MemberItem
               title={`${item.last_name} ${item.first_name}`}
               sub={item.id === data.leader.id ? 'Leader' : 'Member'}
+              profile={item.profile}
               key={item.id}
             />
           );
