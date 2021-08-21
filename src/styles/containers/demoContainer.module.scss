@@ -1,10 +1,20 @@
 .desc {
-    h1, h2, h3, h4, span, p {
-        margin: 0;
-        padding: 0;
+    // h1, h2, h3, h4, span, p {
+    //     margin: 0;
+    //     padding: 0;
+    // }
+    // h1 {
+    //     font-size: 2rem;
+    // }
+    h1, h2, h3, h4 {
+        line-height: 1.5;
+        margin-bottom: 1rem;            
     }
-    h1 {
-        font-size: 2rem;
+    p {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
     }
     a {
         color: var(--crimson);
@@ -57,10 +67,10 @@
     text-align: left;
     display: flex;
     flex-direction: column;
-    h1, h2, h3, h4, span, p {
-        margin: 0;
-        padding: 0;
-    }
+    // h1, h2, h3, h4, span, p {
+    //     margin: 0;
+    //     padding: 0;
+    // }
     h1 {
         font-size: 2rem;
     }
@@ -72,6 +82,7 @@
         letter-spacing: normal;
         color: #000000;
         margin: 0;
+        margin-bottom: 0.25rem;
     }
     .tag {
         font-size: 12px;
@@ -83,6 +94,7 @@
         text-align: left;
         color: #666666;
         margin: 0;
+        margin-bottom: 1.5rem;
     }
     .members {
         font-size: 12px;
@@ -94,6 +106,10 @@
         text-align: left;
         color: #bbbbbb;
         margin: 0;
+        margin-bottom: 2.5rem;
+    }
+    .subtitle {
+        margin-bottom: 4rem;
     }
     .projectInfo {
         width: 62.7%;
