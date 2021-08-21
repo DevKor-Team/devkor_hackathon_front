@@ -80,10 +80,13 @@ export const CommentItem = (props) => {
             </div>
           )}
           <div className={styles.title}>
-            <img src={writer ? writer.profile.profile_img : defaultProfileImg} alt="profile" />
+            <img
+              src={writer?.profile?.profile_img ? writer.profile.profile_img : defaultProfileImg}
+              alt="profile"
+            />
             <div className={styles.info}>
               <div>{writer ? (fullName.length === 0 ? writer.username : fullName) : '익명'}</div>
-              <div className={styles.weak}>{writer?.profile.position}</div>
+              <div className={styles.weak}>{writer?.profile?.position}</div>
               <div className={styles.weak}> {dateObj && dateObj.diffAuto()} </div>
             </div>
           </div>
