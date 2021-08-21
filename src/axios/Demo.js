@@ -71,3 +71,20 @@ export function getDemoTags() {
     url: '/api/demo/tags',
   });
 }
+
+export function postDemoImage(file, id) {
+  const data = new FormData();
+  data.append('image', file);
+  data.append('demo', id);
+  return axios(
+    {
+      method: 'POST',
+      url: '/api/demo/image',
+      data,
+    },
+    {
+      withCredentials: true,
+      'Content-Type': 'multipart/form-data',
+    }
+  );
+}
