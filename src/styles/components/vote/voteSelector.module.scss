@@ -67,6 +67,8 @@
   grid-gap: 10px;
   .projectItemBox {
     position: relative;
+    width: 16rem;
+    max-width: 16rem;
     button {
       position: absolute;
       border-radius: 10px;
