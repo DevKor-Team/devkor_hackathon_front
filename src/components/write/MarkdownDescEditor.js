@@ -9,12 +9,10 @@ import 'codemirror/addon/display/placeholder';
 import styles from 'styles/containers/write.module.scss';
 import useUpload from 'components/hooks/useUpload';
 import { postDemoImage } from 'axios/Demo';
-import { useSelector } from 'react-redux';
 
 const MarkdownDescEditor = () => {
   const [description, setDescription] = useDescription();
   const [upload] = useUpload();
-  const demo = useSelector((state) => state.demo);
   const codeMirrorRef = useRef(null);
 
   const onChange = useCallback(
@@ -24,8 +22,8 @@ const MarkdownDescEditor = () => {
     [setDescription]
   );
 
-  const onImageUpload = async (doc, cursor, file, id) => {
-    const res = await postDemoImage(file, id);
+  const onImageUpload = async (doc, cursor, file) => {
+    const res = await postDemoImage(file);
     const selected = doc.getSelection();
     if (selected.length === 0) {
       doc.replaceSelection(`![image${res.data.id}](${res.data.image})`);
@@ -330,7 +328,7 @@ const MarkdownDescEditor = () => {
       },
       image: async () => {
         const file = await upload();
-        onImageUpload(doc, cursor, file, demo.id);
+        onImageUpload(doc, cursor, file);
       },
       codeblock: () => {
         const selected = doc.getSelection();

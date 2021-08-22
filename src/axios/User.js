@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { getFilename } from './Demo';
 
 // export function getUserData() {
 //   return axios({
@@ -90,7 +91,7 @@ export function postUserProfile(data) {
 
 export function putUserProfileImg(file, id) {
   const data = new FormData();
-  data.append('profile_img', file);
+  data.append('profile_img', file, getFilename(file));
   return axios(
     {
       method: id !== undefined ? 'PATCH' : 'POST',

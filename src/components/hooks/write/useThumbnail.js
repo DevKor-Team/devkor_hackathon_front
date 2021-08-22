@@ -2,6 +2,7 @@ import React from 'react';
 import { changeThumbnail } from 'reducers/demo';
 import { useSelector, useDispatch } from 'react-redux';
 import useUpload from 'components/hooks/useUpload';
+import { getFilename } from 'axios/Demo';
 
 export default function useThumbnail() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export default function useThumbnail() {
       dispatch(
         changeThumbnail({
           url: localImageUrl,
-          name: file.name,
+          name: getFilename(file),
         })
       );
     }
