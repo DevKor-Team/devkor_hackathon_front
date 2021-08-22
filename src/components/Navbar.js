@@ -8,6 +8,7 @@ import { setCsrfToken } from 'axios/User';
 import { userLogout } from 'reducers/users';
 import { handleModal } from 'components/hooks/handleModal';
 import MenuWrapper from 'components/Menu';
+import * as VoteAPI from 'axios/Vote';
 import LoginModal from './Login';
 import useMyLeaderInfo from './hooks/useMyLeaderInfo';
 
@@ -72,6 +73,7 @@ export const Navbar = () => {
   const router = useRouter();
   const [mobile, setMobile] = useState(false);
   const [menu, setopenMenu] = useState(false);
+  const [vote, setVote] = useState(false);
 
   const moveTo = (href) => {
     router.push(href);
@@ -116,6 +118,15 @@ export const Navbar = () => {
         setMobile(false);
       }
     });
+    VoteAPI.isVotable()
+      .then((res) => {
+        if (res?.data?.votable) setVote(true);
+        else setVote(false);
+      })
+      .catch((err) => {
+        setVote(false);
+        console.dir(err);
+      });
   }, []);
 
   if (mobile) {
@@ -181,6 +192,14 @@ export const Navbar = () => {
           <img src={logo} alt="devkor" />
         </div>
         <ul>
+          {vote && (
+            <NavbarItem
+              title="VOTE"
+              onClick={() => {
+                moveTo('/vote');
+              }}
+            />
+          )}
           {myInfo === null ? (
             <NavbarItem title="LOGIN/SIGNUP" onClick={toggleModal} />
           ) : (
