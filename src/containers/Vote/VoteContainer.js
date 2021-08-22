@@ -97,7 +97,7 @@ const VoteContainer = () => {
         const res = await getDemoList();
         setDemos(
           res.data.results.map((data) => {
-            const { id, title, thumbnail, tags } = data;
+            const { id, title, thumbnail, tags, show } = data;
             const team = {
               id: data.team.id,
               name: data.team.name,
@@ -125,6 +125,7 @@ const VoteContainer = () => {
                 data.fire_count +
                 data.fun_count +
                 data.sad_count,
+              show,
             };
           })
         );
